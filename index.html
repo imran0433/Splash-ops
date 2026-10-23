@@ -394,6 +394,7 @@ kbd{font-family:var(--display);font-size:12px;background:var(--ink);color:var(--
             <div class="opt"><span class="ol" data-t="difficulty"></span><div class="seg diffSeg"><button data-d="easy" data-t="easy"></button><button data-d="medium" data-t="medium"></button><button data-d="hard" data-t="hard"></button></div></div>
           </div>
           <div id="p2pMenu" class="row" style="justify-content:flex-start">
+            <button class="play" id="btnQuick" data-t="qp_btn" style="background:#3DDC84"></button>
             <button class="play" id="btnHost" data-t="p2p_host"></button>
             <button class="play" id="btnJoinShow" data-t="p2p_join" style="background:var(--water)"></button>
           </div>
@@ -477,7 +478,7 @@ const U = 1 / 20;
 
 /* ================= translations ================= */
 const L = {
-nl: { p2p_waking:'De server wordt wakker gemaakt, dit kan tot een minuut duren…', p2p_host:'Host Game', p2p_join:'Join Game', p2p_connect:'VERBINDEN', p2p_code_lbl:'ROOM ID', p2p_waiting:'Wachten tot spelers verbinden. Deel de Room ID met je vrienden.', p2p_wait_host:'Verbonden. Wachten tot de host de match start…', p2p_start:'START MATCH', p2p_leave:'Lobby verlaten', p2p_copy:'Kopieer', p2p_copied:'Gekopieerd', p2p_players:'Spelers in de lobby: {n}', p2p_host_tag:'host', p2p_connecting:'Verbinden…', p2p_err_net:'Geen verbinding met de PeerJS server. Binnen claude.ai is P2P geblokkeerd. Zet het bestand op je eigen website, of speel via een claude.ai kamer hieronder.', p2p_err_code:'Geen game gevonden met deze Room ID.', p2p_err_left:'De host heeft het spel verlaten.', p2p_err_lib:'De PeerJS bibliotheek kon niet laden. Controleer je internet.', p2p_badcode:'Vul eerst een Room ID in.', p2p_alt:'Andere manier: claude.ai kamer', map_head:'KIES EEN MAP', map_note:'Online bepaalt de eerste speler in de kamer de map', map_d_park:'Speeltuin met veel dekking', map_d_jungle:'Dichte jungle met ruïnes en vijvers in het midden', map_d_snow:'IJsfort met lange muren, teams starten boven en onder', map_d_desert:'Open woestijn met piramides en een oase in het midden', map_random:'Willekeurig', map_d_random:'Elk potje een verrassing', t_jump:'SPRING', a_jump:'Springen', k_jump:'springen', rp_hp:'{n} had nog {hp} HP over', rp_weapon:'Geraakt met', rp_loadout:'Uitrusting', kc_streak:'reeks', sub:'TEAM SOAKMATCH · {size} · EERST NAAR {lim} SOAKS · {time} OP DE KLOK', loadout:'KIES JE UITRUSTING', loadout_note:'Je kunt bij elke respawn wisselen', primary:'Hoofdwapen', secondary:'Tweede wapen',
+nl: { qp_btn:'SNEL SPELEN', qp_search:'Open potjes zoeken…', qp_joining:'Verbinden met potje {n} van {m}…', qp_none:'Geen open potje gevonden. Je start er zelf een met bots, andere spelers kunnen erbij komen.', qp_found:'Potje gevonden! Je springt er zo in…', qp_full:'Dit potje zit vol.', p2p_waking:'De server wordt wakker gemaakt, dit kan tot een minuut duren…', p2p_host:'Host Game', p2p_join:'Join Game', p2p_connect:'VERBINDEN', p2p_code_lbl:'ROOM ID', p2p_waiting:'Wachten tot spelers verbinden. Deel de Room ID met je vrienden.', p2p_wait_host:'Verbonden. Wachten tot de host de match start…', p2p_start:'START MATCH', p2p_leave:'Lobby verlaten', p2p_copy:'Kopieer', p2p_copied:'Gekopieerd', p2p_players:'Spelers in de lobby: {n}', p2p_host_tag:'host', p2p_connecting:'Verbinden…', p2p_err_net:'Geen verbinding met de PeerJS server. Binnen claude.ai is P2P geblokkeerd. Zet het bestand op je eigen website, of speel via een claude.ai kamer hieronder.', p2p_err_code:'Geen game gevonden met deze Room ID.', p2p_err_left:'De host heeft het spel verlaten.', p2p_err_lib:'De PeerJS bibliotheek kon niet laden. Controleer je internet.', p2p_badcode:'Vul eerst een Room ID in.', p2p_alt:'Andere manier: claude.ai kamer', map_head:'KIES EEN MAP', map_note:'Online bepaalt de eerste speler in de kamer de map', map_d_park:'Speeltuin met veel dekking', map_d_jungle:'Dichte jungle met ruïnes en vijvers in het midden', map_d_snow:'IJsfort met lange muren, teams starten boven en onder', map_d_desert:'Open woestijn met piramides en een oase in het midden', map_random:'Willekeurig', map_d_random:'Elk potje een verrassing', t_jump:'SPRING', a_jump:'Springen', k_jump:'springen', rp_hp:'{n} had nog {hp} HP over', rp_weapon:'Geraakt met', rp_loadout:'Uitrusting', kc_streak:'reeks', sub:'TEAM SOAKMATCH · {size} · EERST NAAR {lim} SOAKS · {time} OP DE KLOK', loadout:'KIES JE UITRUSTING', loadout_note:'Je kunt bij elke respawn wisselen', primary:'Hoofdwapen', secondary:'Tweede wapen',
   cls_ar:'Aanvalsgeweren', cls_smg:'SMG’s', cls_sg:'Shotguns', cls_sn:'Snipers', cls_lmg:'LMG’s', cls_pi:'Pistolen',
   st_pow:'Kracht', st_rng:'Bereik', st_rate:'Vuursnelheid', st_tank:'Tank', tr_auto:'Automatisch', tr_burst:'Salvo van 3', tr_semi:'Halfautomatisch', tr_pump:'Pompactie', tr_scope:'Vizier',
   pu_head:'POWER UPS', pu_note:'Liggen op de grond. Loop erdoorheen om ze te pakken', pu_dmg:'SUPER SPUIT', pu_dmg_s:'1,5× zoveel schade · 10 sec', pu_shield:'WATERSCHILD', pu_shield_s:'50 HP extra · 20 sec', pu_heal:'DROGE HANDDOEK', pu_heal_s:'Direct al je HP terug', pu_ammo:'EINDELOZE TANK', pu_ammo_s:'Niet herladen · 30 sec',
@@ -496,7 +497,7 @@ nl: { p2p_waking:'De server wordt wakker gemaakt, dit kan tot een minuut duren�
   a_up:'Vooruit', a_down:'Achteruit', a_left:'Naar links', a_right:'Naar rechts', a_turnLeft:'Draai links', a_turnRight:'Draai rechts', a_sprint:'Sprinten', a_fire:'Spuiten', a_ads:'Richten', a_reload:'Tank bijvullen', a_swap:'Wapen wisselen', a_slot1:'Hoofdwapen pakken', a_slot2:'Tweede wapen pakken', a_board:'Scorebord (ingedrukt)', a_pause:'Pauze', a_mute:'Geluid aan of uit',
   key_m0:'Linkermuisknop', key_m1:'Middelste muisknop', key_m2:'Rechtermuisknop', key_m3:'Muisknop 4', key_m4:'Muisknop 5', key_space:'Spatie', key_wu:'Scroll omhoog', key_wd:'Scroll omlaag',
   t_fire:'SPUIT', t_reload:'VUL', t_swap:'WISSEL', t_aim:'RICHT', rotate:'Draai je telefoon voor het beste beeld', pool_lbl:'BIJVULLEN' },
-en: { p2p_waking:'Waking up the server, this can take up to a minute…', p2p_host:'Host Game', p2p_join:'Join Game', p2p_connect:'CONNECT', p2p_code_lbl:'ROOM ID', p2p_waiting:'Waiting for players to connect. Share the Room ID with your friends.', p2p_wait_host:'Connected. Waiting for the host to start the match…', p2p_start:'START MATCH', p2p_leave:'Leave lobby', p2p_copy:'Copy', p2p_copied:'Copied', p2p_players:'Players in the lobby: {n}', p2p_host_tag:'host', p2p_connecting:'Connecting…', p2p_err_net:'Cannot reach the PeerJS server. Inside claude.ai, P2P is blocked. Put the file on your own website, or play through a claude.ai room below.', p2p_err_code:'No game found with this Room ID.', p2p_err_left:'The host left the game.', p2p_err_lib:'The PeerJS library could not load. Check your internet.', p2p_badcode:'Enter a Room ID first.', p2p_alt:'Other way: claude.ai room', map_head:'CHOOSE A MAP', map_note:'Online, the first player in the room picks the map', map_d_park:'Playground with lots of cover', map_d_jungle:'Dense jungle with ruins and ponds in the middle', map_d_snow:'Ice fort with long walls, teams start top and bottom', map_d_desert:'Open desert with pyramids and an oasis in the middle', map_random:'Random', map_d_random:'A surprise every match', t_jump:'JUMP', a_jump:'Jump', k_jump:'jump', rp_hp:'{n} had {hp} HP left', rp_weapon:'Hit with', rp_loadout:'Loadout', kc_streak:'streak', sub:'TEAM SOAKMATCH · {size} · FIRST TO {lim} SOAKS · {time} ON THE CLOCK', loadout:'CHOOSE YOUR LOADOUT', loadout_note:'You can change it at every respawn', primary:'Primary', secondary:'Secondary',
+en: { qp_btn:'QUICK PLAY', qp_search:'Searching for open matches…', qp_joining:'Connecting to match {n} of {m}…', qp_none:'No open match found. Starting your own with bots, other players can drop in.', qp_found:'Match found! Jumping in…', qp_full:'This match is full.', p2p_waking:'Waking up the server, this can take up to a minute…', p2p_host:'Host Game', p2p_join:'Join Game', p2p_connect:'CONNECT', p2p_code_lbl:'ROOM ID', p2p_waiting:'Waiting for players to connect. Share the Room ID with your friends.', p2p_wait_host:'Connected. Waiting for the host to start the match…', p2p_start:'START MATCH', p2p_leave:'Leave lobby', p2p_copy:'Copy', p2p_copied:'Copied', p2p_players:'Players in the lobby: {n}', p2p_host_tag:'host', p2p_connecting:'Connecting…', p2p_err_net:'Cannot reach the PeerJS server. Inside claude.ai, P2P is blocked. Put the file on your own website, or play through a claude.ai room below.', p2p_err_code:'No game found with this Room ID.', p2p_err_left:'The host left the game.', p2p_err_lib:'The PeerJS library could not load. Check your internet.', p2p_badcode:'Enter a Room ID first.', p2p_alt:'Other way: claude.ai room', map_head:'CHOOSE A MAP', map_note:'Online, the first player in the room picks the map', map_d_park:'Playground with lots of cover', map_d_jungle:'Dense jungle with ruins and ponds in the middle', map_d_snow:'Ice fort with long walls, teams start top and bottom', map_d_desert:'Open desert with pyramids and an oasis in the middle', map_random:'Random', map_d_random:'A surprise every match', t_jump:'JUMP', a_jump:'Jump', k_jump:'jump', rp_hp:'{n} had {hp} HP left', rp_weapon:'Hit with', rp_loadout:'Loadout', kc_streak:'streak', sub:'TEAM SOAKMATCH · {size} · FIRST TO {lim} SOAKS · {time} ON THE CLOCK', loadout:'CHOOSE YOUR LOADOUT', loadout_note:'You can change it at every respawn', primary:'Primary', secondary:'Secondary',
   cls_ar:'Assault rifles', cls_smg:'SMGs', cls_sg:'Shotguns', cls_sn:'Snipers', cls_lmg:'LMGs', cls_pi:'Pistols',
   st_pow:'Power', st_rng:'Range', st_rate:'Fire rate', st_tank:'Tank', tr_auto:'Automatic', tr_burst:'3-round burst', tr_semi:'Semi-auto', tr_pump:'Pump action', tr_scope:'Scope',
   pu_head:'POWER UPS', pu_note:'Found on the ground. Walk through one to grab it', pu_dmg:'SUPER SQUIRT', pu_dmg_s:'1.5× damage · 10 sec', pu_shield:'WATER SHIELD', pu_shield_s:'50 extra HP · 20 sec', pu_heal:'DRY TOWEL', pu_heal_s:'All your HP back instantly', pu_ammo:'ENDLESS TANK', pu_ammo_s:'No reloading · 30 sec',
@@ -515,7 +516,7 @@ en: { p2p_waking:'Waking up the server, this can take up to a minute…', p2p_ho
   a_up:'Forward', a_down:'Back', a_left:'Left', a_right:'Right', a_turnLeft:'Turn left', a_turnRight:'Turn right', a_sprint:'Sprint', a_fire:'Squirt', a_ads:'Aim down sights', a_reload:'Refill tank', a_swap:'Swap weapon', a_slot1:'Primary weapon', a_slot2:'Secondary weapon', a_board:'Scoreboard (hold)', a_pause:'Pause', a_mute:'Sound on or off',
   key_m0:'Left mouse', key_m1:'Middle mouse', key_m2:'Right mouse', key_m3:'Mouse 4', key_m4:'Mouse 5', key_space:'Space', key_wu:'Wheel up', key_wd:'Wheel down',
   t_fire:'FIRE', t_reload:'REFILL', t_swap:'SWAP', t_aim:'AIM', rotate:'Turn your phone sideways for the best view', pool_lbl:'REFILL' },
-de: { p2p_waking:'Der Server wird geweckt, das kann bis zu einer Minute dauern…', p2p_host:'Spiel hosten', p2p_join:'Spiel beitreten', p2p_connect:'VERBINDEN', p2p_code_lbl:'RAUM-ID', p2p_waiting:'Warte auf Spieler. Teile die Raum-ID mit deinen Freunden.', p2p_wait_host:'Verbunden. Warte, bis der Host das Match startet…', p2p_start:'MATCH STARTEN', p2p_leave:'Lobby verlassen', p2p_copy:'Kopieren', p2p_copied:'Kopiert', p2p_players:'Spieler in der Lobby: {n}', p2p_host_tag:'Host', p2p_connecting:'Verbinde…', p2p_err_net:'Keine Verbindung zum PeerJS-Server. In claude.ai ist P2P blockiert. Lade die Datei auf deine eigene Website hoch oder spiele unten über einen claude.ai-Raum.', p2p_err_code:'Kein Spiel mit dieser Raum-ID gefunden.', p2p_err_left:'Der Host hat das Spiel verlassen.', p2p_err_lib:'Die PeerJS-Bibliothek konnte nicht geladen werden. Prüfe deine Internetverbindung.', p2p_badcode:'Gib zuerst eine Raum-ID ein.', p2p_alt:'Andere Möglichkeit: claude.ai-Raum', map_head:'WÄHLE EINE KARTE', map_note:'Online wählt der erste Spieler im Raum die Karte', map_d_park:'Spielplatz mit viel Deckung', map_d_jungle:'Dichter Dschungel mit Ruinen und Teichen in der Mitte', map_d_snow:'Eisfestung mit langen Mauern, Teams starten oben und unten', map_d_desert:'Offene Wüste mit Pyramiden und einer Oase in der Mitte', map_random:'Zufällig', map_d_random:'Jedes Match eine Überraschung', t_jump:'SPRUNG', a_jump:'Springen', k_jump:'springen', rp_hp:'{n} hatte noch {hp} HP', rp_weapon:'Getroffen mit', rp_loadout:'Ausrüstung', kc_streak:'Serie', sub:'TEAM SOAKMATCH · {size} · ZUERST {lim} SOAKS · {time} AUF DER UHR', loadout:'WÄHLE DEINE AUSRÜSTUNG', loadout_note:'Bei jedem Respawn änderbar', primary:'Primärwaffe', secondary:'Sekundärwaffe',
+de: { qp_btn:'SCHNELLES SPIEL', qp_search:'Suche offene Matches…', qp_joining:'Verbinde mit Match {n} von {m}…', qp_none:'Kein offenes Match gefunden. Du startest eins mit Bots, andere Spieler können dazukommen.', qp_found:'Match gefunden! Du springst gleich rein…', qp_full:'Dieses Match ist voll.', p2p_waking:'Der Server wird geweckt, das kann bis zu einer Minute dauern…', p2p_host:'Spiel hosten', p2p_join:'Spiel beitreten', p2p_connect:'VERBINDEN', p2p_code_lbl:'RAUM-ID', p2p_waiting:'Warte auf Spieler. Teile die Raum-ID mit deinen Freunden.', p2p_wait_host:'Verbunden. Warte, bis der Host das Match startet…', p2p_start:'MATCH STARTEN', p2p_leave:'Lobby verlassen', p2p_copy:'Kopieren', p2p_copied:'Kopiert', p2p_players:'Spieler in der Lobby: {n}', p2p_host_tag:'Host', p2p_connecting:'Verbinde…', p2p_err_net:'Keine Verbindung zum PeerJS-Server. In claude.ai ist P2P blockiert. Lade die Datei auf deine eigene Website hoch oder spiele unten über einen claude.ai-Raum.', p2p_err_code:'Kein Spiel mit dieser Raum-ID gefunden.', p2p_err_left:'Der Host hat das Spiel verlassen.', p2p_err_lib:'Die PeerJS-Bibliothek konnte nicht geladen werden. Prüfe deine Internetverbindung.', p2p_badcode:'Gib zuerst eine Raum-ID ein.', p2p_alt:'Andere Möglichkeit: claude.ai-Raum', map_head:'WÄHLE EINE KARTE', map_note:'Online wählt der erste Spieler im Raum die Karte', map_d_park:'Spielplatz mit viel Deckung', map_d_jungle:'Dichter Dschungel mit Ruinen und Teichen in der Mitte', map_d_snow:'Eisfestung mit langen Mauern, Teams starten oben und unten', map_d_desert:'Offene Wüste mit Pyramiden und einer Oase in der Mitte', map_random:'Zufällig', map_d_random:'Jedes Match eine Überraschung', t_jump:'SPRUNG', a_jump:'Springen', k_jump:'springen', rp_hp:'{n} hatte noch {hp} HP', rp_weapon:'Getroffen mit', rp_loadout:'Ausrüstung', kc_streak:'Serie', sub:'TEAM SOAKMATCH · {size} · ZUERST {lim} SOAKS · {time} AUF DER UHR', loadout:'WÄHLE DEINE AUSRÜSTUNG', loadout_note:'Bei jedem Respawn änderbar', primary:'Primärwaffe', secondary:'Sekundärwaffe',
   cls_ar:'Sturmgewehre', cls_smg:'MPs', cls_sg:'Schrotflinten', cls_sn:'Scharfschützen', cls_lmg:'LMGs', cls_pi:'Pistolen',
   st_pow:'Stärke', st_rng:'Reichweite', st_rate:'Feuerrate', st_tank:'Tank', tr_auto:'Automatisch', tr_burst:'3er-Salve', tr_semi:'Halbautomatisch', tr_pump:'Pumpaktion', tr_scope:'Zielfernrohr',
   pu_head:'POWER-UPS', pu_note:'Liegen auf dem Boden. Lauf hindurch, um sie einzusammeln', pu_dmg:'SUPER-SPRITZER', pu_dmg_s:'1,5× Schaden · 10 Sek.', pu_shield:'WASSERSCHILD', pu_shield_s:'50 HP extra · 20 Sek.', pu_heal:'TROCKENES HANDTUCH', pu_heal_s:'Sofort alle HP zurück', pu_ammo:'ENDLOSER TANK', pu_ammo_s:'Kein Nachladen · 30 Sek.',
@@ -534,7 +535,7 @@ de: { p2p_waking:'Der Server wird geweckt, das kann bis zu einer Minute dauern�
   a_up:'Vorwärts', a_down:'Rückwärts', a_left:'Links', a_right:'Rechts', a_turnLeft:'Links drehen', a_turnRight:'Rechts drehen', a_sprint:'Sprinten', a_fire:'Spritzen', a_ads:'Zielen', a_reload:'Tank auffüllen', a_swap:'Waffe wechseln', a_slot1:'Primärwaffe', a_slot2:'Sekundärwaffe', a_board:'Punktetafel (halten)', a_pause:'Pause', a_mute:'Ton an oder aus',
   key_m0:'Linke Maustaste', key_m1:'Mittlere Maustaste', key_m2:'Rechte Maustaste', key_m3:'Maustaste 4', key_m4:'Maustaste 5', key_space:'Leertaste', key_wu:'Mausrad hoch', key_wd:'Mausrad runter',
   t_fire:'FEUER', t_reload:'FÜLLEN', t_swap:'WECHSEL', t_aim:'ZIELEN', rotate:'Dreh dein Handy quer für die beste Sicht', pool_lbl:'AUFFÜLLEN' },
-es: { p2p_waking:'Despertando el servidor, puede tardar hasta un minuto…', p2p_host:'Crear partida', p2p_join:'Unirse a partida', p2p_connect:'CONECTAR', p2p_code_lbl:'ID DE SALA', p2p_waiting:'Esperando jugadores. Comparte el ID de sala con tus amigos.', p2p_wait_host:'Conectado. Esperando a que el anfitrión empiece la partida…', p2p_start:'EMPEZAR PARTIDA', p2p_leave:'Salir del lobby', p2p_copy:'Copiar', p2p_copied:'Copiado', p2p_players:'Jugadores en el lobby: {n}', p2p_host_tag:'anfitrión', p2p_connecting:'Conectando…', p2p_err_net:'No se puede conectar con el servidor de PeerJS. Dentro de claude.ai el P2P está bloqueado. Sube el archivo a tu propia web o juega con una sala de claude.ai abajo.', p2p_err_code:'No hay ninguna partida con este ID de sala.', p2p_err_left:'El anfitrión ha salido de la partida.', p2p_err_lib:'No se pudo cargar la biblioteca PeerJS. Revisa tu conexión.', p2p_badcode:'Escribe primero un ID de sala.', p2p_alt:'Otra forma: sala de claude.ai', map_head:'ELIGE UN MAPA', map_note:'En línea, el primer jugador de la sala elige el mapa', map_d_park:'Parque con mucha cobertura', map_d_jungle:'Jungla espesa con ruinas y estanques en el centro', map_d_snow:'Fuerte de hielo con muros largos, los equipos empiezan arriba y abajo', map_d_desert:'Desierto abierto con pirámides y un oasis en el centro', map_random:'Aleatorio', map_d_random:'Una sorpresa en cada partida', t_jump:'SALTA', a_jump:'Saltar', k_jump:'saltar', rp_hp:'A {n} le quedaban {hp} HP', rp_weapon:'Alcanzado con', rp_loadout:'Equipo', kc_streak:'racha', sub:'TEAM SOAKMATCH · {size} · PRIMERO EN {lim} SOAKS · {time} EN EL RELOJ', loadout:'ELIGE TU EQUIPO', loadout_note:'Puedes cambiarlo en cada reaparición', primary:'Principal', secondary:'Secundaria',
+es: { qp_btn:'PARTIDA RÁPIDA', qp_search:'Buscando partidas abiertas…', qp_joining:'Conectando a la partida {n} de {m}…', qp_none:'No hay partidas abiertas. Empiezas una con bots y otros jugadores pueden unirse.', qp_found:'¡Partida encontrada! Entrando…', qp_full:'Esta partida está llena.', p2p_waking:'Despertando el servidor, puede tardar hasta un minuto…', p2p_host:'Crear partida', p2p_join:'Unirse a partida', p2p_connect:'CONECTAR', p2p_code_lbl:'ID DE SALA', p2p_waiting:'Esperando jugadores. Comparte el ID de sala con tus amigos.', p2p_wait_host:'Conectado. Esperando a que el anfitrión empiece la partida…', p2p_start:'EMPEZAR PARTIDA', p2p_leave:'Salir del lobby', p2p_copy:'Copiar', p2p_copied:'Copiado', p2p_players:'Jugadores en el lobby: {n}', p2p_host_tag:'anfitrión', p2p_connecting:'Conectando…', p2p_err_net:'No se puede conectar con el servidor de PeerJS. Dentro de claude.ai el P2P está bloqueado. Sube el archivo a tu propia web o juega con una sala de claude.ai abajo.', p2p_err_code:'No hay ninguna partida con este ID de sala.', p2p_err_left:'El anfitrión ha salido de la partida.', p2p_err_lib:'No se pudo cargar la biblioteca PeerJS. Revisa tu conexión.', p2p_badcode:'Escribe primero un ID de sala.', p2p_alt:'Otra forma: sala de claude.ai', map_head:'ELIGE UN MAPA', map_note:'En línea, el primer jugador de la sala elige el mapa', map_d_park:'Parque con mucha cobertura', map_d_jungle:'Jungla espesa con ruinas y estanques en el centro', map_d_snow:'Fuerte de hielo con muros largos, los equipos empiezan arriba y abajo', map_d_desert:'Desierto abierto con pirámides y un oasis en el centro', map_random:'Aleatorio', map_d_random:'Una sorpresa en cada partida', t_jump:'SALTA', a_jump:'Saltar', k_jump:'saltar', rp_hp:'A {n} le quedaban {hp} HP', rp_weapon:'Alcanzado con', rp_loadout:'Equipo', kc_streak:'racha', sub:'TEAM SOAKMATCH · {size} · PRIMERO EN {lim} SOAKS · {time} EN EL RELOJ', loadout:'ELIGE TU EQUIPO', loadout_note:'Puedes cambiarlo en cada reaparición', primary:'Principal', secondary:'Secundaria',
   cls_ar:'Fusiles de asalto', cls_smg:'Subfusiles', cls_sg:'Escopetas', cls_sn:'Francotiradores', cls_lmg:'Ametralladoras', cls_pi:'Pistolas',
   st_pow:'Potencia', st_rng:'Alcance', st_rate:'Cadencia', st_tank:'Tanque', tr_auto:'Automática', tr_burst:'Ráfaga de 3', tr_semi:'Semiautomática', tr_pump:'De corredera', tr_scope:'Mira',
   pu_head:'POTENCIADORES', pu_note:'Están en el suelo. Pasa por encima para cogerlos', pu_dmg:'SÚPER CHORRO', pu_dmg_s:'1,5× daño · 10 s', pu_shield:'ESCUDO DE AGUA', pu_shield_s:'50 HP extra · 20 s', pu_heal:'TOALLA SECA', pu_heal_s:'Recuperas todo tu HP al instante', pu_ammo:'TANQUE INFINITO', pu_ammo_s:'Sin recargar · 30 s',
@@ -553,7 +554,7 @@ es: { p2p_waking:'Despertando el servidor, puede tardar hasta un minuto…', p2p
   a_up:'Adelante', a_down:'Atrás', a_left:'Izquierda', a_right:'Derecha', a_turnLeft:'Girar a la izquierda', a_turnRight:'Girar a la derecha', a_sprint:'Correr', a_fire:'Disparar', a_ads:'Apuntar', a_reload:'Rellenar tanque', a_swap:'Cambiar arma', a_slot1:'Arma principal', a_slot2:'Arma secundaria', a_board:'Marcador (mantener)', a_pause:'Pausa', a_mute:'Sonido sí o no',
   key_m0:'Clic izquierdo', key_m1:'Clic central', key_m2:'Clic derecho', key_m3:'Botón 4', key_m4:'Botón 5', key_space:'Espacio', key_wu:'Rueda arriba', key_wd:'Rueda abajo',
   t_fire:'DISPARA', t_reload:'RELLENA', t_swap:'CAMBIA', t_aim:'APUNTA', rotate:'Gira el móvil para verlo mejor', pool_lbl:'RELLENAR' },
-fr: { p2p_waking:'Réveil du serveur, cela peut prendre jusqu’à une minute…', p2p_host:'Héberger', p2p_join:'Rejoindre', p2p_connect:'CONNEXION', p2p_code_lbl:'ID DU SALON', p2p_waiting:'En attente de joueurs. Partage l’ID du salon avec tes amis.', p2p_wait_host:'Connecté. En attente du lancement par l’hôte…', p2p_start:'LANCER LA PARTIE', p2p_leave:'Quitter le salon', p2p_copy:'Copier', p2p_copied:'Copié', p2p_players:'Joueurs dans le salon : {n}', p2p_host_tag:'hôte', p2p_connecting:'Connexion…', p2p_err_net:'Impossible de joindre le serveur PeerJS. Dans claude.ai, le P2P est bloqué. Mets le fichier sur ton propre site, ou joue via un salon claude.ai ci-dessous.', p2p_err_code:'Aucune partie avec cet ID de salon.', p2p_err_left:'L’hôte a quitté la partie.', p2p_err_lib:'La bibliothèque PeerJS n’a pas pu se charger. Vérifie ta connexion.', p2p_badcode:'Saisis d’abord un ID de salon.', p2p_alt:'Autre option : salon claude.ai', map_head:'CHOISIS UNE CARTE', map_note:'En ligne, le premier joueur du salon choisit la carte', map_d_park:'Aire de jeux avec beaucoup d’abris', map_d_jungle:'Jungle dense avec ruines et mares au centre', map_d_snow:'Fort de glace aux longs murs, les équipes commencent en haut et en bas', map_d_desert:'Désert ouvert avec pyramides et une oasis au centre', map_random:'Aléatoire', map_d_random:'Une surprise à chaque partie', t_jump:'SAUTE', a_jump:'Sauter', k_jump:'sauter', rp_hp:'Il restait {hp} PV à {n}', rp_weapon:'Touché avec', rp_loadout:'Équipement', kc_streak:'série', sub:'TEAM SOAKMATCH · {size} · PREMIER À {lim} SOAKS · {time} AU CHRONO', loadout:'CHOISIS TON ÉQUIPEMENT', loadout_note:'Modifiable à chaque réapparition', primary:'Principale', secondary:'Secondaire',
+fr: { qp_btn:'PARTIE RAPIDE', qp_search:'Recherche de parties ouvertes…', qp_joining:'Connexion à la partie {n} sur {m}…', qp_none:'Aucune partie ouverte. Tu en lances une avec des bots, d’autres joueurs peuvent rejoindre.', qp_found:'Partie trouvée ! Tu y entres…', qp_full:'Cette partie est complète.', p2p_waking:'Réveil du serveur, cela peut prendre jusqu’à une minute…', p2p_host:'Héberger', p2p_join:'Rejoindre', p2p_connect:'CONNEXION', p2p_code_lbl:'ID DU SALON', p2p_waiting:'En attente de joueurs. Partage l’ID du salon avec tes amis.', p2p_wait_host:'Connecté. En attente du lancement par l’hôte…', p2p_start:'LANCER LA PARTIE', p2p_leave:'Quitter le salon', p2p_copy:'Copier', p2p_copied:'Copié', p2p_players:'Joueurs dans le salon : {n}', p2p_host_tag:'hôte', p2p_connecting:'Connexion…', p2p_err_net:'Impossible de joindre le serveur PeerJS. Dans claude.ai, le P2P est bloqué. Mets le fichier sur ton propre site, ou joue via un salon claude.ai ci-dessous.', p2p_err_code:'Aucune partie avec cet ID de salon.', p2p_err_left:'L’hôte a quitté la partie.', p2p_err_lib:'La bibliothèque PeerJS n’a pas pu se charger. Vérifie ta connexion.', p2p_badcode:'Saisis d’abord un ID de salon.', p2p_alt:'Autre option : salon claude.ai', map_head:'CHOISIS UNE CARTE', map_note:'En ligne, le premier joueur du salon choisit la carte', map_d_park:'Aire de jeux avec beaucoup d’abris', map_d_jungle:'Jungle dense avec ruines et mares au centre', map_d_snow:'Fort de glace aux longs murs, les équipes commencent en haut et en bas', map_d_desert:'Désert ouvert avec pyramides et une oasis au centre', map_random:'Aléatoire', map_d_random:'Une surprise à chaque partie', t_jump:'SAUTE', a_jump:'Sauter', k_jump:'sauter', rp_hp:'Il restait {hp} PV à {n}', rp_weapon:'Touché avec', rp_loadout:'Équipement', kc_streak:'série', sub:'TEAM SOAKMATCH · {size} · PREMIER À {lim} SOAKS · {time} AU CHRONO', loadout:'CHOISIS TON ÉQUIPEMENT', loadout_note:'Modifiable à chaque réapparition', primary:'Principale', secondary:'Secondaire',
   cls_ar:'Fusils d’assaut', cls_smg:'Mitraillettes', cls_sg:'Fusils à pompe', cls_sn:'Fusils de précision', cls_lmg:'Mitrailleuses', cls_pi:'Pistolets',
   st_pow:'Puissance', st_rng:'Portée', st_rate:'Cadence', st_tank:'Réservoir', tr_auto:'Automatique', tr_burst:'Rafale de 3', tr_semi:'Semi-automatique', tr_pump:'À pompe', tr_scope:'Lunette',
   pu_head:'BONUS', pu_note:'Ils sont au sol. Passe dessus pour les ramasser', pu_dmg:'SUPER JET', pu_dmg_s:'Dégâts ×1,5 · 10 s', pu_shield:'BOUCLIER D’EAU', pu_shield_s:'50 PV en plus · 20 s', pu_heal:'SERVIETTE SÈCHE', pu_heal_s:'Tous tes PV d’un coup', pu_ammo:'RÉSERVOIR INFINI', pu_ammo_s:'Pas de recharge · 30 s',
@@ -572,7 +573,7 @@ fr: { p2p_waking:'Réveil du serveur, cela peut prendre jusqu’à une minute…
   a_up:'Avancer', a_down:'Reculer', a_left:'Gauche', a_right:'Droite', a_turnLeft:'Tourner à gauche', a_turnRight:'Tourner à droite', a_sprint:'Sprinter', a_fire:'Arroser', a_ads:'Viser', a_reload:'Recharger', a_swap:'Changer d’arme', a_slot1:'Arme principale', a_slot2:'Arme secondaire', a_board:'Scores (maintenir)', a_pause:'Pause', a_mute:'Son oui ou non',
   key_m0:'Clic gauche', key_m1:'Clic molette', key_m2:'Clic droit', key_m3:'Bouton 4', key_m4:'Bouton 5', key_space:'Espace', key_wu:'Molette haut', key_wd:'Molette bas',
   t_fire:'TIRE', t_reload:'RECHARGE', t_swap:'CHANGE', t_aim:'VISE', rotate:'Tourne ton téléphone pour mieux voir', pool_lbl:'RECHARGE' },
-ar: { p2p_waking:'جارٍ إيقاظ الخادم، قد يستغرق ذلك حتى دقيقة…', p2p_host:'استضف لعبة', p2p_join:'انضم إلى لعبة', p2p_connect:'اتصال', p2p_code_lbl:'رمز الغرفة', p2p_waiting:'بانتظار انضمام اللاعبين. شارك رمز الغرفة مع أصدقائك.', p2p_wait_host:'تم الاتصال. بانتظار أن يبدأ المضيف المباراة…', p2p_start:'ابدأ المباراة', p2p_leave:'غادر الردهة', p2p_copy:'نسخ', p2p_copied:'تم النسخ', p2p_players:'اللاعبون في الردهة: {n}', p2p_host_tag:'المضيف', p2p_connecting:'جارٍ الاتصال…', p2p_err_net:'تعذر الوصول إلى خادم PeerJS. داخل claude.ai يتم حظر الاتصال المباشر. ضع الملف على موقعك الخاص، أو العب عبر غرفة claude.ai أدناه.', p2p_err_code:'لم يتم العثور على لعبة بهذا الرمز.', p2p_err_left:'غادر المضيف اللعبة.', p2p_err_lib:'تعذر تحميل مكتبة PeerJS. تحقق من اتصالك بالإنترنت.', p2p_badcode:'أدخل رمز الغرفة أولًا.', p2p_alt:'طريقة أخرى: غرفة claude.ai', map_head:'اختر خريطة', map_note:'عبر الإنترنت، يختار أول لاعب في الغرفة الخريطة', map_d_park:'ملعب مع الكثير من السواتر', map_d_jungle:'غابة كثيفة مع أطلال وبرك في الوسط', map_d_snow:'حصن جليدي بجدران طويلة، تبدأ الفرق من الأعلى والأسفل', map_d_desert:'صحراء مفتوحة مع أهرامات وواحة في الوسط', map_random:'عشوائي', map_d_random:'مفاجأة في كل مباراة', t_jump:'اقفز', a_jump:'قفز', k_jump:'القفز', rp_hp:'بقي لدى {n} {hp} نقطة صحة', rp_weapon:'أصبت بـ', rp_loadout:'العتاد', kc_streak:'سلسلة', sub:'مباراة الفرق المائية · {size} · أول من يصل إلى {lim} · {time} على الساعة', loadout:'اختر عتادك', loadout_note:'يمكنك تغييره عند كل عودة', primary:'السلاح الأساسي', secondary:'السلاح الثانوي',
+ar: { qp_btn:'لعب سريع', qp_search:'جارٍ البحث عن مباريات مفتوحة…', qp_joining:'جارٍ الاتصال بالمباراة {n} من {m}…', qp_none:'لا توجد مباراة مفتوحة. ستبدأ مباراة مع روبوتات ويمكن للاعبين الآخرين الانضمام.', qp_found:'تم العثور على مباراة! جارٍ الدخول…', qp_full:'هذه المباراة ممتلئة.', p2p_waking:'جارٍ إيقاظ الخادم، قد يستغرق ذلك حتى دقيقة…', p2p_host:'استضف لعبة', p2p_join:'انضم إلى لعبة', p2p_connect:'اتصال', p2p_code_lbl:'رمز الغرفة', p2p_waiting:'بانتظار انضمام اللاعبين. شارك رمز الغرفة مع أصدقائك.', p2p_wait_host:'تم الاتصال. بانتظار أن يبدأ المضيف المباراة…', p2p_start:'ابدأ المباراة', p2p_leave:'غادر الردهة', p2p_copy:'نسخ', p2p_copied:'تم النسخ', p2p_players:'اللاعبون في الردهة: {n}', p2p_host_tag:'المضيف', p2p_connecting:'جارٍ الاتصال…', p2p_err_net:'تعذر الوصول إلى خادم PeerJS. داخل claude.ai يتم حظر الاتصال المباشر. ضع الملف على موقعك الخاص، أو العب عبر غرفة claude.ai أدناه.', p2p_err_code:'لم يتم العثور على لعبة بهذا الرمز.', p2p_err_left:'غادر المضيف اللعبة.', p2p_err_lib:'تعذر تحميل مكتبة PeerJS. تحقق من اتصالك بالإنترنت.', p2p_badcode:'أدخل رمز الغرفة أولًا.', p2p_alt:'طريقة أخرى: غرفة claude.ai', map_head:'اختر خريطة', map_note:'عبر الإنترنت، يختار أول لاعب في الغرفة الخريطة', map_d_park:'ملعب مع الكثير من السواتر', map_d_jungle:'غابة كثيفة مع أطلال وبرك في الوسط', map_d_snow:'حصن جليدي بجدران طويلة، تبدأ الفرق من الأعلى والأسفل', map_d_desert:'صحراء مفتوحة مع أهرامات وواحة في الوسط', map_random:'عشوائي', map_d_random:'مفاجأة في كل مباراة', t_jump:'اقفز', a_jump:'قفز', k_jump:'القفز', rp_hp:'بقي لدى {n} {hp} نقطة صحة', rp_weapon:'أصبت بـ', rp_loadout:'العتاد', kc_streak:'سلسلة', sub:'مباراة الفرق المائية · {size} · أول من يصل إلى {lim} · {time} على الساعة', loadout:'اختر عتادك', loadout_note:'يمكنك تغييره عند كل عودة', primary:'السلاح الأساسي', secondary:'السلاح الثانوي',
   cls_ar:'بنادق هجومية', cls_smg:'رشاشات صغيرة', cls_sg:'بنادق خرطوش', cls_sn:'بنادق قنص', cls_lmg:'رشاشات خفيفة', cls_pi:'مسدسات',
   st_pow:'القوة', st_rng:'المدى', st_rate:'سرعة الإطلاق', st_tank:'الخزان', tr_auto:'آلي', tr_burst:'دفعة من 3', tr_semi:'نصف آلي', tr_pump:'بالمضخة', tr_scope:'منظار',
   pu_head:'التعزيزات', pu_note:'موجودة على الأرض. امشِ فوقها لتأخذها', pu_dmg:'رشاش خارق', pu_dmg_s:'ضرر ×1.5 · 10 ث', pu_shield:'درع مائي', pu_shield_s:'50 نقطة صحة إضافية · 20 ث', pu_heal:'منشفة جافة', pu_heal_s:'استعادة كل صحتك فورًا', pu_ammo:'خزان لا ينتهي', pu_ammo_s:'بدون إعادة تعبئة · 30 ث',
@@ -591,7 +592,7 @@ ar: { p2p_waking:'جارٍ إيقاظ الخادم، قد يستغرق ذلك ح
   a_up:'للأمام', a_down:'للخلف', a_left:'يسار', a_right:'يمين', a_turnLeft:'استدر يسارًا', a_turnRight:'استدر يمينًا', a_sprint:'ركض', a_fire:'رش', a_ads:'تصويب', a_reload:'تعبئة الخزان', a_swap:'تبديل السلاح', a_slot1:'السلاح الأساسي', a_slot2:'السلاح الثانوي', a_board:'النتائج (اضغط مطولًا)', a_pause:'إيقاف مؤقت', a_mute:'الصوت تشغيل أو إيقاف',
   key_m0:'زر الفأرة الأيسر', key_m1:'زر الفأرة الأوسط', key_m2:'زر الفأرة الأيمن', key_m3:'زر الفأرة 4', key_m4:'زر الفأرة 5', key_space:'مسافة', key_wu:'العجلة لأعلى', key_wd:'العجلة لأسفل',
   t_fire:'رش', t_reload:'تعبئة', t_swap:'تبديل', t_aim:'تصويب', rotate:'أدر هاتفك أفقيًا لأفضل رؤية', pool_lbl:'تعبئة' },
-ru: { p2p_waking:'Будим сервер, это может занять до минуты…', p2p_host:'Создать игру', p2p_join:'Присоединиться', p2p_connect:'ПОДКЛЮЧИТЬСЯ', p2p_code_lbl:'ID КОМНАТЫ', p2p_waiting:'Ждём игроков. Отправь ID комнаты друзьям.', p2p_wait_host:'Подключено. Ждём, пока хост начнёт матч…', p2p_start:'НАЧАТЬ МАТЧ', p2p_leave:'Выйти из лобби', p2p_copy:'Копировать', p2p_copied:'Скопировано', p2p_players:'Игроков в лобби: {n}', p2p_host_tag:'хост', p2p_connecting:'Подключение…', p2p_err_net:'Нет связи с сервером PeerJS. Внутри claude.ai P2P заблокирован. Залей файл на свой сайт или играй через комнату claude.ai ниже.', p2p_err_code:'Игра с таким ID не найдена.', p2p_err_left:'Хост покинул игру.', p2p_err_lib:'Не удалось загрузить библиотеку PeerJS. Проверь интернет.', p2p_badcode:'Сначала введи ID комнаты.', p2p_alt:'Другой способ: комната claude.ai', map_head:'ВЫБЕРИ КАРТУ', map_note:'Онлайн карту выбирает первый игрок в комнате', map_d_park:'Площадка с кучей укрытий', map_d_jungle:'Густые джунгли с руинами и прудами в центре', map_d_snow:'Ледяная крепость с длинными стенами, команды начинают сверху и снизу', map_d_desert:'Открытая пустыня с пирамидами и оазисом в центре', map_random:'Случайная', map_d_random:'Сюрприз в каждом матче', t_jump:'ПРЫЖОК', a_jump:'Прыжок', k_jump:'прыжок', rp_hp:'У {n} осталось {hp} HP', rp_weapon:'Оружие', rp_loadout:'Снаряжение', kc_streak:'серия', sub:'КОМАНДНЫЙ SOAKMATCH · {size} · ДО {lim} SOAKS · {time} НА ЧАСАХ', loadout:'ВЫБЕРИ СНАРЯЖЕНИЕ', loadout_note:'Можно менять при каждом возрождении', primary:'Основное', secondary:'Дополнительное',
+ru: { qp_btn:'БЫСТРАЯ ИГРА', qp_search:'Ищем открытые матчи…', qp_joining:'Подключение к матчу {n} из {m}…', qp_none:'Открытых матчей нет. Запускаем твой матч с ботами, другие игроки смогут зайти.', qp_found:'Матч найден! Заходим…', qp_full:'Этот матч заполнен.', p2p_waking:'Будим сервер, это может занять до минуты…', p2p_host:'Создать игру', p2p_join:'Присоединиться', p2p_connect:'ПОДКЛЮЧИТЬСЯ', p2p_code_lbl:'ID КОМНАТЫ', p2p_waiting:'Ждём игроков. Отправь ID комнаты друзьям.', p2p_wait_host:'Подключено. Ждём, пока хост начнёт матч…', p2p_start:'НАЧАТЬ МАТЧ', p2p_leave:'Выйти из лобби', p2p_copy:'Копировать', p2p_copied:'Скопировано', p2p_players:'Игроков в лобби: {n}', p2p_host_tag:'хост', p2p_connecting:'Подключение…', p2p_err_net:'Нет связи с сервером PeerJS. Внутри claude.ai P2P заблокирован. Залей файл на свой сайт или играй через комнату claude.ai ниже.', p2p_err_code:'Игра с таким ID не найдена.', p2p_err_left:'Хост покинул игру.', p2p_err_lib:'Не удалось загрузить библиотеку PeerJS. Проверь интернет.', p2p_badcode:'Сначала введи ID комнаты.', p2p_alt:'Другой способ: комната claude.ai', map_head:'ВЫБЕРИ КАРТУ', map_note:'Онлайн карту выбирает первый игрок в комнате', map_d_park:'Площадка с кучей укрытий', map_d_jungle:'Густые джунгли с руинами и прудами в центре', map_d_snow:'Ледяная крепость с длинными стенами, команды начинают сверху и снизу', map_d_desert:'Открытая пустыня с пирамидами и оазисом в центре', map_random:'Случайная', map_d_random:'Сюрприз в каждом матче', t_jump:'ПРЫЖОК', a_jump:'Прыжок', k_jump:'прыжок', rp_hp:'У {n} осталось {hp} HP', rp_weapon:'Оружие', rp_loadout:'Снаряжение', kc_streak:'серия', sub:'КОМАНДНЫЙ SOAKMATCH · {size} · ДО {lim} SOAKS · {time} НА ЧАСАХ', loadout:'ВЫБЕРИ СНАРЯЖЕНИЕ', loadout_note:'Можно менять при каждом возрождении', primary:'Основное', secondary:'Дополнительное',
   cls_ar:'Штурмовые винтовки', cls_smg:'Пистолеты-пулемёты', cls_sg:'Дробовики', cls_sn:'Снайперские', cls_lmg:'Пулемёты', cls_pi:'Пистолеты',
   st_pow:'Сила', st_rng:'Дальность', st_rate:'Скорострельность', st_tank:'Бак', tr_auto:'Автоматический', tr_burst:'Очередь по 3', tr_semi:'Полуавтомат', tr_pump:'Помповый', tr_scope:'Прицел',
   pu_head:'БОНУСЫ', pu_note:'Лежат на земле. Пройди через бонус, чтобы взять его', pu_dmg:'СУПЕРСТРУЯ', pu_dmg_s:'Урон ×1,5 · 10 с', pu_shield:'ВОДЯНОЙ ЩИТ', pu_shield_s:'+50 HP · 20 с', pu_heal:'СУХОЕ ПОЛОТЕНЦЕ', pu_heal_s:'Мгновенно всё HP', pu_ammo:'БЕСКОНЕЧНЫЙ БАК', pu_ammo_s:'Без перезарядки · 30 с',
@@ -1529,7 +1530,7 @@ function hostFillBots(dt) {
   for (let tm = 0; tm < 2; tm++) {
     const humans = ents.filter(e => !e.isBot && e.team === tm).length;
     const bots = ents.filter(e => e.isBot && owned(e) && e.team === tm);
-    const need = Math.max(0, settings.fill - humans);
+    const need = Math.max(0, (Net.pub ? Math.max(4, settings.fill) : settings.fill) - humans);
     if (bots.length < need) {
       const used = new Set(ents.filter(e => e.isBot && e.team === tm).map(e => e.nameIdx));
       let ni = 1; while (used.has(ni) && ni < 6) ni++;
@@ -1640,7 +1641,7 @@ function leaveOnline() {
   Net.room = null; Net.active = false; Net.host = false; Net.mid = ''; Net.p2p = false;
   if (Lobby.iv) { clearInterval(Lobby.iv); Lobby.iv = 0; }
   if (Lobby.tr && Lobby.tr !== null) { try { Lobby.tr.leave(); } catch (_) {} }
-  Lobby.tr = null; Lobby.role = ''; Lobby.code = '';
+  Lobby.tr = null; Lobby.role = ''; Lobby.code = ''; Lobby.qp = null; Net.pub = false;
 }
 
 /* ================= online P2P (PeerJS) ================= */
@@ -1648,6 +1649,9 @@ function leaveOnline() {
 // It mimics the small part of the room API that the netcode above uses, so all
 // match logic (host keeps score and clock, bots, power ups) is shared.
 const P2P_PREFIX = 'splashops-v1-';
+const P2P_PUB = 'pub-';      // public matches for Quick Play; code lobbies stay private
+const QP_CAP = 10;           // max humans in a Quick Play match
+const QP_TRIES = 6;          // how many open matches to try before hosting one
 // Own PeerJS server on Render (free plan sleeps when idle, so the first connect can take up to a minute)
 const P2P_SERVER = { host: 'splashops-server.onrender.com', port: 443, secure: true, path: '/splash', debug: 0 };
 function wakeServer() { try { fetch('https://' + P2P_SERVER.host + P2P_SERVER.path, { mode: 'no-cors', cache: 'no-store' }).catch(() => {}); } catch (_) {} }
@@ -1671,15 +1675,21 @@ function loadPeerJS() {
   return peerLibP;
 }
 const peerErrKind = e => (e && e.type) ? String(e.type) : 'network';
-function p2pHostTransport(code, cb) {
+function p2pHostTransport(code, cb, opts) {
+  opts = opts || {};
+  const cap = opts.cap || 15;
   let peer = null, myId = null, mine = {}, iv = 0, done = false;
   const conns = new Map();
-  try { peer = new window.Peer(P2P_PREFIX + code, P2P_SERVER); } catch (e) { setTimeout(() => cb.error('browser-incompatible'), 0); return { leave() {}, peers: () => [], presence: () => Promise.resolve(), myId: () => null }; }
+  try { peer = new window.Peer(P2P_PREFIX + (opts.pub ? P2P_PUB : '') + code, P2P_SERVER); } catch (e) { setTimeout(() => cb.error('browser-incompatible'), 0); return { leave() {}, peers: () => [], presence: () => Promise.resolve(), myId: () => null }; }
   const wk = setTimeout(() => { if (!myId && !done && cb.slow) cb.slow(); }, 5000);
   const to = setTimeout(() => { if (!myId && !done) cb.error('network'); }, 70000);
   peer.on('open', id => { clearTimeout(to); clearTimeout(wk); myId = id; cb.open(); });
   peer.on('connection', conn => {
-    conn.on('open', () => { conns.set(conn.peer, { conn, pres: null }); });
+    conn.on('open', () => {
+      // Match is full: tell the joiner so it can try another match
+      if (conns.size >= cap - 1) { try { conn.send({ t: 'full' }); } catch (_) {} setTimeout(() => { try { conn.close(); } catch (_) {} }, 400); return; }
+      conns.set(conn.peer, { conn, pres: null });
+    });
     conn.on('data', d => { if (d && d.t === 'p' && d.p && typeof d.p === 'object') { const c = conns.get(conn.peer); if (c) c.pres = d.p; } });
     const drop = () => conns.delete(conn.peer);
     conn.on('close', drop); conn.on('error', drop);
@@ -1704,21 +1714,26 @@ function p2pHostTransport(code, cb) {
     leave() { done = true; clearInterval(iv); clearTimeout(to); clearTimeout(wk); for (const [, c] of conns) { try { c.conn.close(); } catch (_) {} } try { peer.destroy(); } catch (_) {} return Promise.resolve(); }
   };
 }
-function p2pJoinTransport(code, cb) {
-  let peer = null, myId = null, conn = null, mine = {}, list = [], lastSend = 0, done = false, opened = false;
+function p2pJoinTransport(code, cb, opts) {
+  opts = opts || {};
+  let peer = null, myId = null, conn = null, mine = {}, list = [], lastSend = 0, done = false, opened = false, joined = false;
   try { peer = new window.Peer(P2P_SERVER); } catch (e) { setTimeout(() => cb.error('browser-incompatible'), 0); return { leave() {}, peers: () => [], presence: () => Promise.resolve(), myId: () => null }; }
   const wk = setTimeout(() => { if (!myId && !done && cb.slow) cb.slow(); }, 5000);
   let to = setTimeout(() => { if (!opened && !done) cb.error(myId ? 'peer-unavailable' : 'network'); }, 70000);
   peer.on('open', id => {
     myId = id; clearTimeout(wk); clearTimeout(to);
-    to = setTimeout(() => { if (!opened && !done) cb.error('peer-unavailable'); }, 12000);
-    conn = peer.connect(P2P_PREFIX + code, { serialization: 'json', reliable: true });
-    conn.on('open', () => { opened = true; clearTimeout(to); cb.open(); });
+    to = setTimeout(() => { if (!opened && !done) cb.error('peer-unavailable'); }, opts.connTo || 12000);
+    conn = peer.connect(opts.id || (P2P_PREFIX + code), { serialization: 'json', reliable: true });
+    let full = false;
+    conn.on('open', () => { opened = true; clearTimeout(to); });
     conn.on('data', d => {
+      if (d && d.t === 'full') { full = true; if (!done) { done = true; cb.error('full'); } return; }
+      // Only count as joined once the host actually relays the game state (so a full host never shows a lobby)
+      if (d && d.t === 's' && !full && !joined) { joined = true; cb.open(); }
       if (!d || d.t !== 's' || !Array.isArray(d.all)) return;
       list = d.all.filter(x => x && x.id !== myId && x.p && typeof x.p === 'object').slice(0, 16).map(x => ({ peer: String(x.id), sameTab: false, isMe: false, kind: 'viewer', presence: x.p }));
     });
-    conn.on('close', () => { if (!done) cb.closed(); });
+    conn.on('close', () => { if (done) return; if (joined) cb.closed(); else { done = true; cb.error('peer-unavailable'); } });
     conn.on('error', () => { if (!done && !opened) cb.error('peer-unavailable'); });
   });
   peer.on('error', e => { if (!done) { const k = peerErrKind(e); if (opened && k !== 'peer-unavailable') cb.closed(); else if (!opened) cb.error(k); } });
@@ -1736,17 +1751,17 @@ function p2pJoinTransport(code, cb) {
 const Lobby = { tr: null, role: '', code: '', teams: {}, hostTeams: {}, iv: 0 };
 function setP2P(msg, warn) { const el = $('p2pStatus'); el.textContent = msg || ''; el.classList.toggle('warn', !!warn); }
 function saveName() { settings.name = cleanName($('nameIn').value) || settings.name || ('Soaker' + ((Math.random() * 900 + 100) | 0)); $('nameIn').value = settings.name; saveSettings(); }
-function p2pBusy(on) { for (const id of ['btnHost', 'btnJoinShow', 'btnP2PConnect']) $(id).disabled = on; }
+function p2pBusy(on) { for (const id of ['btnQuick', 'btnHost', 'btnJoinShow', 'btnP2PConnect']) $(id).disabled = on; }
 function p2pFail(kind) {
-  const tr = Lobby.tr; Lobby.tr = null;
+  const tr = Lobby.tr; Lobby.tr = null; Lobby.qp = null;
   if (tr) { try { tr.leave(); } catch (_) {} }
   if (Lobby.iv) { clearInterval(Lobby.iv); Lobby.iv = 0; }
   $('lobby').hidden = true; $('p2pMenu').hidden = false; p2pBusy(false);
-  const msg = kind === 'peer-unavailable' ? t('p2p_err_code') : kind === 'host-left' ? t('p2p_err_left') : kind === 'lib' ? t('p2p_err_lib') : t('p2p_err_net');
+  const msg = kind === 'full' ? t('qp_full') : kind === 'peer-unavailable' ? t('p2p_err_code') : kind === 'host-left' ? t('p2p_err_left') : kind === 'lib' ? t('p2p_err_lib') : t('p2p_err_net');
   setP2P(msg, true);
 }
 async function hostGame() {
-  initAudio(); saveName();
+  initAudio(); saveName(); Lobby.qp = null; Net.pub = false;
   setP2P(t('p2p_connecting')); p2pBusy(true); $('p2pJoinBox').hidden = true;
   try { await loadPeerJS(); } catch (e) { p2pFail('lib'); return; }
   const tryHost = n => {
@@ -1762,7 +1777,7 @@ async function hostGame() {
   tryHost(0);
 }
 async function joinGame() {
-  initAudio(); saveName();
+  initAudio(); saveName(); Lobby.qp = null; Net.pub = false;
   const code = $('p2pCode').value.trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8);
   $('p2pCode').value = code;
   if (!code) { setP2P(t('p2p_badcode'), true); return; }
@@ -1835,6 +1850,66 @@ function startP2PMatch() {
   for (const k in Net.out) Net.out[k] = [];
   $('lobby').hidden = true; $('p2pMenu').hidden = false;
   startOnlineMatch(team);
+}
+/* ---- Quick Play matchmaking ----
+   The PeerJS server lists every connected peer id (allow_discovery). Public hosts use
+   the 'pub-' prefix. We try a few at random; a full or dead one is skipped. If none
+   works we host a public match right away against bots, and others drop in later. */
+async function fetchPublicHosts() {
+  const ctl = typeof AbortController === 'function' ? new AbortController() : null;
+  const kill = setTimeout(() => { if (ctl) ctl.abort(); }, 70000);
+  const slow = setTimeout(() => { if (Lobby.qp) setP2P(t('p2p_waking')); }, 5000);
+  try {
+    const r = await fetch('https://' + P2P_SERVER.host + P2P_SERVER.path + '/peerjs/peers', { cache: 'no-store', signal: ctl ? ctl.signal : undefined });
+    if (!r.ok) throw new Error('http ' + r.status);
+    const a = await r.json();
+    return Array.isArray(a) ? a.filter(id => typeof id === 'string' && id.indexOf(P2P_PREFIX + P2P_PUB) === 0) : [];
+  } finally { clearTimeout(kill); clearTimeout(slow); }
+}
+async function quickPlay() {
+  initAudio(); saveName(); Net.pub = false;
+  const run = {}; Lobby.qp = run;
+  setP2P(t('qp_search')); p2pBusy(true); $('p2pJoinBox').hidden = true;
+  try { await loadPeerJS(); } catch (e) { if (Lobby.qp === run) p2pFail('lib'); return; }
+  let ids = [];
+  try { ids = await fetchPublicHosts(); } catch (e) { ids = []; }
+  if (Lobby.qp !== run) return;
+  for (let i = ids.length - 1; i > 0; i--) { const j = (Math.random() * (i + 1)) | 0; [ids[i], ids[j]] = [ids[j], ids[i]]; }
+  ids = ids.slice(0, QP_TRIES);
+  const tryNext = i => {
+    if (Lobby.qp !== run) return;
+    if (i >= ids.length) { qpHost(run); return; }
+    setP2P(t('qp_joining', { n: i + 1, m: ids.length }));
+    const code = ids[i].slice((P2P_PREFIX + P2P_PUB).length);
+    let tr = null;
+    tr = p2pJoinTransport(code, {
+      open: () => { if (Lobby.qp !== run || Lobby.tr !== tr) { try { tr.leave(); } catch (_) {} return; } enterLobby('join', tr, code); $('lobbyStatus').textContent = t('qp_found'); },
+      slow: () => {},
+      error: () => { if (Lobby.tr !== tr) return; Lobby.tr = null; try { tr.leave(); } catch (_) {} tryNext(i + 1); },
+      closed: () => { if (Lobby.tr !== tr && Net.room !== tr) return; if (Net.active) { toMenu(); settings.mode = 'on'; refreshBotUI(); } p2pFail('host-left'); }
+    }, { id: ids[i], connTo: 7000 });
+    Lobby.tr = tr;
+  };
+  tryNext(0);
+}
+function qpHost(run) {
+  setP2P(t('qp_none'));
+  const tryHost = n => {
+    const code = newP2PCode();
+    let tr = null;
+    tr = p2pHostTransport(code, {
+      open: () => {
+        if (Lobby.qp !== run || Lobby.tr !== tr) { try { tr.leave(); } catch (_) {} return; }
+        Lobby.role = 'host'; Lobby.code = code; Lobby.teams = {}; Lobby.hostTeams = {};
+        Net.pub = true; p2pBusy(false); setP2P('');
+        startP2PMatch();
+      },
+      slow: () => setP2P(t('p2p_waking')),
+      error: k => { if (Lobby.tr && Lobby.tr !== tr) return; if (k === 'unavailable-id' && n < 4) { try { tr.leave(); } catch (_) {} tryHost(n + 1); } else { Lobby.tr = tr; if (Net.active) { toMenu(); settings.mode = 'on'; refreshBotUI(); } p2pFail(k); } }
+    }, { pub: true, cap: QP_CAP });
+    Lobby.tr = tr;
+  };
+  tryHost(0);
 }
 function copyCode() {
   const code = $('lobbyCode').textContent;
@@ -2974,6 +3049,7 @@ const newCode = () => 'splash-' + Math.floor(1000 + Math.random() * 9000);
 $('btnNewCode').onclick = () => { $('codeIn').value = newCode(); };
 $('btnJoin').onclick = joinOnline;
 $('btnHost').onclick = hostGame;
+$('btnQuick').onclick = quickPlay;
 $('btnJoinShow').onclick = () => { $('p2pJoinBox').hidden = !$('p2pJoinBox').hidden; if (!$('p2pJoinBox').hidden) $('p2pCode').focus(); };
 $('btnP2PConnect').onclick = joinGame;
 $('p2pCode').addEventListener('keydown', e => { if (e.key === 'Enter') joinGame(); });
