@@ -635,7 +635,8 @@ const WEAPONS = {
   firehose:  { cls: 'lmg', name: 'Firehose LMG',    mode: 'auto',  dmg: 14, rate: 0.09, speed: 1050, range: 800,  fo: 450, fmin: 0.7,  tank: 80, reload: 3.6, spread: 0.06,  ads: 0.03,  bloom: 0.009, bcap: 0.08, adsSpd: 4.5, move: 0.84, grav: 2.2, size: 5, pref: 450, col: ['#FF3B3B', '#FFD21F'] },
   floodgate: { cls: 'lmg', name: 'Floodgate LMG',   mode: 'auto',  dmg: 22, rate: 0.15, speed: 1150, range: 900,  fo: 550, fmin: 0.75, tank: 60, reload: 3.2, spread: 0.05,  ads: 0.022, bloom: 0.008, bcap: 0.07, adsSpd: 4.5, move: 0.82, grav: 2, size: 6, pref: 500, col: ['#5A3FD0', '#00E5FF'] },
   classic:   { cls: 'pi',  name: 'Classic Pistol',  mode: 'semi',  dmg: 20, rate: 0.15, speed: 950,  range: 650,  fo: 300, fmin: 0.65, tank: 14, reload: 1.1, spread: 0.03,  ads: 0.015, bloom: 0.004, bcap: 0.03, adsSpd: 10, move: 1.05, grav: 3, size: 5, pref: 350, col: ['#3DA5FF', '#FF2E88'] },
-  revolver:  { cls: 'pi',  name: 'Splash Revolver', mode: 'semi',  dmg: 50, rate: 0.5,  speed: 1200, range: 750,  fo: 350, fmin: 0.7,  tank: 6,  reload: 1.8, spread: 0.02,  ads: 0.008, bloom: 0, bcap: 0, adsSpd: 8, move: 1.03, grav: 2, size: 6, pref: 400, col: ['#FFD21F', '#16112A'] }
+  revolver:  { cls: 'pi',  name: 'Splash Revolver', mode: 'semi',  dmg: 50, rate: 0.5,  speed: 1200, range: 750,  fo: 350, fmin: 0.7,  tank: 6,  reload: 1.8, spread: 0.02,  ads: 0.008, bloom: 0, bcap: 0, adsSpd: 8, move: 1.03, grav: 2, size: 6, pref: 400, col: ['#FFD21F', '#16112A'] },
+  riptide:   { cls: 'ar',  name: 'Riptide Carbine', mode: 'auto',  dmg: 13, rate: 0.095, speed: 1100, range: 750, fo: 420, fmin: 0.65, tank: 36, reload: 1.7, spread: 0.045, ads: 0.016, bloom: 0.007, bcap: 0.055, adsSpd: 8.5, move: 1.02, grav: 2.2, size: 4.8, pref: 380, col: ['#FF7A1A', '#00E5FF'] }
 };
 const WK = Object.keys(WEAPONS);
 const WI = {}; WK.forEach((k, i) => { WI[k] = i; });
@@ -2127,6 +2128,7 @@ function buildGun(wk, vm) {
       box(1.5, 0.34, 0.3, c1, 0.45, 0, 0); box(0.55, 0.3, 0.24, c1, -0.5, -0.05, 0); box(0.22, 0.44, 0.22, c1, 0.05, -0.32, 0);
       part(g, cylX(0.07, 0.5), white, 1.35, 0.03, 0, th);
       if (wk === 'monsoon') { box(0.5, 0.42, 0.26, c2, 0.5, -0.36, 0); box(0.5, 0.1, 0.12, '#2A2140', 0.45, 0.3, 0); }
+      else if (wk === 'riptide') { part(g, new THREE.SphereGeometry(0.26, 12, 10), toon(c2), 0.35, 0.3, 0, th); box(0.22, 0.5, 0.2, c2, 0.62, -0.36, 0); box(0.3, 0.12, 0.34, '#2A2140', 0.95, -0.12, 0); }
       else part(g, cylX(0.16, 0.9), toon(c2), 0.45, 0.3, 0, th);
       front = 1.6; break;
     case 'sg':
