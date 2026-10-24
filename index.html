@@ -127,6 +127,36 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:4px solid 
 #callout small{display:block;font-size:.42em;color:var(--white);-webkit-text-stroke:2px var(--ink);text-shadow:2px 2px 0 var(--ink);margin-top:4px}
 #lockhint{position:absolute;left:50%;top:58%;transform:translateX(-50%);background:var(--ink);color:var(--white);font-size:16px;padding:8px 16px;border-radius:999px;white-space:nowrap}
 
+#ksbar{position:absolute;right:max(14px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 198px);display:flex;gap:10px;align-items:flex-end;direction:ltr}
+.kch{width:46px;height:46px;border-radius:50%;border:4px solid var(--ink);background:var(--paper);display:grid;place-items:center;font-size:21px;position:relative;opacity:.55;box-shadow:3px 3px 0 var(--ink);overflow:visible}
+.kch i{position:absolute;left:0;right:0;bottom:0;border-radius:0 0 999px 999px;opacity:.55}
+.kch span{position:relative;line-height:1}
+.kch b{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);font-size:11px;background:var(--ink);color:var(--white);border-radius:999px;padding:0 6px;line-height:16px;font-weight:400;white-space:nowrap}
+.kch.done{opacity:.75}
+.kch.ready{opacity:1;background:var(--sun)}
+.kch.ready i{opacity:0}
+.kch.next{animation:kready 1s infinite}
+.kch.next b{background:var(--pink)}
+@keyframes kready{50%{transform:scale(1.14)}}
+#ksfx{position:absolute;top:calc(env(safe-area-inset-top,0px) + 102px);left:50%;transform:translateX(-50%);display:flex;gap:6px;direction:ltr}
+.kfx{background:var(--ink);color:var(--white);border-radius:999px;padding:2px 10px;font-size:14px;white-space:nowrap}
+.kfx.bad{background:var(--pink)}
+#tKs{right:calc(max(16px,env(safe-area-inset-right,0px)) + 196px);bottom:calc(env(safe-area-inset-bottom,0px) + 172px);width:60px;height:60px;border-radius:50%;background:var(--sun);font-size:26px;-webkit-text-stroke:0;animation:kready 1s infinite}
+.ksm{padding:clamp(8px,2vh,16px);display:flex;flex-direction:column;gap:10px;align-items:center;width:min(760px,100%);box-sizing:border-box;pointer-events:auto}
+.ksm h2{margin:0;font-family:var(--display);font-weight:400;font-size:26px;text-align:center}
+.ksm p{margin:0;font-family:var(--body);font-weight:800;font-size:14px;opacity:.75}
+#ksCv{width:min(100%,calc((100vh - 170px) * 1.5));height:auto;aspect-ratio:3/2;border:4px solid var(--ink);border-radius:14px;cursor:crosshair;touch-action:none;box-sizing:border-box;display:block}
+#ksMap{background:rgba(22,17,42,.45)}
+.ksl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ksc{display:flex;gap:10px;align-items:center;text-align:start;padding:8px 10px;border:3px solid var(--ink);border-radius:14px;background:var(--white);box-shadow:3px 3px 0 var(--ink);min-width:0;transition:transform .12s, box-shadow .12s}
+.ksc:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+.ksc.sel{background:var(--sun)}
+.ksc .ic{width:42px;height:42px;border-radius:50%;border:3px solid var(--ink);display:grid;place-items:center;font-size:21px;flex:none}
+.ksc .kt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ksc .kn{font-size:16px;line-height:1.05}
+.ksc .kc{font-family:var(--body);font-weight:800;font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:.03em}
+.ksc .kd{font-family:var(--body);font-weight:600;font-size:12px;line-height:1.25}
+
 /* touch layout */
 body.touch #mini,body.touch #netinfo{display:none}
 body.touch #tools{top:calc(env(safe-area-inset-top,0px) + 10px);bottom:auto;left:max(12px,env(safe-area-inset-left,0px));right:auto}
@@ -142,6 +172,10 @@ body.touch #kc{padding:3px 10px 4px;min-width:76px;border-width:3px}body.touch #
 body.touch .kf{font-size:11px;padding:1px 6px}
 body.touch #pus{bottom:calc(env(safe-area-inset-bottom,0px) + 86px)}
 body.touch .puc{min-width:0;font-size:11px}
+body.touch #ksbar{bottom:calc(env(safe-area-inset-bottom,0px) + 18px);left:50%;right:auto;transform:translateX(-50%)}
+body.touch .kch{width:36px;height:36px;font-size:16px;border-width:3px}
+body.touch #ksfx{top:calc(env(safe-area-inset-top,0px) + 80px)}
+body.touch .kfx{font-size:11px}
 body.touch #callout{top:calc(env(safe-area-inset-top,0px) + 96px);font-size:clamp(22px,5vw,40px)}
 
 /* ---------- overlays ---------- */
@@ -280,7 +314,7 @@ kbd{font-family:var(--display);font-size:12px;background:var(--ink);color:var(--
 .kb.empty{opacity:.45}
 .kb.listen{background:var(--pink);color:var(--white);animation:pulse .8s infinite}
 
-@media (max-width:980px){ .maps{grid-template-columns:repeat(3,minmax(0,1fr))} #feed{width:220px} .kf{font-size:12px} .pul{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:980px){ .ksl{grid-template-columns:repeat(2,minmax(0,1fr))} .maps{grid-template-columns:repeat(3,minmax(0,1fr))} #feed{width:220px} .kf{font-size:12px} .pul{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:600px){ #kc{top:calc(env(safe-area-inset-top,0px) + 92px)} #feed{top:calc(env(safe-area-inset-top,0px) + 160px)} }
 @media (max-width:720px){
   #mini,#netinfo{display:none}
@@ -296,6 +330,7 @@ kbd{font-family:var(--display);font-size:12px;background:var(--ink);color:var(--
   .pip{width:8px;height:8px}
   .lo-cards{grid-template-columns:1fr}
   .pul{grid-template-columns:1fr}
+  .ksl{grid-template-columns:1fr}
   .maps{grid-template-columns:repeat(2,minmax(0,1fr))}
   .bd{grid-template-columns:1fr}
   .sets{grid-template-columns:1fr}
@@ -324,6 +359,8 @@ kbd{font-family:var(--display);font-size:12px;background:var(--ink);color:var(--
     <div id="lockhint" hidden data-t="lockhint"></div>
     <div id="rotate" hidden data-t="rotate"></div>
     <div id="pus"></div>
+    <div id="ksbar"></div>
+    <div id="ksfx"></div>
     <div id="hpbox">
       <div class="dl"><span>HP<small data-t="hp_sub"></small></span><b id="hpnum">100<small>/100</small></b></div>
       <div class="dbar"><i id="hpfill"></i></div>
@@ -341,6 +378,7 @@ kbd{font-family:var(--display);font-size:12px;background:var(--ink);color:var(--
       <button class="tb2" id="tReload" data-t="t_reload"></button>
       <button class="tb2" id="tAds" data-t="t_aim"></button>
       <button class="tb2" id="tFire" data-t="t_fire"></button>
+      <button class="tb2" id="tKs" hidden></button>
     </div>
     <div id="weapbox"><div id="wslot"></div><div id="wname"></div><div id="ammo"></div><div id="wstate"></div><div id="nextc"></div></div>
     <div id="respawn" hidden>
@@ -355,6 +393,7 @@ kbd{font-family:var(--display);font-size:12px;background:var(--ink);color:var(--
   </div>
 
   <div id="board" class="screen" hidden><div class="panel bd" id="bdIn"></div></div>
+  <div id="ksMap" class="screen" hidden><div class="panel ksm"><h2 data-t="ks_pick"></h2><p data-t="ks_pick_s"></p><canvas id="ksCv" width="720" height="480"></canvas><button class="ghost" id="ksCancel" data-t="ks_cancel"></button></div></div>
 
   <div id="start" class="screen">
     <div class="startwrap">
@@ -372,6 +411,8 @@ kbd{font-family:var(--display);font-size:12px;background:var(--ink);color:var(--
       <div class="panel menu">
         <h2 class="mh"><span data-t="loadout"></span> <span class="note" data-t="loadout_note"></span></h2>
         <div class="lo" id="startLo"></div>
+        <h2 class="mh"><span data-t="ks_head"></span> <span class="note" data-t="ks_note"></span></h2>
+        <div class="ksl" id="ksl"></div>
         <h2 class="mh"><span data-t="map_head"></span> <span class="note" data-t="map_note"></span></h2>
         <div class="maps" id="maps"></div>
         <h2 class="mh"><span data-t="pu_head"></span> <span class="note" data-t="pu_note"></span></h2>
@@ -478,7 +519,7 @@ const U = 1 / 20;
 
 /* ================= translations ================= */
 const L = {
-nl: { qp_btn:'SNEL SPELEN', qp_search:'Open potjes zoeken…', qp_joining:'Verbinden met potje {n} van {m}…', qp_none:'Geen open potje gevonden. Je start er zelf een met bots, andere spelers kunnen erbij komen.', qp_found:'Potje gevonden! Je springt er zo in…', qp_full:'Dit potje zit vol.', p2p_waking:'De server wordt wakker gemaakt, dit kan tot een minuut duren…', p2p_host:'Host Game', p2p_join:'Join Game', p2p_connect:'VERBINDEN', p2p_code_lbl:'ROOM ID', p2p_waiting:'Wachten tot spelers verbinden. Deel de Room ID met je vrienden.', p2p_wait_host:'Verbonden. Wachten tot de host de match start…', p2p_start:'START MATCH', p2p_leave:'Lobby verlaten', p2p_copy:'Kopieer', p2p_copied:'Gekopieerd', p2p_players:'Spelers in de lobby: {n}', p2p_host_tag:'host', p2p_connecting:'Verbinden…', p2p_err_net:'Geen verbinding met de server. Controleer je internet en probeer het opnieuw.', p2p_err_code:'Geen game gevonden met deze Room ID.', p2p_err_left:'De host heeft het spel verlaten.', p2p_err_lib:'De PeerJS bibliotheek kon niet laden. Controleer je internet.', p2p_badcode:'Vul eerst een Room ID in.', p2p_alt:'Andere manier: gedeelde kamer', map_head:'KIES EEN MAP', map_note:'Online bepaalt de eerste speler in de kamer de map', map_d_park:'Speeltuin met veel dekking', map_d_jungle:'Dichte jungle met ruïnes en vijvers in het midden', map_d_snow:'IJsfort met lange muren, teams starten boven en onder', map_d_desert:'Open woestijn met piramides en een oase in het midden', map_random:'Willekeurig', map_d_random:'Elk potje een verrassing', t_jump:'SPRING', a_jump:'Springen', k_jump:'springen', rp_hp:'{n} had nog {hp} HP over', rp_weapon:'Geraakt met', rp_loadout:'Uitrusting', kc_streak:'reeks', sub:'TEAM SOAKMATCH · {size} · EERST NAAR {lim} SOAKS · {time} OP DE KLOK', loadout:'KIES JE UITRUSTING', loadout_note:'Je kunt bij elke respawn wisselen', primary:'Hoofdwapen', secondary:'Tweede wapen',
+nl: { ks_head:'KILLSTREAKS', ks_note:'Kies er 3. Soaks door een killstreak tellen niet mee voor je reeks', ks_cost:'{n} soaks op rij', ksn_duck:'Spionage-eend', ksn_tower:'Sproeiertoren', ksn_balloon:'Waterballon-regen', ksn_glasses:'Zonnebril', ksn_cloud:'Regenwolk', ksn_wave:'Tsunami', ksd_duck:'20 sec zie je alle tegenstanders op je kaart en door muren heen', ksd_tower:'Een sproeier die 30 sec zelf op vijanden spuit. Kan kapot', ksd_balloon:'Kies een plek op de kaart, daar regent het waterballonnen', ksd_glasses:'20 sec onzichtbaar op de vijandelijke kaart, hun eend werkt niet en ze worden verblind', ksd_cloud:'15 sec een wolk die vijanden eronder langzaam natregent', ksd_wave:'Een golf over de hele map. Spring of schuil achter een muur', ks_us_duck:'Je ziet nu alle tegenstanders', ks_them_duck:'De tegenstander ziet waar jij bent', ks_us_tower:'De toren spuit vanzelf op vijanden', ks_them_tower:'Pas op voor de sproeiertoren', ks_us_balloon:'De ballonnen zijn onderweg', ks_them_balloon:'Ren weg uit de rode cirkel', ks_us_glasses:'De tegenstander ziet jullie niet meer', ks_them_glasses:'Je bent verblind en je kaart werkt niet', ks_us_cloud:'De wolk zoekt de tegenstanders op', ks_them_cloud:'Blijf uit de buurt van de regenwolk', ks_us_wave:'De golf komt eraan', ks_them_wave:'Spring of schuil achter een muur!', ks_ready:'{n} staat klaar!', ks_ready_s:'Druk op {k} om hem te gebruiken', ks_ready_t:'Tik op de gele knop om hem te gebruiken', ks_alive:'Je moet leven om hem neer te zetten', ks_pick:'KIES WAAR DE BALLONNEN VALLEN', ks_pick_s:'Klik of tik op de kaart', ks_cancel:'Annuleren', ks_dodge:'ONTWEKEN!', ks_dodge_s:'De golf ging langs je heen', a_ks:'Killstreak gebruiken', k_ks:'killstreak', qp_btn:'SNEL SPELEN', qp_search:'Open potjes zoeken…', qp_joining:'Verbinden met potje {n} van {m}…', qp_none:'Geen open potje gevonden. Je start er zelf een met bots, andere spelers kunnen erbij komen.', qp_found:'Potje gevonden! Je springt er zo in…', qp_full:'Dit potje zit vol.', p2p_waking:'De server wordt wakker gemaakt, dit kan tot een minuut duren…', p2p_host:'Host Game', p2p_join:'Join Game', p2p_connect:'VERBINDEN', p2p_code_lbl:'ROOM ID', p2p_waiting:'Wachten tot spelers verbinden. Deel de Room ID met je vrienden.', p2p_wait_host:'Verbonden. Wachten tot de host de match start…', p2p_start:'START MATCH', p2p_leave:'Lobby verlaten', p2p_copy:'Kopieer', p2p_copied:'Gekopieerd', p2p_players:'Spelers in de lobby: {n}', p2p_host_tag:'host', p2p_connecting:'Verbinden…', p2p_err_net:'Geen verbinding met de server. Controleer je internet en probeer het opnieuw.', p2p_err_code:'Geen game gevonden met deze Room ID.', p2p_err_left:'De host heeft het spel verlaten.', p2p_err_lib:'De PeerJS bibliotheek kon niet laden. Controleer je internet.', p2p_badcode:'Vul eerst een Room ID in.', p2p_alt:'Andere manier: gedeelde kamer', map_head:'KIES EEN MAP', map_note:'Online bepaalt de eerste speler in de kamer de map', map_d_park:'Speeltuin met veel dekking', map_d_jungle:'Dichte jungle met ruïnes en vijvers in het midden', map_d_snow:'IJsfort met lange muren, teams starten boven en onder', map_d_desert:'Open woestijn met piramides en een oase in het midden', map_random:'Willekeurig', map_d_random:'Elk potje een verrassing', t_jump:'SPRING', a_jump:'Springen', k_jump:'springen', rp_hp:'{n} had nog {hp} HP over', rp_weapon:'Geraakt met', rp_loadout:'Uitrusting', kc_streak:'reeks', sub:'TEAM SOAKMATCH · {size} · EERST NAAR {lim} SOAKS · {time} OP DE KLOK', loadout:'KIES JE UITRUSTING', loadout_note:'Je kunt bij elke respawn wisselen', primary:'Hoofdwapen', secondary:'Tweede wapen',
   cls_ar:'Aanvalsgeweren', cls_smg:'SMG’s', cls_sg:'Shotguns', cls_sn:'Snipers', cls_lmg:'LMG’s', cls_pi:'Pistolen',
   st_pow:'Kracht', st_rng:'Bereik', st_rate:'Vuursnelheid', st_tank:'Tank', tr_auto:'Automatisch', tr_burst:'Salvo van 3', tr_semi:'Halfautomatisch', tr_pump:'Pompactie', tr_scope:'Vizier',
   pu_head:'POWER UPS', pu_note:'Liggen op de grond. Loop erdoorheen om ze te pakken', pu_dmg:'SUPER SPUIT', pu_dmg_s:'1,5× zoveel schade · 10 sec', pu_shield:'WATERSCHILD', pu_shield_s:'50 HP extra · 20 sec', pu_heal:'DROGE HANDDOEK', pu_heal_s:'Direct al je HP terug', pu_ammo:'EINDELOZE TANK', pu_ammo_s:'Niet herladen · 30 sec',
@@ -497,7 +538,7 @@ nl: { qp_btn:'SNEL SPELEN', qp_search:'Open potjes zoeken…', qp_joining:'Verbi
   a_up:'Vooruit', a_down:'Achteruit', a_left:'Naar links', a_right:'Naar rechts', a_turnLeft:'Draai links', a_turnRight:'Draai rechts', a_sprint:'Sprinten', a_fire:'Spuiten', a_ads:'Richten', a_reload:'Tank bijvullen', a_swap:'Wapen wisselen', a_slot1:'Hoofdwapen pakken', a_slot2:'Tweede wapen pakken', a_board:'Scorebord (ingedrukt)', a_pause:'Pauze', a_mute:'Geluid aan of uit',
   key_m0:'Linkermuisknop', key_m1:'Middelste muisknop', key_m2:'Rechtermuisknop', key_m3:'Muisknop 4', key_m4:'Muisknop 5', key_space:'Spatie', key_wu:'Scroll omhoog', key_wd:'Scroll omlaag',
   t_fire:'SPUIT', t_reload:'VUL', t_swap:'WISSEL', t_aim:'RICHT', rotate:'Draai je telefoon voor het beste beeld', pool_lbl:'BIJVULLEN' },
-en: { qp_btn:'QUICK PLAY', qp_search:'Searching for open matches…', qp_joining:'Connecting to match {n} of {m}…', qp_none:'No open match found. Starting your own with bots, other players can drop in.', qp_found:'Match found! Jumping in…', qp_full:'This match is full.', p2p_waking:'Waking up the server, this can take up to a minute…', p2p_host:'Host Game', p2p_join:'Join Game', p2p_connect:'CONNECT', p2p_code_lbl:'ROOM ID', p2p_waiting:'Waiting for players to connect. Share the Room ID with your friends.', p2p_wait_host:'Connected. Waiting for the host to start the match…', p2p_start:'START MATCH', p2p_leave:'Leave lobby', p2p_copy:'Copy', p2p_copied:'Copied', p2p_players:'Players in the lobby: {n}', p2p_host_tag:'host', p2p_connecting:'Connecting…', p2p_err_net:'Cannot reach the server. Check your internet and try again.', p2p_err_code:'No game found with this Room ID.', p2p_err_left:'The host left the game.', p2p_err_lib:'The PeerJS library could not load. Check your internet.', p2p_badcode:'Enter a Room ID first.', p2p_alt:'Other way: shared room', map_head:'CHOOSE A MAP', map_note:'Online, the first player in the room picks the map', map_d_park:'Playground with lots of cover', map_d_jungle:'Dense jungle with ruins and ponds in the middle', map_d_snow:'Ice fort with long walls, teams start top and bottom', map_d_desert:'Open desert with pyramids and an oasis in the middle', map_random:'Random', map_d_random:'A surprise every match', t_jump:'JUMP', a_jump:'Jump', k_jump:'jump', rp_hp:'{n} had {hp} HP left', rp_weapon:'Hit with', rp_loadout:'Loadout', kc_streak:'streak', sub:'TEAM SOAKMATCH · {size} · FIRST TO {lim} SOAKS · {time} ON THE CLOCK', loadout:'CHOOSE YOUR LOADOUT', loadout_note:'You can change it at every respawn', primary:'Primary', secondary:'Secondary',
+en: { ks_head:'KILLSTREAKS', ks_note:'Pick 3. Soaks from a killstreak do not count toward your streak', ks_cost:'{n} soaks in a row', ksn_duck:'Spy Duck', ksn_tower:'Sprinkler Tower', ksn_balloon:'Balloon Barrage', ksn_glasses:'Sunglasses', ksn_cloud:'Rain Cloud', ksn_wave:'Tsunami', ksd_duck:'For 20 sec you see every enemy on your map and through walls', ksd_tower:'A sprinkler that sprays enemies by itself for 30 sec. Can be destroyed', ksd_balloon:'Pick a spot on the map and it rains water balloons there', ksd_glasses:'For 20 sec you vanish from the enemy map, their duck stops working and they are dazzled', ksd_cloud:'For 15 sec a cloud slowly soaks the enemies under it', ksd_wave:'One wave across the whole map. Jump or hide behind a wall', ks_us_duck:'You can see every enemy now', ks_them_duck:'The enemy can see where you are', ks_us_tower:'The tower sprays enemies by itself', ks_them_tower:'Watch out for the sprinkler tower', ks_us_balloon:'The balloons are on their way', ks_them_balloon:'Run out of the red circle', ks_us_glasses:'The enemy cannot see your team', ks_them_glasses:'You are dazzled and your map is down', ks_us_cloud:'The cloud is hunting the enemy', ks_them_cloud:'Stay away from the rain cloud', ks_us_wave:'The wave is coming', ks_them_wave:'Jump or hide behind a wall!', ks_ready:'{n} is ready!', ks_ready_s:'Press {k} to use it', ks_ready_t:'Tap the yellow button to use it', ks_alive:'You must be alive to place it', ks_pick:'PICK WHERE THE BALLOONS FALL', ks_pick_s:'Click or tap the map', ks_cancel:'Cancel', ks_dodge:'DODGED!', ks_dodge_s:'The wave missed you', a_ks:'Use killstreak', k_ks:'killstreak', qp_btn:'QUICK PLAY', qp_search:'Searching for open matches…', qp_joining:'Connecting to match {n} of {m}…', qp_none:'No open match found. Starting your own with bots, other players can drop in.', qp_found:'Match found! Jumping in…', qp_full:'This match is full.', p2p_waking:'Waking up the server, this can take up to a minute…', p2p_host:'Host Game', p2p_join:'Join Game', p2p_connect:'CONNECT', p2p_code_lbl:'ROOM ID', p2p_waiting:'Waiting for players to connect. Share the Room ID with your friends.', p2p_wait_host:'Connected. Waiting for the host to start the match…', p2p_start:'START MATCH', p2p_leave:'Leave lobby', p2p_copy:'Copy', p2p_copied:'Copied', p2p_players:'Players in the lobby: {n}', p2p_host_tag:'host', p2p_connecting:'Connecting…', p2p_err_net:'Cannot reach the server. Check your internet and try again.', p2p_err_code:'No game found with this Room ID.', p2p_err_left:'The host left the game.', p2p_err_lib:'The PeerJS library could not load. Check your internet.', p2p_badcode:'Enter a Room ID first.', p2p_alt:'Other way: shared room', map_head:'CHOOSE A MAP', map_note:'Online, the first player in the room picks the map', map_d_park:'Playground with lots of cover', map_d_jungle:'Dense jungle with ruins and ponds in the middle', map_d_snow:'Ice fort with long walls, teams start top and bottom', map_d_desert:'Open desert with pyramids and an oasis in the middle', map_random:'Random', map_d_random:'A surprise every match', t_jump:'JUMP', a_jump:'Jump', k_jump:'jump', rp_hp:'{n} had {hp} HP left', rp_weapon:'Hit with', rp_loadout:'Loadout', kc_streak:'streak', sub:'TEAM SOAKMATCH · {size} · FIRST TO {lim} SOAKS · {time} ON THE CLOCK', loadout:'CHOOSE YOUR LOADOUT', loadout_note:'You can change it at every respawn', primary:'Primary', secondary:'Secondary',
   cls_ar:'Assault rifles', cls_smg:'SMGs', cls_sg:'Shotguns', cls_sn:'Snipers', cls_lmg:'LMGs', cls_pi:'Pistols',
   st_pow:'Power', st_rng:'Range', st_rate:'Fire rate', st_tank:'Tank', tr_auto:'Automatic', tr_burst:'3-round burst', tr_semi:'Semi-auto', tr_pump:'Pump action', tr_scope:'Scope',
   pu_head:'POWER UPS', pu_note:'Found on the ground. Walk through one to grab it', pu_dmg:'SUPER SQUIRT', pu_dmg_s:'1.5× damage · 10 sec', pu_shield:'WATER SHIELD', pu_shield_s:'50 extra HP · 20 sec', pu_heal:'DRY TOWEL', pu_heal_s:'All your HP back instantly', pu_ammo:'ENDLESS TANK', pu_ammo_s:'No reloading · 30 sec',
@@ -516,7 +557,7 @@ en: { qp_btn:'QUICK PLAY', qp_search:'Searching for open matches…', qp_joining
   a_up:'Forward', a_down:'Back', a_left:'Left', a_right:'Right', a_turnLeft:'Turn left', a_turnRight:'Turn right', a_sprint:'Sprint', a_fire:'Squirt', a_ads:'Aim down sights', a_reload:'Refill tank', a_swap:'Swap weapon', a_slot1:'Primary weapon', a_slot2:'Secondary weapon', a_board:'Scoreboard (hold)', a_pause:'Pause', a_mute:'Sound on or off',
   key_m0:'Left mouse', key_m1:'Middle mouse', key_m2:'Right mouse', key_m3:'Mouse 4', key_m4:'Mouse 5', key_space:'Space', key_wu:'Wheel up', key_wd:'Wheel down',
   t_fire:'FIRE', t_reload:'REFILL', t_swap:'SWAP', t_aim:'AIM', rotate:'Turn your phone sideways for the best view', pool_lbl:'REFILL' },
-de: { qp_btn:'SCHNELLES SPIEL', qp_search:'Suche offene Matches…', qp_joining:'Verbinde mit Match {n} von {m}…', qp_none:'Kein offenes Match gefunden. Du startest eins mit Bots, andere Spieler können dazukommen.', qp_found:'Match gefunden! Du springst gleich rein…', qp_full:'Dieses Match ist voll.', p2p_waking:'Der Server wird geweckt, das kann bis zu einer Minute dauern…', p2p_host:'Spiel hosten', p2p_join:'Spiel beitreten', p2p_connect:'VERBINDEN', p2p_code_lbl:'RAUM-ID', p2p_waiting:'Warte auf Spieler. Teile die Raum-ID mit deinen Freunden.', p2p_wait_host:'Verbunden. Warte, bis der Host das Match startet…', p2p_start:'MATCH STARTEN', p2p_leave:'Lobby verlassen', p2p_copy:'Kopieren', p2p_copied:'Kopiert', p2p_players:'Spieler in der Lobby: {n}', p2p_host_tag:'Host', p2p_connecting:'Verbinde…', p2p_err_net:'Keine Verbindung zum Server. Prüfe deine Internetverbindung und versuche es erneut.', p2p_err_code:'Kein Spiel mit dieser Raum-ID gefunden.', p2p_err_left:'Der Host hat das Spiel verlassen.', p2p_err_lib:'Die PeerJS-Bibliothek konnte nicht geladen werden. Prüfe deine Internetverbindung.', p2p_badcode:'Gib zuerst eine Raum-ID ein.', p2p_alt:'Andere Möglichkeit: geteilter Raum', map_head:'WÄHLE EINE KARTE', map_note:'Online wählt der erste Spieler im Raum die Karte', map_d_park:'Spielplatz mit viel Deckung', map_d_jungle:'Dichter Dschungel mit Ruinen und Teichen in der Mitte', map_d_snow:'Eisfestung mit langen Mauern, Teams starten oben und unten', map_d_desert:'Offene Wüste mit Pyramiden und einer Oase in der Mitte', map_random:'Zufällig', map_d_random:'Jedes Match eine Überraschung', t_jump:'SPRUNG', a_jump:'Springen', k_jump:'springen', rp_hp:'{n} hatte noch {hp} HP', rp_weapon:'Getroffen mit', rp_loadout:'Ausrüstung', kc_streak:'Serie', sub:'TEAM SOAKMATCH · {size} · ZUERST {lim} SOAKS · {time} AUF DER UHR', loadout:'WÄHLE DEINE AUSRÜSTUNG', loadout_note:'Bei jedem Respawn änderbar', primary:'Primärwaffe', secondary:'Sekundärwaffe',
+de: { ks_head:'KILLSTREAKS', ks_note:'Wähle 3. Soaks durch eine Killstreak zählen nicht für deine Serie', ks_cost:'{n} Soaks in Folge', ksn_duck:'Spionage-Ente', ksn_tower:'Sprinklerturm', ksn_balloon:'Wasserbomben-Regen', ksn_glasses:'Sonnenbrille', ksn_cloud:'Regenwolke', ksn_wave:'Tsunami', ksd_duck:'20 Sek. siehst du alle Gegner auf der Karte und durch Wände', ksd_tower:'Ein Sprinkler, der 30 Sek. selbst auf Gegner spritzt. Kann zerstört werden', ksd_balloon:'Wähle einen Ort auf der Karte, dort regnet es Wasserbomben', ksd_glasses:'20 Sek. unsichtbar auf der gegnerischen Karte, ihre Ente geht nicht und sie werden geblendet', ksd_cloud:'15 Sek. eine Wolke, die Gegner darunter langsam nass regnet', ksd_wave:'Eine Welle über die ganze Karte. Spring oder versteck dich hinter einer Mauer', ks_us_duck:'Du siehst jetzt alle Gegner', ks_them_duck:'Der Gegner sieht, wo du bist', ks_us_tower:'Der Turm spritzt von selbst auf Gegner', ks_them_tower:'Achtung vor dem Sprinklerturm', ks_us_balloon:'Die Wasserbomben sind unterwegs', ks_them_balloon:'Lauf aus dem roten Kreis', ks_us_glasses:'Der Gegner sieht euch nicht mehr', ks_them_glasses:'Du bist geblendet und deine Karte ist aus', ks_us_cloud:'Die Wolke sucht die Gegner', ks_them_cloud:'Halte dich von der Regenwolke fern', ks_us_wave:'Die Welle kommt', ks_them_wave:'Spring oder versteck dich hinter einer Mauer!', ks_ready:'{n} ist bereit!', ks_ready_s:'Drück {k}, um sie zu benutzen', ks_ready_t:'Tippe auf den gelben Knopf, um sie zu benutzen', ks_alive:'Du musst leben, um ihn aufzustellen', ks_pick:'WÄHLE, WO DIE WASSERBOMBEN FALLEN', ks_pick_s:'Klicke oder tippe auf die Karte', ks_cancel:'Abbrechen', ks_dodge:'AUSGEWICHEN!', ks_dodge_s:'Die Welle hat dich verfehlt', a_ks:'Killstreak benutzen', k_ks:'Killstreak', qp_btn:'SCHNELLES SPIEL', qp_search:'Suche offene Matches…', qp_joining:'Verbinde mit Match {n} von {m}…', qp_none:'Kein offenes Match gefunden. Du startest eins mit Bots, andere Spieler können dazukommen.', qp_found:'Match gefunden! Du springst gleich rein…', qp_full:'Dieses Match ist voll.', p2p_waking:'Der Server wird geweckt, das kann bis zu einer Minute dauern…', p2p_host:'Spiel hosten', p2p_join:'Spiel beitreten', p2p_connect:'VERBINDEN', p2p_code_lbl:'RAUM-ID', p2p_waiting:'Warte auf Spieler. Teile die Raum-ID mit deinen Freunden.', p2p_wait_host:'Verbunden. Warte, bis der Host das Match startet…', p2p_start:'MATCH STARTEN', p2p_leave:'Lobby verlassen', p2p_copy:'Kopieren', p2p_copied:'Kopiert', p2p_players:'Spieler in der Lobby: {n}', p2p_host_tag:'Host', p2p_connecting:'Verbinde…', p2p_err_net:'Keine Verbindung zum Server. Prüfe deine Internetverbindung und versuche es erneut.', p2p_err_code:'Kein Spiel mit dieser Raum-ID gefunden.', p2p_err_left:'Der Host hat das Spiel verlassen.', p2p_err_lib:'Die PeerJS-Bibliothek konnte nicht geladen werden. Prüfe deine Internetverbindung.', p2p_badcode:'Gib zuerst eine Raum-ID ein.', p2p_alt:'Andere Möglichkeit: geteilter Raum', map_head:'WÄHLE EINE KARTE', map_note:'Online wählt der erste Spieler im Raum die Karte', map_d_park:'Spielplatz mit viel Deckung', map_d_jungle:'Dichter Dschungel mit Ruinen und Teichen in der Mitte', map_d_snow:'Eisfestung mit langen Mauern, Teams starten oben und unten', map_d_desert:'Offene Wüste mit Pyramiden und einer Oase in der Mitte', map_random:'Zufällig', map_d_random:'Jedes Match eine Überraschung', t_jump:'SPRUNG', a_jump:'Springen', k_jump:'springen', rp_hp:'{n} hatte noch {hp} HP', rp_weapon:'Getroffen mit', rp_loadout:'Ausrüstung', kc_streak:'Serie', sub:'TEAM SOAKMATCH · {size} · ZUERST {lim} SOAKS · {time} AUF DER UHR', loadout:'WÄHLE DEINE AUSRÜSTUNG', loadout_note:'Bei jedem Respawn änderbar', primary:'Primärwaffe', secondary:'Sekundärwaffe',
   cls_ar:'Sturmgewehre', cls_smg:'MPs', cls_sg:'Schrotflinten', cls_sn:'Scharfschützen', cls_lmg:'LMGs', cls_pi:'Pistolen',
   st_pow:'Stärke', st_rng:'Reichweite', st_rate:'Feuerrate', st_tank:'Tank', tr_auto:'Automatisch', tr_burst:'3er-Salve', tr_semi:'Halbautomatisch', tr_pump:'Pumpaktion', tr_scope:'Zielfernrohr',
   pu_head:'POWER-UPS', pu_note:'Liegen auf dem Boden. Lauf hindurch, um sie einzusammeln', pu_dmg:'SUPER-SPRITZER', pu_dmg_s:'1,5× Schaden · 10 Sek.', pu_shield:'WASSERSCHILD', pu_shield_s:'50 HP extra · 20 Sek.', pu_heal:'TROCKENES HANDTUCH', pu_heal_s:'Sofort alle HP zurück', pu_ammo:'ENDLOSER TANK', pu_ammo_s:'Kein Nachladen · 30 Sek.',
@@ -535,7 +576,7 @@ de: { qp_btn:'SCHNELLES SPIEL', qp_search:'Suche offene Matches…', qp_joining:
   a_up:'Vorwärts', a_down:'Rückwärts', a_left:'Links', a_right:'Rechts', a_turnLeft:'Links drehen', a_turnRight:'Rechts drehen', a_sprint:'Sprinten', a_fire:'Spritzen', a_ads:'Zielen', a_reload:'Tank auffüllen', a_swap:'Waffe wechseln', a_slot1:'Primärwaffe', a_slot2:'Sekundärwaffe', a_board:'Punktetafel (halten)', a_pause:'Pause', a_mute:'Ton an oder aus',
   key_m0:'Linke Maustaste', key_m1:'Mittlere Maustaste', key_m2:'Rechte Maustaste', key_m3:'Maustaste 4', key_m4:'Maustaste 5', key_space:'Leertaste', key_wu:'Mausrad hoch', key_wd:'Mausrad runter',
   t_fire:'FEUER', t_reload:'FÜLLEN', t_swap:'WECHSEL', t_aim:'ZIELEN', rotate:'Dreh dein Handy quer für die beste Sicht', pool_lbl:'AUFFÜLLEN' },
-es: { qp_btn:'PARTIDA RÁPIDA', qp_search:'Buscando partidas abiertas…', qp_joining:'Conectando a la partida {n} de {m}…', qp_none:'No hay partidas abiertas. Empiezas una con bots y otros jugadores pueden unirse.', qp_found:'¡Partida encontrada! Entrando…', qp_full:'Esta partida está llena.', p2p_waking:'Despertando el servidor, puede tardar hasta un minuto…', p2p_host:'Crear partida', p2p_join:'Unirse a partida', p2p_connect:'CONECTAR', p2p_code_lbl:'ID DE SALA', p2p_waiting:'Esperando jugadores. Comparte el ID de sala con tus amigos.', p2p_wait_host:'Conectado. Esperando a que el anfitrión empiece la partida…', p2p_start:'EMPEZAR PARTIDA', p2p_leave:'Salir del lobby', p2p_copy:'Copiar', p2p_copied:'Copiado', p2p_players:'Jugadores en el lobby: {n}', p2p_host_tag:'anfitrión', p2p_connecting:'Conectando…', p2p_err_net:'No se puede conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.', p2p_err_code:'No hay ninguna partida con este ID de sala.', p2p_err_left:'El anfitrión ha salido de la partida.', p2p_err_lib:'No se pudo cargar la biblioteca PeerJS. Revisa tu conexión.', p2p_badcode:'Escribe primero un ID de sala.', p2p_alt:'Otra forma: sala compartida', map_head:'ELIGE UN MAPA', map_note:'En línea, el primer jugador de la sala elige el mapa', map_d_park:'Parque con mucha cobertura', map_d_jungle:'Jungla espesa con ruinas y estanques en el centro', map_d_snow:'Fuerte de hielo con muros largos, los equipos empiezan arriba y abajo', map_d_desert:'Desierto abierto con pirámides y un oasis en el centro', map_random:'Aleatorio', map_d_random:'Una sorpresa en cada partida', t_jump:'SALTA', a_jump:'Saltar', k_jump:'saltar', rp_hp:'A {n} le quedaban {hp} HP', rp_weapon:'Alcanzado con', rp_loadout:'Equipo', kc_streak:'racha', sub:'TEAM SOAKMATCH · {size} · PRIMERO EN {lim} SOAKS · {time} EN EL RELOJ', loadout:'ELIGE TU EQUIPO', loadout_note:'Puedes cambiarlo en cada reaparición', primary:'Principal', secondary:'Secundaria',
+es: { ks_head:'KILLSTREAKS', ks_note:'Elige 3. Los soaks de una killstreak no cuentan para tu racha', ks_cost:'{n} soaks seguidos', ksn_duck:'Pato espía', ksn_tower:'Torre aspersora', ksn_balloon:'Lluvia de globos', ksn_glasses:'Gafas de sol', ksn_cloud:'Nube de lluvia', ksn_wave:'Tsunami', ksd_duck:'Durante 20 s ves a todos los enemigos en el mapa y a través de paredes', ksd_tower:'Un aspersor que moja solo a los enemigos durante 30 s. Se puede destruir', ksd_balloon:'Elige un punto del mapa y allí lloverán globos de agua', ksd_glasses:'Durante 20 s no apareces en el mapa enemigo, su pato no funciona y quedan deslumbrados', ksd_cloud:'Durante 15 s una nube moja poco a poco a los enemigos de debajo', ksd_wave:'Una ola por todo el mapa. Salta o escóndete tras un muro', ks_us_duck:'Ahora ves a todos los enemigos', ks_them_duck:'El enemigo ve dónde estás', ks_us_tower:'La torre moja sola a los enemigos', ks_them_tower:'Cuidado con la torre aspersora', ks_us_balloon:'Los globos están en camino', ks_them_balloon:'Sal del círculo rojo', ks_us_glasses:'El enemigo ya no os ve', ks_them_glasses:'Estás deslumbrado y tu mapa no funciona', ks_us_cloud:'La nube busca a los enemigos', ks_them_cloud:'Aléjate de la nube de lluvia', ks_us_wave:'Llega la ola', ks_them_wave:'¡Salta o escóndete tras un muro!', ks_ready:'¡{n} lista!', ks_ready_s:'Pulsa {k} para usarla', ks_ready_t:'Toca el botón amarillo para usarla', ks_alive:'Tienes que estar vivo para colocarla', ks_pick:'ELIGE DÓNDE CAEN LOS GLOBOS', ks_pick_s:'Haz clic o toca el mapa', ks_cancel:'Cancelar', ks_dodge:'¡ESQUIVADO!', ks_dodge_s:'La ola no te alcanzó', a_ks:'Usar killstreak', k_ks:'killstreak', qp_btn:'PARTIDA RÁPIDA', qp_search:'Buscando partidas abiertas…', qp_joining:'Conectando a la partida {n} de {m}…', qp_none:'No hay partidas abiertas. Empiezas una con bots y otros jugadores pueden unirse.', qp_found:'¡Partida encontrada! Entrando…', qp_full:'Esta partida está llena.', p2p_waking:'Despertando el servidor, puede tardar hasta un minuto…', p2p_host:'Crear partida', p2p_join:'Unirse a partida', p2p_connect:'CONECTAR', p2p_code_lbl:'ID DE SALA', p2p_waiting:'Esperando jugadores. Comparte el ID de sala con tus amigos.', p2p_wait_host:'Conectado. Esperando a que el anfitrión empiece la partida…', p2p_start:'EMPEZAR PARTIDA', p2p_leave:'Salir del lobby', p2p_copy:'Copiar', p2p_copied:'Copiado', p2p_players:'Jugadores en el lobby: {n}', p2p_host_tag:'anfitrión', p2p_connecting:'Conectando…', p2p_err_net:'No se puede conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.', p2p_err_code:'No hay ninguna partida con este ID de sala.', p2p_err_left:'El anfitrión ha salido de la partida.', p2p_err_lib:'No se pudo cargar la biblioteca PeerJS. Revisa tu conexión.', p2p_badcode:'Escribe primero un ID de sala.', p2p_alt:'Otra forma: sala compartida', map_head:'ELIGE UN MAPA', map_note:'En línea, el primer jugador de la sala elige el mapa', map_d_park:'Parque con mucha cobertura', map_d_jungle:'Jungla espesa con ruinas y estanques en el centro', map_d_snow:'Fuerte de hielo con muros largos, los equipos empiezan arriba y abajo', map_d_desert:'Desierto abierto con pirámides y un oasis en el centro', map_random:'Aleatorio', map_d_random:'Una sorpresa en cada partida', t_jump:'SALTA', a_jump:'Saltar', k_jump:'saltar', rp_hp:'A {n} le quedaban {hp} HP', rp_weapon:'Alcanzado con', rp_loadout:'Equipo', kc_streak:'racha', sub:'TEAM SOAKMATCH · {size} · PRIMERO EN {lim} SOAKS · {time} EN EL RELOJ', loadout:'ELIGE TU EQUIPO', loadout_note:'Puedes cambiarlo en cada reaparición', primary:'Principal', secondary:'Secundaria',
   cls_ar:'Fusiles de asalto', cls_smg:'Subfusiles', cls_sg:'Escopetas', cls_sn:'Francotiradores', cls_lmg:'Ametralladoras', cls_pi:'Pistolas',
   st_pow:'Potencia', st_rng:'Alcance', st_rate:'Cadencia', st_tank:'Tanque', tr_auto:'Automática', tr_burst:'Ráfaga de 3', tr_semi:'Semiautomática', tr_pump:'De corredera', tr_scope:'Mira',
   pu_head:'POTENCIADORES', pu_note:'Están en el suelo. Pasa por encima para cogerlos', pu_dmg:'SÚPER CHORRO', pu_dmg_s:'1,5× daño · 10 s', pu_shield:'ESCUDO DE AGUA', pu_shield_s:'50 HP extra · 20 s', pu_heal:'TOALLA SECA', pu_heal_s:'Recuperas todo tu HP al instante', pu_ammo:'TANQUE INFINITO', pu_ammo_s:'Sin recargar · 30 s',
@@ -554,7 +595,7 @@ es: { qp_btn:'PARTIDA RÁPIDA', qp_search:'Buscando partidas abiertas…', qp_jo
   a_up:'Adelante', a_down:'Atrás', a_left:'Izquierda', a_right:'Derecha', a_turnLeft:'Girar a la izquierda', a_turnRight:'Girar a la derecha', a_sprint:'Correr', a_fire:'Disparar', a_ads:'Apuntar', a_reload:'Rellenar tanque', a_swap:'Cambiar arma', a_slot1:'Arma principal', a_slot2:'Arma secundaria', a_board:'Marcador (mantener)', a_pause:'Pausa', a_mute:'Sonido sí o no',
   key_m0:'Clic izquierdo', key_m1:'Clic central', key_m2:'Clic derecho', key_m3:'Botón 4', key_m4:'Botón 5', key_space:'Espacio', key_wu:'Rueda arriba', key_wd:'Rueda abajo',
   t_fire:'DISPARA', t_reload:'RELLENA', t_swap:'CAMBIA', t_aim:'APUNTA', rotate:'Gira el móvil para verlo mejor', pool_lbl:'RELLENAR' },
-fr: { qp_btn:'PARTIE RAPIDE', qp_search:'Recherche de parties ouvertes…', qp_joining:'Connexion à la partie {n} sur {m}…', qp_none:'Aucune partie ouverte. Tu en lances une avec des bots, d’autres joueurs peuvent rejoindre.', qp_found:'Partie trouvée ! Tu y entres…', qp_full:'Cette partie est complète.', p2p_waking:'Réveil du serveur, cela peut prendre jusqu’à une minute…', p2p_host:'Héberger', p2p_join:'Rejoindre', p2p_connect:'CONNEXION', p2p_code_lbl:'ID DU SALON', p2p_waiting:'En attente de joueurs. Partage l’ID du salon avec tes amis.', p2p_wait_host:'Connecté. En attente du lancement par l’hôte…', p2p_start:'LANCER LA PARTIE', p2p_leave:'Quitter le salon', p2p_copy:'Copier', p2p_copied:'Copié', p2p_players:'Joueurs dans le salon : {n}', p2p_host_tag:'hôte', p2p_connecting:'Connexion…', p2p_err_net:'Impossible de joindre le serveur. Vérifie ta connexion et réessaie.', p2p_err_code:'Aucune partie avec cet ID de salon.', p2p_err_left:'L’hôte a quitté la partie.', p2p_err_lib:'La bibliothèque PeerJS n’a pas pu se charger. Vérifie ta connexion.', p2p_badcode:'Saisis d’abord un ID de salon.', p2p_alt:'Autre option : salon partagé', map_head:'CHOISIS UNE CARTE', map_note:'En ligne, le premier joueur du salon choisit la carte', map_d_park:'Aire de jeux avec beaucoup d’abris', map_d_jungle:'Jungle dense avec ruines et mares au centre', map_d_snow:'Fort de glace aux longs murs, les équipes commencent en haut et en bas', map_d_desert:'Désert ouvert avec pyramides et une oasis au centre', map_random:'Aléatoire', map_d_random:'Une surprise à chaque partie', t_jump:'SAUTE', a_jump:'Sauter', k_jump:'sauter', rp_hp:'Il restait {hp} PV à {n}', rp_weapon:'Touché avec', rp_loadout:'Équipement', kc_streak:'série', sub:'TEAM SOAKMATCH · {size} · PREMIER À {lim} SOAKS · {time} AU CHRONO', loadout:'CHOISIS TON ÉQUIPEMENT', loadout_note:'Modifiable à chaque réapparition', primary:'Principale', secondary:'Secondaire',
+fr: { ks_head:'KILLSTREAKS', ks_note:'Choisis-en 3. Les soaks d’une killstreak ne comptent pas pour ta série', ks_cost:'{n} soaks d’affilée', ksn_duck:'Canard espion', ksn_tower:'Tour arroseuse', ksn_balloon:'Pluie de ballons', ksn_glasses:'Lunettes de soleil', ksn_cloud:'Nuage de pluie', ksn_wave:'Tsunami', ksd_duck:'Pendant 20 s tu vois tous les ennemis sur la carte et à travers les murs', ksd_tower:'Un arroseur qui arrose seul les ennemis pendant 30 s. Destructible', ksd_balloon:'Choisis un endroit sur la carte, il y pleuvra des ballons d’eau', ksd_glasses:'Pendant 20 s tu disparais de la carte ennemie, leur canard ne marche plus et ils sont éblouis', ksd_cloud:'Pendant 15 s un nuage mouille lentement les ennemis en dessous', ksd_wave:'Une vague sur toute la carte. Saute ou cache-toi derrière un mur', ks_us_duck:'Tu vois maintenant tous les ennemis', ks_them_duck:'L’ennemi voit où tu es', ks_us_tower:'La tour arrose les ennemis toute seule', ks_them_tower:'Attention à la tour arroseuse', ks_us_balloon:'Les ballons arrivent', ks_them_balloon:'Sors du cercle rouge', ks_us_glasses:'L’ennemi ne vous voit plus', ks_them_glasses:'Tu es ébloui et ta carte ne marche plus', ks_us_cloud:'Le nuage cherche les ennemis', ks_them_cloud:'Reste loin du nuage de pluie', ks_us_wave:'La vague arrive', ks_them_wave:'Saute ou cache-toi derrière un mur !', ks_ready:'{n} est prête !', ks_ready_s:'Appuie sur {k} pour l’utiliser', ks_ready_t:'Touche le bouton jaune pour l’utiliser', ks_alive:'Tu dois être en vie pour la poser', ks_pick:'CHOISIS OÙ TOMBENT LES BALLONS', ks_pick_s:'Clique ou touche la carte', ks_cancel:'Annuler', ks_dodge:'ESQUIVÉ !', ks_dodge_s:'La vague t’a raté', a_ks:'Utiliser la killstreak', k_ks:'killstreak', qp_btn:'PARTIE RAPIDE', qp_search:'Recherche de parties ouvertes…', qp_joining:'Connexion à la partie {n} sur {m}…', qp_none:'Aucune partie ouverte. Tu en lances une avec des bots, d’autres joueurs peuvent rejoindre.', qp_found:'Partie trouvée ! Tu y entres…', qp_full:'Cette partie est complète.', p2p_waking:'Réveil du serveur, cela peut prendre jusqu’à une minute…', p2p_host:'Héberger', p2p_join:'Rejoindre', p2p_connect:'CONNEXION', p2p_code_lbl:'ID DU SALON', p2p_waiting:'En attente de joueurs. Partage l’ID du salon avec tes amis.', p2p_wait_host:'Connecté. En attente du lancement par l’hôte…', p2p_start:'LANCER LA PARTIE', p2p_leave:'Quitter le salon', p2p_copy:'Copier', p2p_copied:'Copié', p2p_players:'Joueurs dans le salon : {n}', p2p_host_tag:'hôte', p2p_connecting:'Connexion…', p2p_err_net:'Impossible de joindre le serveur. Vérifie ta connexion et réessaie.', p2p_err_code:'Aucune partie avec cet ID de salon.', p2p_err_left:'L’hôte a quitté la partie.', p2p_err_lib:'La bibliothèque PeerJS n’a pas pu se charger. Vérifie ta connexion.', p2p_badcode:'Saisis d’abord un ID de salon.', p2p_alt:'Autre option : salon partagé', map_head:'CHOISIS UNE CARTE', map_note:'En ligne, le premier joueur du salon choisit la carte', map_d_park:'Aire de jeux avec beaucoup d’abris', map_d_jungle:'Jungle dense avec ruines et mares au centre', map_d_snow:'Fort de glace aux longs murs, les équipes commencent en haut et en bas', map_d_desert:'Désert ouvert avec pyramides et une oasis au centre', map_random:'Aléatoire', map_d_random:'Une surprise à chaque partie', t_jump:'SAUTE', a_jump:'Sauter', k_jump:'sauter', rp_hp:'Il restait {hp} PV à {n}', rp_weapon:'Touché avec', rp_loadout:'Équipement', kc_streak:'série', sub:'TEAM SOAKMATCH · {size} · PREMIER À {lim} SOAKS · {time} AU CHRONO', loadout:'CHOISIS TON ÉQUIPEMENT', loadout_note:'Modifiable à chaque réapparition', primary:'Principale', secondary:'Secondaire',
   cls_ar:'Fusils d’assaut', cls_smg:'Mitraillettes', cls_sg:'Fusils à pompe', cls_sn:'Fusils de précision', cls_lmg:'Mitrailleuses', cls_pi:'Pistolets',
   st_pow:'Puissance', st_rng:'Portée', st_rate:'Cadence', st_tank:'Réservoir', tr_auto:'Automatique', tr_burst:'Rafale de 3', tr_semi:'Semi-automatique', tr_pump:'À pompe', tr_scope:'Lunette',
   pu_head:'BONUS', pu_note:'Ils sont au sol. Passe dessus pour les ramasser', pu_dmg:'SUPER JET', pu_dmg_s:'Dégâts ×1,5 · 10 s', pu_shield:'BOUCLIER D’EAU', pu_shield_s:'50 PV en plus · 20 s', pu_heal:'SERVIETTE SÈCHE', pu_heal_s:'Tous tes PV d’un coup', pu_ammo:'RÉSERVOIR INFINI', pu_ammo_s:'Pas de recharge · 30 s',
@@ -573,7 +614,7 @@ fr: { qp_btn:'PARTIE RAPIDE', qp_search:'Recherche de parties ouvertes…', qp_j
   a_up:'Avancer', a_down:'Reculer', a_left:'Gauche', a_right:'Droite', a_turnLeft:'Tourner à gauche', a_turnRight:'Tourner à droite', a_sprint:'Sprinter', a_fire:'Arroser', a_ads:'Viser', a_reload:'Recharger', a_swap:'Changer d’arme', a_slot1:'Arme principale', a_slot2:'Arme secondaire', a_board:'Scores (maintenir)', a_pause:'Pause', a_mute:'Son oui ou non',
   key_m0:'Clic gauche', key_m1:'Clic molette', key_m2:'Clic droit', key_m3:'Bouton 4', key_m4:'Bouton 5', key_space:'Espace', key_wu:'Molette haut', key_wd:'Molette bas',
   t_fire:'TIRE', t_reload:'RECHARGE', t_swap:'CHANGE', t_aim:'VISE', rotate:'Tourne ton téléphone pour mieux voir', pool_lbl:'RECHARGE' },
-ar: { qp_btn:'لعب سريع', qp_search:'جارٍ البحث عن مباريات مفتوحة…', qp_joining:'جارٍ الاتصال بالمباراة {n} من {m}…', qp_none:'لا توجد مباراة مفتوحة. ستبدأ مباراة مع روبوتات ويمكن للاعبين الآخرين الانضمام.', qp_found:'تم العثور على مباراة! جارٍ الدخول…', qp_full:'هذه المباراة ممتلئة.', p2p_waking:'جارٍ إيقاظ الخادم، قد يستغرق ذلك حتى دقيقة…', p2p_host:'استضف لعبة', p2p_join:'انضم إلى لعبة', p2p_connect:'اتصال', p2p_code_lbl:'رمز الغرفة', p2p_waiting:'بانتظار انضمام اللاعبين. شارك رمز الغرفة مع أصدقائك.', p2p_wait_host:'تم الاتصال. بانتظار أن يبدأ المضيف المباراة…', p2p_start:'ابدأ المباراة', p2p_leave:'غادر الردهة', p2p_copy:'نسخ', p2p_copied:'تم النسخ', p2p_players:'اللاعبون في الردهة: {n}', p2p_host_tag:'المضيف', p2p_connecting:'جارٍ الاتصال…', p2p_err_net:'تعذر الوصول إلى الخادم. تحقق من اتصالك بالإنترنت وحاول مرة أخرى.', p2p_err_code:'لم يتم العثور على لعبة بهذا الرمز.', p2p_err_left:'غادر المضيف اللعبة.', p2p_err_lib:'تعذر تحميل مكتبة PeerJS. تحقق من اتصالك بالإنترنت.', p2p_badcode:'أدخل رمز الغرفة أولًا.', p2p_alt:'طريقة أخرى: غرفة مشتركة', map_head:'اختر خريطة', map_note:'عبر الإنترنت، يختار أول لاعب في الغرفة الخريطة', map_d_park:'ملعب مع الكثير من السواتر', map_d_jungle:'غابة كثيفة مع أطلال وبرك في الوسط', map_d_snow:'حصن جليدي بجدران طويلة، تبدأ الفرق من الأعلى والأسفل', map_d_desert:'صحراء مفتوحة مع أهرامات وواحة في الوسط', map_random:'عشوائي', map_d_random:'مفاجأة في كل مباراة', t_jump:'اقفز', a_jump:'قفز', k_jump:'القفز', rp_hp:'بقي لدى {n} {hp} نقطة صحة', rp_weapon:'أصبت بـ', rp_loadout:'العتاد', kc_streak:'سلسلة', sub:'مباراة الفرق المائية · {size} · أول من يصل إلى {lim} · {time} على الساعة', loadout:'اختر عتادك', loadout_note:'يمكنك تغييره عند كل عودة', primary:'السلاح الأساسي', secondary:'السلاح الثانوي',
+ar: { ks_head:'سلاسل القتل', ks_note:'اختر 3. الإصابات بسلسلة القتل لا تُحسب في سلسلتك', ks_cost:'{n} إصابات متتالية', ksn_duck:'بطة التجسس', ksn_tower:'برج الرشاش', ksn_balloon:'مطر البالونات', ksn_glasses:'نظارة شمسية', ksn_cloud:'سحابة المطر', ksn_wave:'تسونامي', ksd_duck:'لمدة 20 ثانية ترى كل الأعداء على الخريطة وعبر الجدران', ksd_tower:'رشاش يرش الأعداء تلقائيًا لمدة 30 ثانية. يمكن تدميره', ksd_balloon:'اختر مكانًا على الخريطة لتمطر فيه بالونات الماء', ksd_glasses:'لمدة 20 ثانية تختفي من خريطة العدو وتتوقف بطتهم ويصابون بالانبهار', ksd_cloud:'لمدة 15 ثانية تبلل سحابة الأعداء تحتها ببطء', ksd_wave:'موجة تعبر الخريطة كلها. اقفز أو اختبئ خلف جدار', ks_us_duck:'أنت ترى كل الأعداء الآن', ks_them_duck:'العدو يرى مكانك', ks_us_tower:'البرج يرش الأعداء تلقائيًا', ks_them_tower:'احذر من برج الرشاش', ks_us_balloon:'البالونات في الطريق', ks_them_balloon:'اخرج من الدائرة الحمراء', ks_us_glasses:'العدو لا يراكم الآن', ks_them_glasses:'أنت منبهر وخريطتك لا تعمل', ks_us_cloud:'السحابة تلاحق الأعداء', ks_them_cloud:'ابتعد عن سحابة المطر', ks_us_wave:'الموجة قادمة', ks_them_wave:'اقفز أو اختبئ خلف جدار!', ks_ready:'{n} جاهزة!', ks_ready_s:'اضغط {k} لاستخدامها', ks_ready_t:'اضغط الزر الأصفر لاستخدامها', ks_alive:'يجب أن تكون حيًا لوضعه', ks_pick:'اختر مكان سقوط البالونات', ks_pick_s:'انقر أو المس الخريطة', ks_cancel:'إلغاء', ks_dodge:'تفاديت!', ks_dodge_s:'الموجة لم تصبك', a_ks:'استخدام سلسلة القتل', k_ks:'سلسلة القتل', qp_btn:'لعب سريع', qp_search:'جارٍ البحث عن مباريات مفتوحة…', qp_joining:'جارٍ الاتصال بالمباراة {n} من {m}…', qp_none:'لا توجد مباراة مفتوحة. ستبدأ مباراة مع روبوتات ويمكن للاعبين الآخرين الانضمام.', qp_found:'تم العثور على مباراة! جارٍ الدخول…', qp_full:'هذه المباراة ممتلئة.', p2p_waking:'جارٍ إيقاظ الخادم، قد يستغرق ذلك حتى دقيقة…', p2p_host:'استضف لعبة', p2p_join:'انضم إلى لعبة', p2p_connect:'اتصال', p2p_code_lbl:'رمز الغرفة', p2p_waiting:'بانتظار انضمام اللاعبين. شارك رمز الغرفة مع أصدقائك.', p2p_wait_host:'تم الاتصال. بانتظار أن يبدأ المضيف المباراة…', p2p_start:'ابدأ المباراة', p2p_leave:'غادر الردهة', p2p_copy:'نسخ', p2p_copied:'تم النسخ', p2p_players:'اللاعبون في الردهة: {n}', p2p_host_tag:'المضيف', p2p_connecting:'جارٍ الاتصال…', p2p_err_net:'تعذر الوصول إلى الخادم. تحقق من اتصالك بالإنترنت وحاول مرة أخرى.', p2p_err_code:'لم يتم العثور على لعبة بهذا الرمز.', p2p_err_left:'غادر المضيف اللعبة.', p2p_err_lib:'تعذر تحميل مكتبة PeerJS. تحقق من اتصالك بالإنترنت.', p2p_badcode:'أدخل رمز الغرفة أولًا.', p2p_alt:'طريقة أخرى: غرفة مشتركة', map_head:'اختر خريطة', map_note:'عبر الإنترنت، يختار أول لاعب في الغرفة الخريطة', map_d_park:'ملعب مع الكثير من السواتر', map_d_jungle:'غابة كثيفة مع أطلال وبرك في الوسط', map_d_snow:'حصن جليدي بجدران طويلة، تبدأ الفرق من الأعلى والأسفل', map_d_desert:'صحراء مفتوحة مع أهرامات وواحة في الوسط', map_random:'عشوائي', map_d_random:'مفاجأة في كل مباراة', t_jump:'اقفز', a_jump:'قفز', k_jump:'القفز', rp_hp:'بقي لدى {n} {hp} نقطة صحة', rp_weapon:'أصبت بـ', rp_loadout:'العتاد', kc_streak:'سلسلة', sub:'مباراة الفرق المائية · {size} · أول من يصل إلى {lim} · {time} على الساعة', loadout:'اختر عتادك', loadout_note:'يمكنك تغييره عند كل عودة', primary:'السلاح الأساسي', secondary:'السلاح الثانوي',
   cls_ar:'بنادق هجومية', cls_smg:'رشاشات صغيرة', cls_sg:'بنادق خرطوش', cls_sn:'بنادق قنص', cls_lmg:'رشاشات خفيفة', cls_pi:'مسدسات',
   st_pow:'القوة', st_rng:'المدى', st_rate:'سرعة الإطلاق', st_tank:'الخزان', tr_auto:'آلي', tr_burst:'دفعة من 3', tr_semi:'نصف آلي', tr_pump:'بالمضخة', tr_scope:'منظار',
   pu_head:'التعزيزات', pu_note:'موجودة على الأرض. امشِ فوقها لتأخذها', pu_dmg:'رشاش خارق', pu_dmg_s:'ضرر ×1.5 · 10 ث', pu_shield:'درع مائي', pu_shield_s:'50 نقطة صحة إضافية · 20 ث', pu_heal:'منشفة جافة', pu_heal_s:'استعادة كل صحتك فورًا', pu_ammo:'خزان لا ينتهي', pu_ammo_s:'بدون إعادة تعبئة · 30 ث',
@@ -592,7 +633,7 @@ ar: { qp_btn:'لعب سريع', qp_search:'جارٍ البحث عن مباريا
   a_up:'للأمام', a_down:'للخلف', a_left:'يسار', a_right:'يمين', a_turnLeft:'استدر يسارًا', a_turnRight:'استدر يمينًا', a_sprint:'ركض', a_fire:'رش', a_ads:'تصويب', a_reload:'تعبئة الخزان', a_swap:'تبديل السلاح', a_slot1:'السلاح الأساسي', a_slot2:'السلاح الثانوي', a_board:'النتائج (اضغط مطولًا)', a_pause:'إيقاف مؤقت', a_mute:'الصوت تشغيل أو إيقاف',
   key_m0:'زر الفأرة الأيسر', key_m1:'زر الفأرة الأوسط', key_m2:'زر الفأرة الأيمن', key_m3:'زر الفأرة 4', key_m4:'زر الفأرة 5', key_space:'مسافة', key_wu:'العجلة لأعلى', key_wd:'العجلة لأسفل',
   t_fire:'رش', t_reload:'تعبئة', t_swap:'تبديل', t_aim:'تصويب', rotate:'أدر هاتفك أفقيًا لأفضل رؤية', pool_lbl:'تعبئة' },
-ru: { qp_btn:'БЫСТРАЯ ИГРА', qp_search:'Ищем открытые матчи…', qp_joining:'Подключение к матчу {n} из {m}…', qp_none:'Открытых матчей нет. Запускаем твой матч с ботами, другие игроки смогут зайти.', qp_found:'Матч найден! Заходим…', qp_full:'Этот матч заполнен.', p2p_waking:'Будим сервер, это может занять до минуты…', p2p_host:'Создать игру', p2p_join:'Присоединиться', p2p_connect:'ПОДКЛЮЧИТЬСЯ', p2p_code_lbl:'ID КОМНАТЫ', p2p_waiting:'Ждём игроков. Отправь ID комнаты друзьям.', p2p_wait_host:'Подключено. Ждём, пока хост начнёт матч…', p2p_start:'НАЧАТЬ МАТЧ', p2p_leave:'Выйти из лобби', p2p_copy:'Копировать', p2p_copied:'Скопировано', p2p_players:'Игроков в лобби: {n}', p2p_host_tag:'хост', p2p_connecting:'Подключение…', p2p_err_net:'Нет связи с сервером. Проверь интернет и попробуй снова.', p2p_err_code:'Игра с таким ID не найдена.', p2p_err_left:'Хост покинул игру.', p2p_err_lib:'Не удалось загрузить библиотеку PeerJS. Проверь интернет.', p2p_badcode:'Сначала введи ID комнаты.', p2p_alt:'Другой способ: общая комната', map_head:'ВЫБЕРИ КАРТУ', map_note:'Онлайн карту выбирает первый игрок в комнате', map_d_park:'Площадка с кучей укрытий', map_d_jungle:'Густые джунгли с руинами и прудами в центре', map_d_snow:'Ледяная крепость с длинными стенами, команды начинают сверху и снизу', map_d_desert:'Открытая пустыня с пирамидами и оазисом в центре', map_random:'Случайная', map_d_random:'Сюрприз в каждом матче', t_jump:'ПРЫЖОК', a_jump:'Прыжок', k_jump:'прыжок', rp_hp:'У {n} осталось {hp} HP', rp_weapon:'Оружие', rp_loadout:'Снаряжение', kc_streak:'серия', sub:'КОМАНДНЫЙ SOAKMATCH · {size} · ДО {lim} SOAKS · {time} НА ЧАСАХ', loadout:'ВЫБЕРИ СНАРЯЖЕНИЕ', loadout_note:'Можно менять при каждом возрождении', primary:'Основное', secondary:'Дополнительное',
+ru: { ks_head:'КИЛСТРИКИ', ks_note:'Выбери 3. Soaks от килстрика не идут в твою серию', ks_cost:'{n} soaks подряд', ksn_duck:'Утка-шпион', ksn_tower:'Башня-разбрызгиватель', ksn_balloon:'Дождь из шаров', ksn_glasses:'Тёмные очки', ksn_cloud:'Дождевая туча', ksn_wave:'Цунами', ksd_duck:'20 сек ты видишь всех врагов на карте и сквозь стены', ksd_tower:'Разбрызгиватель сам стреляет по врагам 30 сек. Его можно сломать', ksd_balloon:'Выбери место на карте, туда посыплются водяные шары', ksd_glasses:'20 сек тебя нет на карте врага, их утка не работает и они ослеплены', ksd_cloud:'15 сек туча медленно мочит врагов под собой', ksd_wave:'Одна волна через всю карту. Прыгай или прячься за стеной', ks_us_duck:'Теперь ты видишь всех врагов', ks_them_duck:'Враг видит, где ты', ks_us_tower:'Башня сама стреляет по врагам', ks_them_tower:'Осторожно, башня-разбрызгиватель', ks_us_balloon:'Шары уже летят', ks_them_balloon:'Беги из красного круга', ks_us_glasses:'Враг вас больше не видит', ks_them_glasses:'Ты ослеплён, карта не работает', ks_us_cloud:'Туча ищет врагов', ks_them_cloud:'Держись подальше от тучи', ks_us_wave:'Волна идёт', ks_them_wave:'Прыгай или прячься за стеной!', ks_ready:'{n}: готово!', ks_ready_s:'Нажми {k}, чтобы использовать', ks_ready_t:'Нажми жёлтую кнопку, чтобы использовать', ks_alive:'Нужно быть живым, чтобы поставить её', ks_pick:'ВЫБЕРИ, КУДА УПАДУТ ШАРЫ', ks_pick_s:'Нажми на карту', ks_cancel:'Отмена', ks_dodge:'УВЕРНУЛСЯ!', ks_dodge_s:'Волна прошла мимо', a_ks:'Использовать килстрик', k_ks:'килстрик', qp_btn:'БЫСТРАЯ ИГРА', qp_search:'Ищем открытые матчи…', qp_joining:'Подключение к матчу {n} из {m}…', qp_none:'Открытых матчей нет. Запускаем твой матч с ботами, другие игроки смогут зайти.', qp_found:'Матч найден! Заходим…', qp_full:'Этот матч заполнен.', p2p_waking:'Будим сервер, это может занять до минуты…', p2p_host:'Создать игру', p2p_join:'Присоединиться', p2p_connect:'ПОДКЛЮЧИТЬСЯ', p2p_code_lbl:'ID КОМНАТЫ', p2p_waiting:'Ждём игроков. Отправь ID комнаты друзьям.', p2p_wait_host:'Подключено. Ждём, пока хост начнёт матч…', p2p_start:'НАЧАТЬ МАТЧ', p2p_leave:'Выйти из лобби', p2p_copy:'Копировать', p2p_copied:'Скопировано', p2p_players:'Игроков в лобби: {n}', p2p_host_tag:'хост', p2p_connecting:'Подключение…', p2p_err_net:'Нет связи с сервером. Проверь интернет и попробуй снова.', p2p_err_code:'Игра с таким ID не найдена.', p2p_err_left:'Хост покинул игру.', p2p_err_lib:'Не удалось загрузить библиотеку PeerJS. Проверь интернет.', p2p_badcode:'Сначала введи ID комнаты.', p2p_alt:'Другой способ: общая комната', map_head:'ВЫБЕРИ КАРТУ', map_note:'Онлайн карту выбирает первый игрок в комнате', map_d_park:'Площадка с кучей укрытий', map_d_jungle:'Густые джунгли с руинами и прудами в центре', map_d_snow:'Ледяная крепость с длинными стенами, команды начинают сверху и снизу', map_d_desert:'Открытая пустыня с пирамидами и оазисом в центре', map_random:'Случайная', map_d_random:'Сюрприз в каждом матче', t_jump:'ПРЫЖОК', a_jump:'Прыжок', k_jump:'прыжок', rp_hp:'У {n} осталось {hp} HP', rp_weapon:'Оружие', rp_loadout:'Снаряжение', kc_streak:'серия', sub:'КОМАНДНЫЙ SOAKMATCH · {size} · ДО {lim} SOAKS · {time} НА ЧАСАХ', loadout:'ВЫБЕРИ СНАРЯЖЕНИЕ', loadout_note:'Можно менять при каждом возрождении', primary:'Основное', secondary:'Дополнительное',
   cls_ar:'Штурмовые винтовки', cls_smg:'Пистолеты-пулемёты', cls_sg:'Дробовики', cls_sn:'Снайперские', cls_lmg:'Пулемёты', cls_pi:'Пистолеты',
   st_pow:'Сила', st_rng:'Дальность', st_rate:'Скорострельность', st_tank:'Бак', tr_auto:'Автоматический', tr_burst:'Очередь по 3', tr_semi:'Полуавтомат', tr_pump:'Помповый', tr_scope:'Прицел',
   pu_head:'БОНУСЫ', pu_note:'Лежат на земле. Пройди через бонус, чтобы взять его', pu_dmg:'СУПЕРСТРУЯ', pu_dmg_s:'Урон ×1,5 · 10 с', pu_shield:'ВОДЯНОЙ ЩИТ', pu_shield_s:'+50 HP · 20 с', pu_heal:'СУХОЕ ПОЛОТЕНЦЕ', pu_heal_s:'Мгновенно всё HP', pu_ammo:'БЕСКОНЕЧНЫЙ БАК', pu_ammo_s:'Без перезарядки · 30 с',
@@ -637,17 +678,32 @@ const WEAPONS = {
   floodgate: { cls: 'lmg', name: 'Floodgate LMG',   mode: 'auto',  dmg: 22, rate: 0.15, speed: 1150, range: 900,  fo: 550, fmin: 0.75, tank: 60, reload: 3.2, spread: 0.05,  ads: 0.022, bloom: 0.008, bcap: 0.07, adsSpd: 4.5, move: 0.82, grav: 2, size: 6, pref: 500, col: ['#5A3FD0', '#00E5FF'] },
   classic:   { cls: 'pi',  name: 'Classic Pistol',  mode: 'semi',  dmg: 20, rate: 0.15, speed: 950,  range: 650,  fo: 300, fmin: 0.65, tank: 14, reload: 1.1, spread: 0.03,  ads: 0.015, bloom: 0.004, bcap: 0.03, adsSpd: 10, move: 1.05, grav: 3, size: 5, pref: 350, col: ['#3DA5FF', '#FF2E88'] },
   revolver:  { cls: 'pi',  name: 'Splash Revolver', mode: 'semi',  dmg: 50, rate: 0.5,  speed: 1200, range: 750,  fo: 350, fmin: 0.7,  tank: 6,  reload: 1.8, spread: 0.02,  ads: 0.008, bloom: 0, bcap: 0, adsSpd: 8, move: 1.03, grav: 2, size: 6, pref: 400, col: ['#FFD21F', '#16112A'] },
-  riptide:   { cls: 'ar',  name: 'Riptide Carbine', mode: 'auto',  dmg: 13, rate: 0.095, speed: 1100, range: 750, fo: 420, fmin: 0.65, tank: 36, reload: 1.7, spread: 0.045, ads: 0.016, bloom: 0.007, bcap: 0.055, adsSpd: 8.5, move: 1.02, grav: 2.2, size: 4.8, pref: 380, col: ['#FF7A1A', '#00E5FF'] }
+  riptide:   { cls: 'ar',  name: 'Riptide Carbine', mode: 'auto',  dmg: 13, rate: 0.095, speed: 1100, range: 750, fo: 420, fmin: 0.65, tank: 36, reload: 1.7, spread: 0.045, ads: 0.016, bloom: 0.007, bcap: 0.055, adsSpd: 8.5, move: 1.02, grav: 2.2, size: 4.8, pref: 380, col: ['#FF7A1A', '#00E5FF'] },
+  // killstreak damage types (never in a loadout); kept last so weapon indices stay stable online
+  ks_tower:   { cls: 'ks', ks: 'tower',   name: 'Sprinkler', mode: 'auto', dmg: 8, rate: 0.2, speed: 1000, range: 680, fo: 350, fmin: 0.6, tank: 1, reload: 1, spread: 0.05, ads: 0.05, bloom: 0, bcap: 0, adsSpd: 1, move: 1, grav: 2.4, size: 4.5, pref: 300, col: ['#00E5FF', '#FFFFFF'] },
+  ks_balloon: { cls: 'ks', ks: 'balloon', name: 'Balloons',  mode: 'semi', dmg: 45, rate: 1, speed: 1, range: 1, fo: 1, fmin: 1, tank: 1, reload: 1, spread: 0, ads: 0, bloom: 0, bcap: 0, adsSpd: 1, move: 1, grav: 1, size: 5, pref: 1, col: ['#FF2E88', '#FFD21F'] },
+  ks_cloud:   { cls: 'ks', ks: 'cloud',   name: 'Rain Cloud', mode: 'semi', dmg: 8, rate: 1, speed: 1, range: 1, fo: 1, fmin: 1, tank: 1, reload: 1, spread: 0, ads: 0, bloom: 0, bcap: 0, adsSpd: 1, move: 1, grav: 1, size: 5, pref: 1, col: ['#6C7A99', '#FFFFFF'] },
+  ks_wave:    { cls: 'ks', ks: 'wave',    name: 'Tsunami',   mode: 'semi', dmg: 200, rate: 1, speed: 1, range: 1, fo: 1, fmin: 1, tank: 1, reload: 1, spread: 0, ads: 0, bloom: 0, bcap: 0, adsSpd: 1, move: 1, grav: 1, size: 5, pref: 1, col: ['#1EA7FF', '#FFFFFF'] }
 };
 const WK = Object.keys(WEAPONS);
 const WI = {}; WK.forEach((k, i) => { WI[k] = i; });
-const PRIMS = WK.filter(k => WEAPONS[k].cls !== 'pi'), SECS = WK.filter(k => WEAPONS[k].cls === 'pi');
+const PRIMS = WK.filter(k => WEAPONS[k].cls !== 'pi' && WEAPONS[k].cls !== 'ks'), SECS = WK.filter(k => WEAPONS[k].cls === 'pi');
 function wstats(w) {
   const p = w.dmg * (w.pellets || 1) * (w.mode === 'burst' ? 1.6 : 1);
   return [clamp(Math.sqrt(p / 100) * 100, 8, 100), clamp(Math.min(w.range, w.fo + 200) / 1700 * 100, 8, 100), clamp(Math.sqrt((1 / w.rate) / 15) * 100 * (w.pump ? 0.35 : 1), 8, 100), clamp(Math.sqrt(w.tank / 80) * 100, 8, 100)];
 }
 const PU = { dmg: { dur: 10, color: '#FF2E88', icon: '×1,5' }, shield: { dur: 20, color: '#00C2FF', icon: '+50' }, heal: { dur: 0, color: '#2ECC55', icon: 'HP' }, ammo: { dur: 30, color: '#8A3FFF', icon: '∞' } };
 const PULIST = ['dmg', 'shield', 'heal', 'ammo'];
+const KS = {
+  duck:    { cost: 5,  icon: '🦆', col: '#FFD21F', dur: 20 },
+  tower:   { cost: 6,  icon: '⛲', col: '#00E5FF', dur: 30 },
+  balloon: { cost: 7,  icon: '🎈', col: '#FF2E88' },
+  glasses: { cost: 8,  icon: '🕶️', col: '#B48CFF', dur: 20 },
+  cloud:   { cost: 10, icon: '🌧️', col: '#8C9BBF', dur: 15 },
+  wave:    { cost: 12, icon: '🌊', col: '#1EA7FF' }
+};
+const KSLIST = Object.keys(KS);
+const randomKs = () => { const a = KSLIST.slice(); for (let i = a.length - 1; i > 0; i--) { const j = (Math.random() * (i + 1)) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a.slice(0, 3); };
 const DIFFS = {
   easy:   { react: 0.6,  err: 0.17,  turn: 4.5, lead: 0.25, dmgMul: 0.75 },
   medium: { react: 0.36, err: 0.09,  turn: 7,   lead: 0.6,  dmgMul: 1 },
@@ -657,7 +713,7 @@ const store = {
   get(k) { try { return JSON.parse(localStorage.getItem('splashops.' + k)); } catch (e) { return null; } },
   set(k, v) { try { localStorage.setItem('splashops.' + k, JSON.stringify(v)); } catch (e) {} }
 };
-const settings = { allies: 3, enemies: 4, fill: 4, diff: 'medium', prim: 'tidal', sec: 'classic', sens: 1, tsens: 1, assist: true, autofire: false, lang: '', name: '', code: '', mode: 'off', map: 'park' };
+const settings = { allies: 3, enemies: 4, fill: 4, diff: 'medium', prim: 'tidal', sec: 'classic', sens: 1, tsens: 1, assist: true, autofire: false, lang: '', name: '', code: '', mode: 'off', map: 'park', ks: ['duck', 'tower', 'balloon'] };
 (() => { const s = store.get('settings'); if (s && typeof s === 'object') {
   if (Number.isInteger(s.allies)) settings.allies = clamp(s.allies, 0, 5);
   if (Number.isInteger(s.enemies)) settings.enemies = clamp(s.enemies, 1, 6);
@@ -673,6 +729,7 @@ const settings = { allies: 3, enemies: 4, fill: 4, diff: 'medium', prim: 'tidal'
   if (typeof s.code === 'string' && /^[a-z0-9][a-z0-9_.-]{0,23}$/.test(s.code)) settings.code = s.code;
   if (s.mode === 'on' || s.mode === 'off') settings.mode = s.mode;
   if (['park', 'jungle', 'snow', 'desert', 'random'].includes(s.map)) settings.map = s.map;
+  if (Array.isArray(s.ks)) { const v = [...new Set(s.ks.filter(k => KS[k]))]; if (v.length === 3) settings.ks = v; }
 } })();
 function cleanName(s) { return String(s).replace(/[\u0000-\u001f\u007f-\u009f​-‏‪-‮⁠-⁯﻿]/g, '').trim().slice(0, 14); }
 const saveSettings = () => store.set('settings', settings);
@@ -820,7 +877,7 @@ function sfx(name, x, y) {
   sfxBudget--;
   const g = AC.createGain(); g.gain.value = v; g.connect(master);
   const cls = WEAPONS[name] ? WEAPONS[name].cls : null;
-  if (cls) {
+  if (cls && cls !== 'ks') {
     if (cls === 'sg') { nz(g, 0.22, 1100, 0.7, 0.8); nz(g, 0.12, 3000, 1, 0.3); }
     else if (cls === 'sn') { nz(g, 0.22, 1500, 1, 0.8); tn(g, 380, 110, 0.22, 0.25, 'triangle'); }
     else if (cls === 'lmg') { nz(g, 0.1, 1500, 1, 0.55); tn(g, 300, 160, 0.06, 0.1, 'triangle'); }
@@ -843,6 +900,15 @@ function sfx(name, x, y) {
     case 'expire': tn(g, 700, 250, 0.3, 0.15, 'triangle'); break;
     case 'jump': nz(g, 0.08, 600, 1, 0.15); tn(g, 220, 420, 0.1, 0.08, 'sine'); break;
     case 'swap': tn(g, 500, 700, 0.06, 0.12, 'square'); tn(g, 700, 500, 0.06, 0.12, 'square', 0.12); break;
+    case 'ks_tower': nz(g, 0.06, 2400, 1.3, 0.3); break;
+    case 'ksready': [659, 784, 988, 1319].forEach((f, i) => tn(g, f, f * 1.01, 0.15, 0.2, 'triangle', i * 0.08)); break;
+    case 'whistle': tn(g, 1700, 500, 1.2, 0.1, 'sine'); break;
+    case 'pop': nz(g, 0.18, 650, 0.9, 0.6); tn(g, 320, 90, 0.18, 0.25); break;
+    case 'quack': tn(g, 620, 380, 0.12, 0.22, 'square'); tn(g, 580, 360, 0.12, 0.22, 'square', 0.2); break;
+    case 'glasses': tn(g, 900, 1800, 0.25, 0.14, 'sine'); tn(g, 1200, 2400, 0.25, 0.1, 'sine', 0.12); break;
+    case 'thunder': nz(g, 1.5, 160, 0.6, 1, 'lowpass'); break;
+    case 'wave': nz(g, 3.2, 280, 0.5, 0.9, 'lowpass'); nz(g, 2.5, 1200, 0.7, 0.25, 'bandpass', 0.6); break;
+    case 'tower': tn(g, 300, 650, 0.2, 0.2, 'square'); break;
   }
 }
 
@@ -861,8 +927,8 @@ function makeEnt(team, name, isPlayer) {
   return { team, name, isPlayer, x: 0, y: 0, vx: 0, vy: 0, angle: team ? Math.PI : 0, hp: MAX_HP, alive: false, respawnT: 0,
     wk: 'tidal', ammo: 30, slots: [{ wk: 'tidal', ammo: 30 }, { wk: 'classic', ammo: 14 }], slot: 0, load: { p: 'tidal', s: 'classic' },
     cd: 0, reloadT: 0, pumpT: 0, swapT: 0, z: 0, vz: 0, nz: 0, bloom: 0, landT: 0, burstLeft: 0, burstT: 0, sprint: false, protectT: 0, lastHit: -99, spawnTime: 0, kills: 0, deaths: 0, revealT: 0, mx: 0, my: 0, poolAcc: 0, streak: 0, multi: 0, lastKillT: -99, bob: 0, flash: 0, killer: null,
-    pu: { dmg: 0, shield: 0, ammo: 0 }, model: null, remote: false, netId: '', isBot: !isPlayer, nameIdx: 0, nx: 0, ny: 0, na: 0, lastNet: 0,
-    ai: { think: 0, target: null, react: 0, err: 0, strafe: 1, strafeT: 0, path: null, pi: 0, repath: 0, lastSeen: null, lastSeenT: -99 } };
+    pu: { dmg: 0, shield: 0, ammo: 0 }, ksReady: [], ksPick: randomKs(), model: null, remote: false, netId: '', isBot: !isPlayer, nameIdx: 0, nx: 0, ny: 0, na: 0, lastNet: 0,
+    ai: { ksT: 0, think: 0, target: null, react: 0, err: 0, strafe: 1, strafeT: 0, path: null, pi: 0, repath: 0, lastSeen: null, lastSeenT: -99 } };
 }
 const maxHp = e => e.pu.shield > 0 ? MAX_HP + 50 : MAX_HP;
 const owned = e => !e.remote;
@@ -907,12 +973,12 @@ function clearWorld() {
   projs = [];
   for (const p of pickups) scene.remove(p.g);
   pickups = []; puTimer = 6;
-  clearFx();
+  clearFx(); ksClear();
 }
 function resetMatch(isAttract) {
   teamScore = [0, 0]; time = TIME_LIMIT; minuteWarned = false; nearWinWarned = [false, false];
   clearWorld();
-  for (const e of ents) { e.kills = 0; e.deaths = 0; e.alive = false; e.respawnT = isAttract ? rand(0, 0.5) : 0; e.killer = null; e.multi = 0; }
+  for (const e of ents) { e.kills = 0; e.deaths = 0; e.alive = false; e.respawnT = isAttract ? rand(0, 0.5) : 0; e.killer = null; e.multi = 0; e.ksReady = []; }
   if (!isAttract) for (const e of ents) spawn(e);
   $('feed').innerHTML = '';
 }
@@ -959,7 +1025,7 @@ function maybeDrop(v, k) {
 function showDeathInfo(k, wk) {
   const el = $('rpInfo'); el.innerHTML = '';
   if (!k || !k.load || k.isPlayer && owned(k)) return;
-  const chip = (w, used) => { const W = WEAPONS[w]; const c = document.createElement('span'); c.className = 'wchip' + (used ? ' used' : ''); const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = 'linear-gradient(90deg,' + W.col[0] + ' 0 60%,' + W.col[1] + ' 60%)'; c.append(sw, document.createTextNode(W.name)); return c; };
+  const chip = (w, used) => { const W = WEAPONS[w]; const c = document.createElement('span'); c.className = 'wchip' + (used ? ' used' : ''); const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = 'linear-gradient(90deg,' + W.col[0] + ' 0 60%,' + W.col[1] + ' 60%)'; c.append(sw, document.createTextNode(wkName(w))); return c; };
   const hp = Math.max(0, Math.ceil(k.alive ? k.hp : 0));
   const hpLine = document.createElement('div'); hpLine.textContent = t('rp_hp', { n: k.name, hp });
   const bar = document.createElement('div'); bar.className = 'rp-hpbar'; const bi = document.createElement('i'); bi.style.width = clamp(hp, 0, 100) + '%'; bi.style.background = TEAMS[k.team].body; bar.append(bi);
@@ -1094,17 +1160,19 @@ function damageFromProj(v, b, px, py, ph) {
   hitFx(v, b.wk, px, py, ph, ang, b.owner.isPlayer);
   netPush('ht', [0, v.netId, r2(b.dmg), WI[b.wk], b.owner.netId, r0(px), r0(py), r2(ph)]);
 }
-function killCredit(k) {
-  k.kills++; k.streak++;
+function killCredit(k, wk) {
+  const viaKs = isKsWk(wk);
+  k.kills++; if (!viaKs) k.streak++;
   if (k.isPlayer && state === 'play') {
     hitT = 0.3; hitBig = true;
     k.multi = now - k.lastKillT < 4 ? k.multi + 1 : 1; k.lastKillT = now;
     if (k.multi === 2) callout(t('co_double'), t('co_double_s'));
     else if (k.multi === 3) callout(t('co_triple'), t('co_triple_s'));
     else if (k.multi >= 4) callout(t('co_mega'), t('co_mega_s', { n: k.multi }));
-    else if (k.streak === 5) callout(t('co_s5'), t('co_s5_s'));
-    else if (k.streak === 10) callout(t('co_s10'), t('co_s10_s'));
+    else if (!viaKs && k.streak === 5) callout(t('co_s5'), t('co_s5_s'));
+    else if (!viaKs && k.streak === 10) callout(t('co_s10'), t('co_s10_s'));
   }
+  if (!viaKs) ksCheck(k);
 }
 function soakFx(v) {
   for (let i = 0; i < 3; i++) splash(v.x + rand(-14, 14), v.y + rand(-14, 14), rand(0.8, 2.6), rand(0, TAU), 1.5);
@@ -1128,13 +1196,391 @@ function soak(v, k, wk) {
   soakFx(v);
   const auth = !Net.active || Net.host;
   if (auth) maybeDrop(v, k);
-  if (k && owned(k) && k !== v) killCredit(k);
+  if (k && owned(k) && k !== v) killCredit(k, wk);
   if (Net.active) netPush('dt', [0, v.netId, k ? k.netId : '', WI[wk] == null ? -1 : WI[wk]]);
   if (state === 'play') {
     addFeed(k, v, wk);
     if (v.isPlayer) { showDeathInfo(k, wk); $('rpBy').textContent = k ? (k === v ? t('rp_self') : (k.isPlayer ? t('you') : k.name)) : t('rp_floor'); $('respawn').hidden = false; renderLoadout($('rpLo'), true); touchFire = false; touchAds = false; }
     if (auth && k) scorePoint(k === v ? 1 - v.team : k.team);
   } else if (state === 'attract' && k) teamScore[k.team]++;
+}
+
+/* ================= killstreaks ================= */
+// Earned by soaks in a row (only weapon soaks count). Area effects are deterministic from
+// the event (position, angle, seed), so every client draws the same thing and only damages
+// the players and bots it owns, exactly like normal hits.
+const TOWER_HP = 150, TOWER_R = 18, TOWER_RANGE = 650;
+const BAL_N = 22, BAL_R = 230, BAL_HIT = 80, BAL_DMG = 45;
+const CLOUD_R = 210, CLOUD_SPD = 60, CLOUD_TICK = 0.5, CLOUD_DMG = 8;
+const WAVE_DUR = 4.5, WAVE_WARM = 1.5, WAVE_DMG = 200;
+const ksTeam = [{ duck: 0, sun: 0 }, { duck: 0, sun: 0 }];
+let ksFx = [], towers = [], ksPicking = false, ksHover = null;
+const ksDucks = [null, null];
+let ksG = null;
+const ksGeo = () => ksG || (ksG = {
+  ball: new THREE.SphereGeometry(0.6, 10, 8), towerBase: new THREE.CylinderGeometry(0.75, 0.95, 0.45, 14),
+  pole: new THREE.CylinderGeometry(0.16, 0.16, 1.3, 8), head: new THREE.SphereGeometry(0.42, 12, 10), nozzle: cylX(0.12, 0.8),
+  puff: new THREE.SphereGeometry(1, 12, 10), duckBody: new THREE.SphereGeometry(1.2, 14, 12), duckHead: new THREE.SphereGeometry(0.75, 12, 10),
+  beak: (() => { const g = new THREE.ConeGeometry(0.3, 0.8, 8); g.rotateZ(-Math.PI / 2); return g; })()
+});
+const ksPickOf = e => e.isPlayer ? settings.ks : e.ksPick;
+const ksSorted = l => l.slice().sort((x, y) => KS[x].cost - KS[y].cost);
+const ksName = k => t('ksn_' + k);
+const isKsWk = wk => !!(wk && WEAPONS[wk] && WEAPONS[wk].cls === 'ks');
+const wkName = wk => !wk || !WEAPONS[wk] ? 'splash' : isKsWk(wk) ? ksName(WEAPONS[wk].ks) : WEAPONS[wk].name;
+const blinded = tm => ksTeam[1 - tm].sun > 0;                 // the other team wears the sunglasses
+const uavOn = tm => ksTeam[tm].duck > 0 && !blinded(tm);       // team tm has a working spy duck
+const mapSees = e => e.team === player.team || (!blinded(player.team) && (e.revealT > 0 || uavOn(player.team)));
+const enemiesOf = tm => ents.filter(e => e.alive && e.team !== tm);
+function refl(p, lo, hi) { const L2 = (hi - lo) * 2; let q = (p - lo) % L2; if (q < 0) q += L2; return lo + (q <= L2 / 2 ? q : L2 - q); }
+function cloudPos(f) { return { x: refl(f.x + Math.cos(f.a) * CLOUD_SPD * f.t, 220, WORLD.w - 220), y: refl(f.y + Math.sin(f.a) * CLOUD_SPD * f.t, 220, WORLD.h - 220) }; }
+
+function ksCheck(k) {
+  if (state !== 'play') return;
+  for (const key of ksPickOf(k)) {
+    if (!KS[key] || KS[key].cost !== k.streak) continue;
+    if (k.isBot) { const ch = settings.diff === 'hard' ? 1 : settings.diff === 'medium' ? 0.75 : 0.5; if (Math.random() >= ch) continue; k.ai.ksT = rand(0.6, 2.5); }
+    k.ksReady.push(key);
+    if (k.isPlayer) { callout(t('ks_ready', { n: ksName(key) }), isTouch ? t('ks_ready_t') : t('ks_ready_s', { k: kl('ks') })); sfx('ksready', k.x, k.y); }
+  }
+}
+function ksUse(e, key, tx, ty) {
+  const i = e.ksReady.lastIndexOf(key); if (i < 0 || state !== 'play') return false;
+  let x = 0, y = 0, a = 0;
+  if (key === 'tower') {
+    if (!e.alive) return false;
+    x = clamp(e.x + Math.cos(e.angle) * 46, 40, WORLD.w - 40); y = clamp(e.y + Math.sin(e.angle) * 46, 40, WORLD.h - 40);
+    if (!los(e.x, e.y, x, y, TOWER_R) || OB.some(o => x > o.x - TOWER_R && x < o.x + o.w + TOWER_R && y > o.y - TOWER_R && y < o.y + o.h + TOWER_R)) { x = e.x; y = e.y; }
+  } else if (key === 'balloon') { x = clamp(tx, 0, WORLD.w); y = clamp(ty, 0, WORLD.h); }
+  else if (key === 'cloud') {
+    const en = enemiesOf(e.team);
+    if (en.length) { x = en.reduce((s, v) => s + v.x, 0) / en.length; y = en.reduce((s, v) => s + v.y, 0) / en.length; } else { x = WORLD.w / 2; y = WORLD.h / 2; }
+    a = Math.random() * TAU;
+  }
+  e.ksReady.splice(i, 1);
+  const seed = (Math.random() * 1e9) | 0;
+  ksStart(e, key, x, y, a, seed, true);
+  if (Net.active) netPush('ks', [0, e.netId, KSLIST.indexOf(key), r0(x), r0(y), r3(a), seed]);
+  return true;
+}
+function ksStart(owner, key, x, y, a, seed, local) {
+  const team = owner.team, mine = !!player && team === player.team;
+  if (key === 'duck') { ksTeam[team].duck = KS.duck.dur; sfx('quack', player.x, player.y); }
+  else if (key === 'glasses') { ksTeam[team].sun = KS.glasses.dur; sfx('glasses', player.x, player.y); }
+  else if (key === 'tower') addTower(owner, x, y, seed, local);
+  else if (key === 'balloon') {
+    const rnd = mulberry32(seed), drops = [], cols = ['#FF2E88', '#FFD21F', '#00E5FF', '#7CFF2E', '#FF7A1A'];
+    for (let i = 0; i < BAL_N; i++) {
+      const an = rnd() * TAU, r = Math.sqrt(rnd()) * BAL_R;
+      drops.push({ x: clamp(x + Math.cos(an) * r, 20, WORLD.w - 20), y: clamp(y + Math.sin(an) * r, 20, WORLD.h - 20), at: 1.3 + i * 0.12 + rnd() * 0.08, col: cols[(rnd() * 5) | 0], mesh: null, done: false });
+    }
+    ksFx.push(Object.assign({ kind: 'balloon', owner, team, x, y, t: 0, drops }, ksRing(x, y, BAL_R)));
+    sfx('whistle', x, y);
+  } else if (key === 'cloud') {
+    ksFx.push({ kind: 'cloud', owner, team, x: clamp(x, 220, WORLD.w - 220), y: clamp(y, 220, WORLD.h - 220), a, t: 0, tick: 0, g: ksCloudMesh() });
+    sfx('thunder', player.x, player.y);
+  } else if (key === 'wave') {
+    const axis = MAPS[curMap].spawns === 'tb' ? 'y' : 'x';
+    const own = BASES[team], oth = BASES[1 - team];
+    const oc = axis === 'x' ? own.x + own.w / 2 : own.y + own.h / 2, ec = axis === 'x' ? oth.x + oth.w / 2 : oth.y + oth.h / 2;
+    const len = axis === 'x' ? WORLD.w : WORLD.h;
+    const from = oc < ec ? -60 : len + 60, to = oc < ec ? len + 60 : -60;
+    ksFx.push({ kind: 'wave', owner, team, axis, from, to, prev: from, t: 0, dec: new Set(), g: ksWaveMesh(axis, from) });
+    sfx('wave', player.x, player.y);
+  }
+  if (state === 'play' && player && !(key === 'tower' && owner !== player) && !(key === 'balloon' && mine && owner !== player)) {
+    callout(ksName(key), t((mine ? 'ks_us_' : 'ks_them_') + key));
+  }
+}
+
+/* tower */
+function addTower(owner, x, y, seed, local) {
+  const id = owner.netId + '~' + seed;
+  if (towers.some(tw => tw.id === id)) return;
+  const G = ksGeo(), T = TEAMS[owner.team];
+  const g = new THREE.Group(); g.position.set(x * U, 0, y * U);
+  part(g, G.towerBase, toon(T.body), 0, 0.22, 0, 0.05);
+  part(g, G.pole, toon('#9AA5B8'), 0, 1.05, 0, 0.04);
+  const head = new THREE.Group(); head.position.y = 1.75; g.add(head);
+  part(head, G.head, toon('#00E5FF'), 0, 0, 0, 0.05);
+  part(head, G.nozzle, toon(T.band), 0.45, 0, 0, 0.04);
+  scene.add(g);
+  towers.push({ id, seed, owner, team: owner.team, x, y, hp: TOWER_HP, life: KS.tower.dur, ang: owner.angle, cd: 0.8, react: 0.4, target: null, scan: 0, local, g, head, alive: true, vx: 0, vy: 0, z: 0 });
+  sfx('tower', x, y);
+}
+function removeTower(tw) { tw.alive = false; scene.remove(tw.g); const i = towers.indexOf(tw); if (i >= 0) towers.splice(i, 1); }
+function destroyTower(tw, broadcast) {
+  if (!towers.includes(tw)) return;
+  removeTower(tw);
+  for (let i = 0; i < 3; i++) splash(tw.x + rand(-12, 12), tw.y + rand(-12, 12), rand(0.6, 2), rand(0, TAU), 1.4);
+  addPuddle(tw.x, tw.y, 36, true); addText(tw.x, tw.y, 3, 'POP!', '#FFFFFF'); sfx('soak', tw.x, tw.y);
+  if (broadcast && Net.active) netPush('ks', [0, tw.owner.netId, 9, 0, 0, 0, tw.seed]);
+}
+function damageTower(tw, dmg, wk, shooter, px, py, ph) {
+  if (!towers.includes(tw)) return;
+  splash(px, py, ph, rand(0, TAU), 0.5);
+  if (shooter && shooter.isPlayer && owned(shooter) && state === 'play') { hitT = 0.16; hitBig = false; sfx('hitmark', tw.x, tw.y); }
+  if (tw.local) { tw.hp -= dmg; if (tw.hp <= 0) destroyTower(tw, true); }
+  else netPush('ht', [0, tw.id, r2(dmg), WI[wk] == null ? 0 : WI[wk], shooter ? shooter.netId : '', r0(px), r0(py), r2(ph)]);
+}
+function towerFire(tw) {
+  const w = WEAPONS.ks_tower, mx = tw.x + Math.cos(tw.ang) * 24, my = tw.y + Math.sin(tw.ang) * 24, h0 = 1.75, seed = (Math.random() * 2147483647) | 0;
+  spawnShot(tw.owner, mx, my, h0, tw.ang, 0, 'ks_tower', seed, w.spread, false, true, false);
+  if (Net.active) netPush('sh', [0, tw.owner.netId, r0(mx), r0(my), r2(h0), r3(tw.ang), 0, WI.ks_tower, seed, r3(w.spread), 0]);
+  sfx('ks_tower', tw.x, tw.y);
+}
+function updateTowers(dt) {
+  for (let i = towers.length - 1; i >= 0; i--) {
+    const tw = towers[i]; tw.life -= dt;
+    if (tw.life <= 0 || !ents.includes(tw.owner)) { removeTower(tw); continue; }
+    tw.scan -= dt;
+    if (tw.scan <= 0) {
+      tw.scan = 0.2; let best = null, bd = TOWER_RANGE;
+      for (const e of ents) if (e.alive && e.team !== tw.team) { const d = Math.hypot(e.x - tw.x, e.y - tw.y); if (d < bd && los(tw.x, tw.y, e.x, e.y, 2)) { bd = d; best = e; } }
+      if (best !== tw.target) { tw.target = best; tw.react = 0.45; }
+    }
+    const tg = tw.target;
+    if (tg && tg.alive) {
+      const d = Math.hypot(tg.x - tw.x, tg.y - tw.y), lt = d / WEAPONS.ks_tower.speed * 0.6;
+      const want = Math.atan2(tg.y + tg.vy * lt - tw.y, tg.x + tg.vx * lt - tw.x);
+      const da = angDiff(tw.ang, want); tw.ang += clamp(da, -4 * dt, 4 * dt);
+      tw.react -= dt; tw.cd -= dt;
+      if (tw.local && tw.react <= 0 && tw.cd <= 0 && Math.abs(da) < 0.15) { tw.cd = WEAPONS.ks_tower.rate; towerFire(tw); }
+    } else tw.ang += dt * 0.8;
+    tw.head.rotation.y = -tw.ang;
+    tw.g.visible = tw.life > 3 || Math.floor(now * 8) % 2 === 0;
+  }
+}
+
+/* meshes */
+function ksRing(x, y, r) {
+  const g = new THREE.Group(); g.position.set(x * U, 0.09, y * U);
+  const mat = new THREE.MeshBasicMaterial({ color: 0xFF2E88, transparent: true, opacity: 0.5, depthWrite: false, side: THREE.DoubleSide });
+  const ring = new THREE.Mesh(new THREE.RingGeometry(r * U - 0.3, r * U, 48), mat); ring.rotation.x = -Math.PI / 2; g.add(ring);
+  const disc = new THREE.Mesh(new THREE.CircleGeometry(r * U, 48), new THREE.MeshBasicMaterial({ color: 0xFF2E88, transparent: true, opacity: 0.12, depthWrite: false })); disc.rotation.x = -Math.PI / 2; disc.position.y = -0.01; g.add(disc);
+  scene.add(g); return { g, mat };
+}
+function ksCloudMesh() {
+  const g = new THREE.Group(), G = ksGeo(), mat = toon('#6C7A99');
+  for (const [px, pz, s] of [[0, 0, 2.6], [2.4, 0.6, 2], [-2.4, -0.4, 2.1], [0.8, 2, 1.8], [-1, -2, 1.9], [3.8, -1.2, 1.4], [-3.8, 1.4, 1.5]]) {
+    const m = part(g, G.puff, mat, px, 10 + s * 0.2, pz, 0.12); m.scale.set(s, s * 0.8, s);
+  }
+  const sh = new THREE.Mesh(new THREE.CircleGeometry(CLOUD_R * U, 36), new THREE.MeshBasicMaterial({ color: 0x1E2A55, transparent: true, opacity: 0.2, depthWrite: false }));
+  sh.rotation.x = -Math.PI / 2; sh.position.y = 0.08; g.add(sh);
+  scene.add(g); return g;
+}
+function ksWaveMesh(axis, from) {
+  const g = new THREE.Group();
+  const len = (axis === 'x' ? WORLD.h : WORLD.w) * U + 6;
+  const body = new THREE.Mesh(axis === 'x' ? new THREE.BoxGeometry(3, 4.6, len) : new THREE.BoxGeometry(len, 4.6, 3), new THREE.MeshToonMaterial({ color: '#1EA7FF', gradientMap: grad, transparent: true, opacity: 0.85 }));
+  const foam = new THREE.Mesh(axis === 'x' ? new THREE.BoxGeometry(3.6, 0.7, len) : new THREE.BoxGeometry(len, 0.7, 3.6), toon('#FFFFFF'));
+  body.position.y = 2.3; foam.position.y = 4.7;
+  if (axis === 'x') { body.position.z = foam.position.z = WORLD.h * U / 2; g.position.x = from * U; }
+  else { body.position.x = foam.position.x = WORLD.w * U / 2; g.position.z = from * U; }
+  g.add(body, foam); scene.add(g); return g;
+}
+function ksDuckMesh(tm) {
+  const g = new THREE.Group(), G = ksGeo(), T = TEAMS[tm];
+  const b = part(g, G.duckBody, toon(T.body), 0, 0, 0, 0.08); b.scale.set(1.4, 0.9, 1);
+  part(g, G.duckHead, toon(T.body), 1.3, 0.9, 0, 0.07);
+  part(g, G.beak, toon(tm ? '#FF2E88' : '#FF7A1A'), 2.15, 0.8, 0, 0.05);
+  scene.add(g); return g;
+}
+function ksFxRemove(f) {
+  if (f.g) scene.remove(f.g);
+  if (f.drops) for (const d of f.drops) if (d.mesh) { scene.remove(d.mesh); d.mesh = null; }
+}
+function ksClear() {
+  for (const f of ksFx) ksFxRemove(f); ksFx = [];
+  for (const tw of towers.slice()) removeTower(tw);
+  for (const s of ksTeam) { s.duck = 0; s.sun = 0; }
+  for (const d of ksDucks) if (d) d.visible = false;
+}
+
+/* area damage, applied only to what this client owns */
+function ksDamageArea(f, x, y, r, dmgFn, wk) {
+  for (const v of ents) if (v.alive && owned(v) && v.team !== f.team) {
+    const d = Math.hypot(v.x - x, v.y - y);
+    if (d < r) { const dm = dmgFn(d); if (dm > 0) applyDamage(v, dm, wk, f.owner, v.x, v.y, 1.6, Math.atan2(v.y - y, v.x - x)); }
+  }
+  for (const tw of towers.slice()) if (tw.local && tw.team !== f.team) { const d = Math.hypot(tw.x - x, tw.y - y); if (d < r) { tw.hp -= dmgFn(d); if (tw.hp <= 0) destroyTower(tw, true); } }
+}
+function ksBots(dt) {
+  for (const e of ents) {
+    if (!e.isBot || !owned(e) || !e.ksReady.length) continue;
+    e.ai.ksT -= dt; if (e.ai.ksT > 0) continue;
+    e.ai.ksT = rand(2, 5);
+    const key = e.ksReady[e.ksReady.length - 1];
+    if (key === 'tower' && !e.alive) continue;
+    if (key === 'balloon') {
+      const en = enemiesOf(e.team); if (!en.length) continue;
+      let best = en[0], bn = -1;
+      for (const v of en) { const n = en.filter(o => Math.hypot(o.x - v.x, o.y - v.y) < BAL_R).length; if (n > bn) { bn = n; best = v; } }
+      ksUse(e, key, best.x + rand(-60, 60), best.y + rand(-60, 60));
+    } else ksUse(e, key);
+  }
+}
+function ksUpdate(dt) {
+  for (const s of ksTeam) { s.duck = Math.max(0, s.duck - dt); s.sun = Math.max(0, s.sun - dt); }
+  for (let tm = 0; tm < 2; tm++) {
+    const on = ksTeam[tm].duck > 0;
+    if (on && !ksDucks[tm]) ksDucks[tm] = ksDuckMesh(tm);
+    const d = ksDucks[tm]; if (!d) continue;
+    d.visible = on;
+    if (on) { const an = now * 0.35 + tm * Math.PI, r = 560 + tm * 120; d.position.set((WORLD.w / 2 + Math.cos(an) * r) * U, 15 + Math.sin(now * 2 + tm) * 0.4, (WORLD.h / 2 + Math.sin(an) * r * 0.7) * U); d.rotation.y = -(an + Math.PI / 2); }
+  }
+  if (state !== 'play') return;
+  ksBots(dt);
+  updateTowers(dt);
+  for (let i = ksFx.length - 1; i >= 0; i--) {
+    const f = ksFx[i]; f.t += dt; let done = false;
+    if (f.kind === 'balloon') {
+      for (const d of f.drops) {
+        if (d.done) continue;
+        const fall = f.t - (d.at - 0.8);
+        if (fall > 0 && !d.mesh) { d.mesh = new THREE.Mesh(ksGeo().ball, toon(d.col)); outline(d.mesh, 0.08); scene.add(d.mesh); }
+        if (d.mesh) d.mesh.position.set(d.x * U, Math.max(0.4, 18 * (1 - fall / 0.8)), d.y * U);
+        if (f.t >= d.at) {
+          d.done = true; if (d.mesh) { scene.remove(d.mesh); d.mesh = null; }
+          splash(d.x, d.y, 0.4, rand(0, TAU), 1.4); addPuddle(d.x, d.y, 30, true); sfx('pop', d.x, d.y);
+          ksDamageArea(f, d.x, d.y, BAL_HIT, dd => BAL_DMG * (1 - 0.55 * dd / BAL_HIT), 'ks_balloon');
+        }
+      }
+      f.mat.opacity = 0.4 + Math.sin(f.t * 10) * 0.2;
+      done = f.drops.every(d => d.done);
+    } else if (f.kind === 'cloud') {
+      const p = cloudPos(f); f.g.position.set(p.x * U, 0, p.y * U);
+      const n = Math.min(6, Math.round(dt * 50 + Math.random()));
+      for (let k = 0; k < n; k++) { const an = rand(0, TAU), r = Math.sqrt(Math.random()) * CLOUD_R; addDrop(p.x + Math.cos(an) * r, p.y + Math.sin(an) * r, 9, 0, 0, -14); }
+      f.tick += dt;
+      while (f.tick >= CLOUD_TICK) { f.tick -= CLOUD_TICK; ksDamageArea(f, p.x, p.y, CLOUD_R, () => CLOUD_DMG, 'ks_cloud'); }
+      done = f.t >= KS.cloud.dur;
+    } else if (f.kind === 'wave') {
+      const k = clamp((f.t - WAVE_WARM) / WAVE_DUR, 0, 1), cur = f.from + (f.to - f.from) * k, dir = Math.sign(f.to - f.from), ax = f.axis === 'x';
+      if (ax) f.g.position.x = cur * U; else f.g.position.z = cur * U;
+      if (k > 0) for (let q = 0; q < 4; q++) { const s = rand(0, ax ? WORLD.h : WORLD.w); addDrop(ax ? cur : s, ax ? s : cur, rand(2, 4.6), ax ? dir * rand(80, 240) : rand(-30, 30), ax ? rand(-30, 30) : dir * rand(80, 240), rand(2, 5)); }
+      // bots try to jump over it
+      const jumpCh = settings.diff === 'hard' ? 0.6 : settings.diff === 'medium' ? 0.35 : 0.15;
+      for (const v of ents) if (v.isBot && v.alive && owned(v) && v.team !== f.team && !f.dec.has(v)) { const ahead = ((ax ? v.x : v.y) - cur) * dir; if (ahead > 0 && ahead < 110) { f.dec.add(v); if (Math.random() < jumpCh) doJump(v); } }
+      if (cur !== f.prev) {
+        const lo = Math.min(f.prev, cur), hi = Math.max(f.prev, cur);
+        for (const v of ents) if (v.alive && owned(v) && v.team !== f.team) {
+          const c = ax ? v.x : v.y; if (c < lo || c > hi) continue;
+          const bx = v.x - (ax ? dir * 140 : 0), by = v.y - (ax ? 0 : dir * 140);
+          if (v.z > 0.55 || !los(v.x, v.y, bx, by, 0)) { addText(v.x, v.y, 3.6, t('ks_dodge'), '#FFFFFF'); if (v.isPlayer) callout(t('ks_dodge'), t('ks_dodge_s')); continue; }
+          applyDamage(v, WAVE_DMG, 'ks_wave', f.owner, v.x, v.y, 1.6, ax ? (dir > 0 ? 0 : Math.PI) : (dir > 0 ? Math.PI / 2 : -Math.PI / 2));
+        }
+        for (const tw of towers.slice()) if (tw.local && tw.team !== f.team) { const c = ax ? tw.x : tw.y; if (c >= lo && c <= hi) destroyTower(tw, true); }
+        f.prev = cur;
+      }
+      if (k > 0 && k < 1 && player) shakeT = Math.max(shakeT, 0.12 * clamp(1 - Math.abs((ax ? player.x : player.y) - cur) / 500, 0, 1));
+      done = k >= 1;
+    }
+    if (done) { ksFxRemove(f); ksFx.splice(i, 1); }
+  }
+}
+
+/* player input */
+function ksPlayerUse() {
+  if (state !== 'play' || menuOpen || ksPicking || !player) return;
+  const key = player.ksReady[player.ksReady.length - 1]; if (!key) return;
+  if (key === 'tower' && !player.alive) { callout(ksName(key), t('ks_alive')); return; }
+  if (key === 'balloon') { ksPickOpen(); return; }
+  ksUse(player, key);
+}
+function ksPickOpen() {
+  ksPicking = true; ksHover = null; pressed.clear(); touchFire = false; touchAds = false;
+  if (document.pointerLockElement) { wasLocked = false; document.exitPointerLock(); }
+  $('ksMap').hidden = false; drawKsPick();
+}
+function ksPickClose(fire, x, y) {
+  if (!ksPicking) return;
+  ksPicking = false; $('ksMap').hidden = true;
+  if (fire && state === 'play') ksUse(player, 'balloon', x, y);
+  if (state === 'play' && !menuOpen) requestLock();
+}
+function drawKsPick() {
+  const c = $('ksCv'), g = c.getContext('2d'), s = c.width / WORLD.w;
+  g.setTransform(1, 0, 0, 1, 0, 0); drawMapLayout(g, curMap, c.width);
+  for (const e of ents) {
+    if (!e.alive || !mapSees(e)) continue;
+    g.beginPath(); g.arc(e.x * s, e.y * s, e.isPlayer ? 10 : 8, 0, TAU);
+    g.fillStyle = e.isPlayer ? '#FFFFFF' : e.team === 0 ? '#FFD21F' : '#FF7A1A'; g.fill();
+    g.lineWidth = 3; g.strokeStyle = e.team === player.team ? INK : '#FF2E88'; g.stroke();
+  }
+  if (ksHover) {
+    g.beginPath(); g.arc(ksHover.x * s, ksHover.y * s, BAL_R * s, 0, TAU);
+    g.fillStyle = 'rgba(255,46,136,.22)'; g.fill(); g.setLineDash([10, 8]); g.lineWidth = 4; g.strokeStyle = '#FF2E88'; g.stroke(); g.setLineDash([]);
+  }
+}
+function ksCvPos(e) { const r = $('ksCv').getBoundingClientRect(); return { x: clamp((e.clientX - r.left) / r.width, 0, 1) * WORLD.w, y: clamp((e.clientY - r.top) / r.height, 0, 1) * WORLD.h }; }
+
+/* drawing */
+function drawKsTags() {
+  if (state === 'attract') return;
+  for (const tw of towers) {
+    if (!los(player.x, player.y, tw.x, tw.y, 0)) continue;
+    const p = project(tw.x, 2.8, tw.y); if (!p) continue;
+    const bw = 40, bh = 6;
+    rrPath(octx, p.x - bw / 2, p.y, bw, bh, 3); octx.fillStyle = '#1EA7FF'; octx.fill();
+    rrPath(octx, p.x - bw / 2, p.y, Math.max(3, bw * clamp(tw.hp / TOWER_HP, 0, 1)), bh, 3); octx.fillStyle = TEAMS[tw.team].body; octx.fill();
+    rrPath(octx, p.x - bw / 2, p.y, bw, bh, 3); octx.lineWidth = 2; octx.strokeStyle = tw.team === player.team ? INK : '#FF2E88'; octx.stroke();
+  }
+  if (state === 'play' && blinded(player.team)) {
+    const a = 0.16 + Math.sin(now * 3) * 0.04;
+    const gr = octx.createRadialGradient(CW * 0.8, CH * 0.12, 10, CW * 0.8, CH * 0.12, Math.max(CW, CH) * 0.9);
+    gr.addColorStop(0, 'rgba(255,250,210,' + (a + 0.3) + ')'); gr.addColorStop(0.35, 'rgba(255,236,140,' + a + ')'); gr.addColorStop(1, 'rgba(255,236,140,' + (a * 0.6) + ')');
+    octx.fillStyle = gr; octx.fillRect(0, 0, CW, CH);
+  }
+}
+function drawKsMini(s) {
+  for (const f of ksFx) {
+    if (f.kind === 'balloon') { mctx.beginPath(); mctx.arc(f.x * s, f.y * s, BAL_R * s, 0, TAU); mctx.fillStyle = 'rgba(255,46,136,.25)'; mctx.fill(); mctx.lineWidth = 3; mctx.strokeStyle = '#FF2E88'; mctx.stroke(); }
+    else if (f.kind === 'cloud') { const p = cloudPos(f); mctx.beginPath(); mctx.arc(p.x * s, p.y * s, CLOUD_R * s, 0, TAU); mctx.fillStyle = 'rgba(30,42,85,.3)'; mctx.fill(); mctx.lineWidth = 3; mctx.strokeStyle = INK; mctx.stroke(); }
+  }
+  for (const tw of towers) {
+    if (tw.team !== player.team && !uavOn(player.team)) continue;
+    mctx.fillStyle = '#00E5FF'; mctx.fillRect(tw.x * s - 7, tw.y * s - 7, 14, 14); mctx.lineWidth = 3; mctx.strokeStyle = tw.team === player.team ? INK : '#FF2E88'; mctx.strokeRect(tw.x * s - 7, tw.y * s - 7, 14, 14);
+  }
+}
+function updateKsHUD() {
+  const pick = ksSorted(settings.ks), st = player.alive ? player.streak : 0;
+  const top = player.ksReady[player.ksReady.length - 1] || '';
+  const fx = [];
+  if (uavOn(player.team)) fx.push(['🦆 ' + Math.ceil(ksTeam[player.team].duck), '']);
+  if (uavOn(1 - player.team)) fx.push(['🦆 ' + Math.ceil(ksTeam[1 - player.team].duck), 'bad']);
+  if (ksTeam[player.team].sun > 0) fx.push(['🕶️ ' + Math.ceil(ksTeam[player.team].sun), '']);
+  if (blinded(player.team)) fx.push(['🕶️ ' + Math.ceil(ksTeam[1 - player.team].sun), 'bad']);
+  const key = pick.join(',') + '|' + player.ksReady.join(',') + '|' + st + '|' + lang + kl('ks') + isTouch + '|' + fx.map(x => x.join(':')).join(',');
+  if (hudCache.ks === key) return; hudCache.ks = key;
+  const el = $('ksbar'); el.innerHTML = '';
+  for (const k of pick) {
+    const K = KS[k], n = player.ksReady.filter(x => x === k).length;
+    const c = document.createElement('div'); c.className = 'kch' + (n ? ' ready' : st >= K.cost ? ' done' : '') + (k === top ? ' next' : '');
+    const fill = document.createElement('i'); fill.style.height = (n ? 100 : clamp(st / K.cost * 100, 0, 100)) + '%'; fill.style.background = K.col;
+    const ic = document.createElement('span'); ic.textContent = K.icon;
+    const b = document.createElement('b'); b.textContent = n ? (k === top && !isTouch ? kl('ks') : '') + (n > 1 ? ' ×' + n : k === top ? '' : '✓') : String(K.cost);
+    if (!b.textContent.trim()) b.textContent = '!';
+    c.title = ksName(k); c.append(fill, ic, b); el.append(c);
+  }
+  const fe = $('ksfx'); fe.innerHTML = '';
+  for (const [txt, cls] of fx) { const s = document.createElement('span'); s.className = 'kfx ' + cls; s.textContent = txt; fe.append(s); }
+  $('tKs').hidden = !top; $('tKs').textContent = top ? KS[top].icon : '';
+}
+function renderKsList() {
+  const el = $('ksl'); if (!el) return; el.innerHTML = '';
+  for (const k of KSLIST) {
+    const K = KS[k], sel = settings.ks.includes(k);
+    const b = document.createElement('button'); b.className = 'ksc' + (sel ? ' sel' : ''); b.setAttribute('aria-pressed', sel ? 'true' : 'false');
+    const ic = document.createElement('span'); ic.className = 'ic'; ic.textContent = K.icon; ic.style.background = K.col;
+    const tx = document.createElement('span'); tx.className = 'kt';
+    const nm = document.createElement('span'); nm.className = 'kn'; nm.textContent = ksName(k);
+    const cs = document.createElement('span'); cs.className = 'kc'; cs.textContent = t('ks_cost', { n: K.cost });
+    const ds = document.createElement('span'); ds.className = 'kd'; ds.textContent = t('ksd_' + k);
+    tx.append(nm, cs, ds); b.append(ic, tx);
+    b.onclick = () => { if (settings.ks.includes(k)) return; settings.ks = [...settings.ks.slice(1), k]; saveSettings(); renderKsList(); };
+    el.append(b);
+  }
 }
 
 /* ================= AI ================= */
@@ -1148,9 +1594,11 @@ function aiThink(p, dt) {
       const d = Math.hypot(e.x - p.x, e.y - p.y);
       if (d < 1000 && d < bd && los(p.x, p.y, e.x, e.y, 3)) { best = e; bd = d; }
     }
-    if (best !== ai.target) { ai.target = best; ai.react = diff.react * rand(0.7, 1.3) * (w.cls === 'sn' ? 1.4 : 1); }
+    for (const tw of towers) if (tw.team !== p.team) { const d = Math.hypot(tw.x - p.x, tw.y - p.y) + 150; if (d < 900 && d < bd && los(p.x, p.y, tw.x, tw.y, 3)) { best = tw; bd = d; } }
+    const blind = blinded(p.team);
+    if (best !== ai.target) { ai.target = best; ai.react = diff.react * rand(0.7, 1.3) * (w.cls === 'sn' ? 1.4 : 1) * (blind ? 1.7 : 1); }
     if (best) { ai.lastSeen = { x: best.x, y: best.y }; ai.lastSeenT = now; }
-    ai.err = rand(-1, 1) * diff.err;
+    ai.err = rand(-1, 1) * diff.err * (blind ? 1.6 : 1);
   }
   let mx = 0, my = 0, want = null;
   const tg = ai.target;
@@ -1181,7 +1629,8 @@ function aiThink(p, dt) {
       else {
         let be = null, bd = 1e9;
         for (const e of ents) if (e.team !== p.team && e.alive) { const d = Math.hypot(e.x - p.x, e.y - p.y); if (d < bd) { bd = d; be = e; } }
-        goal = be ? { x: be.x + rand(-160, 160), y: be.y + rand(-160, 160) } : { x: WORLD.w / 2 + rand(-300, 300), y: rand(200, 1400) };
+        const spr = uavOn(p.team) ? 30 : 160;
+        goal = be ? { x: be.x + rand(-spr, spr), y: be.y + rand(-spr, spr) } : { x: WORLD.w / 2 + rand(-300, 300), y: rand(200, 1400) };
       }
       goal.x = clamp(goal.x, 40, WORLD.w - 40); goal.y = clamp(goal.y, 40, WORLD.h - 40);
       ai.path = findPath(p.x, p.y, goal.x, goal.y); ai.pi = 0;
@@ -1218,7 +1667,7 @@ function playerControl(e, dt) {
   const sens = (isTouch ? settings.tsens : settings.sens) * 0.0024 * (fovNow / BASE_FOV);
   e.angle += mouseLook.dx * sens; pitch = clamp(pitch - mouseLook.dy * sens, -1.1, 1.1);
   mouseLook.dx = 0; mouseLook.dy = 0;
-  if (menuOpen) { e.mx = 0; e.my = 0; return; }
+  if (menuOpen || ksPicking) { e.mx = 0; e.my = 0; return; }
   if (held('turnLeft')) e.angle -= 2.6 * dt;
   if (held('turnRight')) e.angle += 2.6 * dt;
   let f = 0, r = 0;
@@ -1273,6 +1722,7 @@ function collideWorld(e) {
         if (m === l) e.x = o.x - R; else if (m === r) e.x = o.x + o.w + R; else if (m === tp) e.y = o.y - R; else e.y = o.y + o.h + R; }
     }
   }
+  for (const tw of towers) { const dx = e.x - tw.x, dy = e.y - tw.y, d = Math.hypot(dx, dy), m = R + TOWER_R - 4; if (d < m && d > 0.01) { e.x = tw.x + dx / d * m; e.y = tw.y + dy / d * m; } }
   e.x = clamp(e.x, R + 6, WORLD.w - R - 6); e.y = clamp(e.y, R + 6, WORLD.h - R - 6);
 }
 function updateRemote(e, dt) {
@@ -1341,11 +1791,16 @@ function updateProjs(dt) {
       const tt = segCircle(b.x, b.y, nx, ny, e.x, e.y, R + b.size);
       if (tt >= 0 && tt < best) { const hh = b.h + (nh - b.h) * tt; if (hh > e.z + 0.05 && hh < e.z + 3.5) { best = tt; hitE = e; kind = 'ent'; } }
     }
+    for (const tw of towers) if (tw.team !== b.team) {
+      const tt = segCircle(b.x, b.y, nx, ny, tw.x, tw.y, TOWER_R + b.size);
+      if (tt >= 0 && tt < best && b.h + (nh - b.h) * tt < 2.5) { best = tt; hitE = tw; kind = 'tower'; }
+    }
     if (nh <= 0) { const tg = b.h / (b.h - nh); if (tg < best) { best = tg; hitE = null; kind = 'ground'; } }
     if (best <= 1) {
       const px = b.x + (nx - b.x) * best, py = b.y + (ny - b.y) * best, ph = Math.max(0.05, b.h + (nh - b.h) * best);
       b.d += b.sp * dt * best;
       if (kind === 'ent' && b.auth) damageFromProj(hitE, b, px, py, ph);
+      else if (kind === 'tower') { if (b.auth) damageTower(hitE, b.dmg * falloff(b), b.wk, b.owner, px, py, ph); else splash(px, py, ph, Math.atan2(b.vy, b.vx) + Math.PI, 0.4); }
       else { const a = Math.atan2(b.vy, b.vx); splash(px - Math.cos(a) * 6, py - Math.sin(a) * 6, ph, a + Math.PI, WEAPONS[b.wk].cls === 'sn' ? 0.8 : 0.35); if (kind !== 'ent') sfx('wall', px, py); }
       freeProj(i); continue;
     }
@@ -1368,6 +1823,7 @@ function update(dt) {
     for (const e of ents) updateEnt(e, dt);
     separate();
     updateProjs(dt);
+    ksUpdate(dt);
   } else if (state === 'end' && Net.active) {
     for (const e of ents) if (e.remote) updateRemote(e, dt);
   }
@@ -1379,7 +1835,7 @@ function update(dt) {
 /* ================= online (room capability) ================= */
 const Net = {
   cap: null, capTried: false, room: null, active: false, host: false, code: '', joinAt: 0, myPeer: '',
-  seq: 0, out: { sh: [], ht: [], dt: [], tk: [] }, seen: {}, lastPres: {}, hostPeer: '', hostData: null,
+  seq: 0, out: { sh: [], ht: [], dt: [], tk: [], ks: [] }, seen: {}, lastPres: {}, hostPeer: '', hostData: null,
   mid: '', win: -1, endIn: 0, st: 0, fillT: 0, botSeq: 0, peerCount: 1
 };
 function netPush(type, arr) {
@@ -1425,7 +1881,7 @@ function ghostFor(peer, pr) {
 function applyEntState(e, a, isBotRow) {
   // human: [x,y,a,wk,hp,alive,pu,k,d,prot,pump]; bot: [id,nameIdx,team,x,y,a,wk,hp,alive,k,d,pu,prot]
   const o = isBotRow ? 3 : 0;
-  const x = +a[o], y = +a[o + 1], an = +a[o + 2], wk = WK[a[o + 3]] || 'tidal', hp = +a[o + 4], al = a[o + 5] === 1;
+  const x = +a[o], y = +a[o + 1], an = +a[o + 2], wk = (WK[a[o + 3]] && WEAPONS[WK[a[o + 3]]].cls !== 'ks' ? WK[a[o + 3]] : 'tidal'), hp = +a[o + 4], al = a[o + 5] === 1;
   if (isFinite(x) && isFinite(y)) { e.nx = clamp(x, 0, WORLD.w); e.ny = clamp(y, 0, WORLD.h); }
   if (isFinite(an)) e.na = an;
   if (al && !e.alive) { e.x = e.nx; e.y = e.ny; }
@@ -1437,11 +1893,11 @@ function applyEntState(e, a, isBotRow) {
   if (!isBotRow && a[10] === 1) e.pumpT = 0.3;
   const lp = WK[isBotRow ? a[13] : a[11]], ls = WK[isBotRow ? a[14] : a[12]];
   const zz = +(isBotRow ? a[15] : a[13]); e.nz = isFinite(zz) ? clamp(zz, 0, 3) : 0;
-  if (lp && WEAPONS[lp].cls !== 'pi' && ls && WEAPONS[ls].cls === 'pi') e.load = { p: lp, s: ls };
+  if (lp && WEAPONS[lp].cls !== 'pi' && WEAPONS[lp].cls !== 'ks' && ls && WEAPONS[ls].cls === 'pi') e.load = { p: lp, s: ls };
 }
 function processEvents(peer, pr, firstSight) {
-  const seen = Net.seen[peer] || (Net.seen[peer] = { sh: 0, ht: 0, dt: 0, tk: 0 });
-  for (const k of ['sh', 'ht', 'dt', 'tk']) {
+  const seen = Net.seen[peer] || (Net.seen[peer] = { sh: 0, ht: 0, dt: 0, tk: 0, ks: 0 });
+  for (const k of ['sh', 'ht', 'dt', 'tk', 'ks']) {
     const list = Array.isArray(pr[k]) ? pr[k] : [];
     let maxSeq = seen[k];
     for (const a of list) {
@@ -1459,10 +1915,12 @@ function handleEvent(k, a, peer) {
     const owner = entById(String(a[1])); if (!owner) return;
     const wk = WK[a[7]]; if (!wk) return;
     spawnShot(owner, +a[2], +a[3], clamp(+a[4], 0.2, 4), +a[5], clamp(+a[6], -1.2, 1.2), wk, a[8] | 0, clamp(+a[9], 0, 1), a[10] === 1, false, false);
-    owner.revealT = 1.4;
+    if (!isKsWk(wk)) owner.revealT = 1.4;
     sfx(wk, owner.x, owner.y);
   } else if (k === 'ht') {
-    const v = entById(String(a[1])); if (!v || !owned(v)) return;
+    const v = entById(String(a[1]));
+    if (!v) { const tw = towers.find(x => x.id === String(a[1])); if (tw && tw.local) { tw.hp -= clamp(+a[2], 0, 220) || 0; if (tw.hp <= 0) destroyTower(tw, true); } return; }
+    if (!owned(v)) return;
     const wk = WK[a[3]] || 'tidal'; const shooter = entById(String(a[4]));
     const dmg = clamp(+a[2], 0, 160); const px = +a[5], py = +a[6], ph = clamp(+a[7], 0.05, 3.5);
     const ang = shooter ? Math.atan2(v.y - shooter.y, v.x - shooter.x) : 0;
@@ -1471,8 +1929,14 @@ function handleEvent(k, a, peer) {
     const v = entById(String(a[1])); const killer = entById(String(a[2])); const wk = WK[a[3]] || null;
     if (v) { soakFx(v); v.alive = false; if (Net.host) maybeDrop(v, killer); }
     if (state === 'play') addFeed(killer, v || { name: '?', team: killer ? 1 - killer.team : 0 }, wk);
-    if (killer && owned(killer)) killCredit(killer);
+    if (killer && owned(killer) && killer !== v) killCredit(killer, wk);
     if (Net.host && state === 'play') { const tm = killer ? (killer === v ? 1 - v.team : killer.team) : (v ? 1 - v.team : 0); scorePoint(tm); }
+  } else if (k === 'ks') {
+    const kind = a[2] | 0;
+    if (kind === 9) { const tw = towers.find(x => x.id === String(a[1]) + '~' + (a[6] | 0)); if (tw) destroyTower(tw, false); return; }
+    const owner = entById(String(a[1])), key = KSLIST[kind];
+    if (!owner || !key || state !== 'play') return;
+    ksStart(owner, key, clamp(+a[3] || 0, 0, WORLD.w), clamp(+a[4] || 0, 0, WORLD.h), +a[5] || 0, a[6] | 0, false);
   } else if (k === 'tk') {
     if (!Net.host) return;
     const p = pickups.find(x => x.id === String(a[1])); if (p) removePickup(p);
@@ -1559,6 +2023,8 @@ function hostNewMatch() {
 function localNewMatch() {
   minuteWarned = false; nearWinWarned = [false, false];
   player.kills = 0; player.deaths = 0; player.streak = 0;
+  for (const e of ents) if (owned(e)) e.ksReady = [];
+  ksClear();
   for (const b of projs) { b.mesh.visible = false; projPool.push(b.mesh); } projs = [];
   $('feed').innerHTML = '';
   hideOnlineEnd();
@@ -2464,6 +2930,7 @@ function drawTags() {
     const p = project(e.x, 4.15, e.y); if (!p) continue;
     if (!vis) {
       if (e.team === player.team) { octx.beginPath(); octx.moveTo(p.x, p.y + 8); octx.lineTo(p.x - 8, p.y - 4); octx.lineTo(p.x + 8, p.y - 4); octx.closePath(); octx.fillStyle = '#00E5FF'; octx.fill(); octx.lineWidth = 3; octx.strokeStyle = INK; octx.stroke(); }
+      else if (state === 'play' && uavOn(player.team)) { octx.beginPath(); octx.moveTo(p.x, p.y - 10); octx.lineTo(p.x + 8, p.y); octx.lineTo(p.x, p.y + 10); octx.lineTo(p.x - 8, p.y); octx.closePath(); octx.fillStyle = '#FF2E88'; octx.fill(); octx.lineWidth = 3; octx.strokeStyle = INK; octx.stroke(); }
       continue;
     }
     const sc = clamp(1.25 - d / 1400, 0.6, 1.1);
@@ -2550,15 +3017,16 @@ function render(dt) {
   renderer.render(scene, camera);
   if (vm.visible) { renderer.clearDepth(); renderer.render(vmScene, vmCam); }
   octx.setTransform(DPR, 0, 0, DPR, 0, 0); octx.clearRect(0, 0, CW, CH);
-  drawTags(); drawHurt(); drawCrosshair(); drawHitmarker(); drawSticks();
+  drawTags(); drawKsTags(); drawHurt(); drawCrosshair(); drawHitmarker(); drawSticks();
 }
 function drawMini() {
   const s = mini.width / WORLD.w; mctx.setTransform(1, 0, 0, 1, 0, 0);
   drawMapLayout(mctx, curMap, mini.width);
+  drawKsMini(s);
   for (const p of pickups) { if (p.claimed) continue; mctx.fillStyle = PU[p.type].color; mctx.fillRect(p.x * s - 7, p.y * s - 7, 14, 14); mctx.lineWidth = 2.5; mctx.strokeStyle = INK; mctx.strokeRect(p.x * s - 7, p.y * s - 7, 14, 14); }
   for (const e of ents) {
     if (!e.alive) continue;
-    if (e.team !== player.team && e.revealT <= 0) continue;
+    if (!mapSees(e)) continue;
     mctx.save(); mctx.translate(e.x * s, e.y * s);
     if (e.isPlayer) { mctx.rotate(e.angle); mctx.beginPath(); mctx.moveTo(12, 0); mctx.lineTo(-7, -8); mctx.lineTo(-3, 0); mctx.lineTo(-7, 8); mctx.closePath(); mctx.fillStyle = '#FFFFFF'; mctx.fill(); mctx.lineWidth = 2.5; mctx.strokeStyle = INK; mctx.stroke(); }
     else { mctx.beginPath(); mctx.arc(0, 0, e.isBot ? 6 : 8, 0, TAU); mctx.fillStyle = e.team === 0 ? '#FFD21F' : '#FF7A1A'; mctx.fill(); mctx.lineWidth = 2.5; mctx.strokeStyle = e.team === player.team ? INK : '#FF2E88'; mctx.stroke(); }
@@ -2615,12 +3083,13 @@ function updateHUD() {
   setText('nextc', nc);
   if (!player.alive) setText('rpT', t('rp_back', { s: Math.max(0, player.respawnT).toFixed(1) }));
   updatePUChips();
+  updateKsHUD();
   $('touch').hidden = !isTouch;
   $('tAds').classList.toggle('on', touchAds);
   $('tFire').classList.toggle('on', touchFire);
   $('btnFull').hidden = !isTouch || !document.documentElement.requestFullscreen;
   $('rotate').hidden = !(isTouch && CH > CW);
-  $('lockhint').hidden = !(state === 'play' && !isTouch && !menuOpen && document.pointerLockElement !== cv);
+  $('lockhint').hidden = !(state === 'play' && !isTouch && !menuOpen && !ksPicking && document.pointerLockElement !== cv);
   if (Net.active) { $('netinfo').hidden = false; setText('netinfo', t('on_room', { c: Net.code }) + ' · ' + t('on_players', { n: Net.peerCount }) + (Net.host ? ' · ★' : '')); } else $('netinfo').hidden = true;
   if (!$('board').hidden) buildBoard();
 }
@@ -2649,7 +3118,7 @@ function callout(big, small) {
 function addFeed(k, v, wk) {
   const feed = $('feed'); const row = document.createElement('div'); row.className = 'kf';
   const mk = (e) => { const s = document.createElement('span'); s.textContent = e.isPlayer ? t('you') : e.name; s.className = e.isPlayer ? 'me' : 'c' + e.team; return s; };
-  if (k) row.append(mk(k)); const wsp = document.createElement('span'); wsp.className = 'w'; wsp.textContent = wk && WEAPONS[wk] ? WEAPONS[wk].name : 'splash'; row.append(wsp); if (v) row.append(mk(v));
+  if (k) row.append(mk(k)); const wsp = document.createElement('span'); wsp.className = 'w'; wsp.textContent = wkName(wk); row.append(wsp); if (v) row.append(mk(v));
   feed.prepend(row);
   while (feed.children.length > 5) feed.lastChild.remove();
   setTimeout(() => row.classList.add('old'), 5000); setTimeout(() => row.remove(), 5600);
@@ -2746,7 +3215,7 @@ function applyLang() {
   document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
   $('langSel').value = lang; $('langSel2').value = lang;
   $('climLbl').textContent = t('clock_lim', { lim: SCORE_LIMIT });
-  refreshBotUI(); buildPUList(); renderMaps(); renderAllLoadouts(); refreshHints(); refreshToggles();
+  refreshBotUI(); buildPUList(); renderMaps(); renderKsList(); renderAllLoadouts(); refreshHints(); refreshToggles();
   for (const k in hudCache) delete hudCache[k];
   paintGround(); groundTex.needsUpdate = true;
   if (!$('binds').hidden) buildBinds();
@@ -2794,8 +3263,10 @@ function fillEnd(winner) {
   $('endStats').innerHTML = '';
   for (const l of [how, t('e_you', { k: player.kills, d: player.deaths }), t('e_top', { n: mvp.isPlayer ? t('you') : mvp.name, k: mvp.kills })]) { const d = document.createElement('div'); d.textContent = l; $('endStats').append(d); }
 }
+function ksPickHide() { ksPicking = false; $('ksMap').hidden = true; }
 function endMatch(winner) {
   if (state !== 'play') return;
+  ksPickHide();
   state = 'end'; cv.classList.remove('aiming'); $('respawn').hidden = true; $('board').hidden = true;
   if (document.pointerLockElement) document.exitPointerLock();
   fillEnd(winner); $('endNext').hidden = true; $('btnAgain').hidden = false;
@@ -2803,6 +3274,7 @@ function endMatch(winner) {
 }
 function showOnlineEnd(win) {
   if (state !== 'play') return;
+  ksPickHide();
   state = 'end'; $('respawn').hidden = true; $('board').hidden = true; menuOpen = false; $('pause').hidden = true;
   if (document.pointerLockElement) document.exitPointerLock();
   fillEnd(win); $('btnAgain').hidden = true; $('endNext').hidden = false;
@@ -2814,29 +3286,29 @@ function hideOnlineEnd() {
 }
 function toMenu() {
   if (document.pointerLockElement) document.exitPointerLock();
-  leaveOnline();
+  leaveOnline(); ksPickHide();
   state = 'attract'; menuOpen = false;
   $('hud').hidden = true; $('end').hidden = true; $('pause').hidden = true; $('board').hidden = true; $('binds').hidden = true; $('start').hidden = false;
   cv.classList.remove('aiming'); renderAllLoadouts(); initEnts(3, 4, 0); resetMatch(true);
 }
 function setPause(on) {
   if (Net.active) {
-    if (on && state === 'play' && !menuOpen) { menuOpen = true; $('pause').hidden = false; $('pOnline').hidden = false; pressed.clear(); touchFire = false; if (document.pointerLockElement) document.exitPointerLock(); }
+    if (on && state === 'play' && !menuOpen) { ksPickHide(); menuOpen = true; $('pause').hidden = false; $('pOnline').hidden = false; pressed.clear(); touchFire = false; if (document.pointerLockElement) document.exitPointerLock(); }
     else if (!on && menuOpen) { menuOpen = false; $('pause').hidden = true; requestLock(); }
     return;
   }
   $('pOnline').hidden = true;
-  if (on && state === 'play') { state = 'paused'; $('pause').hidden = false; $('board').hidden = true; cv.classList.remove('aiming'); pressed.clear(); touchFire = false; if (document.pointerLockElement) document.exitPointerLock(); }
+  if (on && state === 'play') { ksPickHide(); state = 'paused'; $('pause').hidden = false; $('board').hidden = true; cv.classList.remove('aiming'); pressed.clear(); touchFire = false; if (document.pointerLockElement) document.exitPointerLock(); }
   else if (!on && state === 'paused') { state = 'play'; $('pause').hidden = true; cv.classList.add('aiming'); requestLock(); }
 }
 
 /* ================= input and key bindings ================= */
-const ACTIONS = ['up', 'down', 'left', 'right', 'jump', 'turnLeft', 'turnRight', 'sprint', 'fire', 'ads', 'reload', 'swap', 'slot1', 'slot2', 'board', 'pause', 'mute'];
+const ACTIONS = ['up', 'down', 'left', 'right', 'jump', 'turnLeft', 'turnRight', 'sprint', 'fire', 'ads', 'reload', 'swap', 'slot1', 'slot2', 'ks', 'board', 'pause', 'mute'];
 const DEFAULT_BINDS = {
   up: ['KeyW', 'ArrowUp'], down: ['KeyS', 'ArrowDown'], left: ['KeyA', ''], right: ['KeyD', ''], jump: ['Space', ''],
   turnLeft: ['ArrowLeft', ''], turnRight: ['ArrowRight', ''], sprint: ['ShiftLeft', ''],
   fire: ['Mouse0', ''], ads: ['Mouse2', ''], reload: ['KeyR', ''], swap: ['KeyQ', 'WheelDown'],
-  slot1: ['Digit1', ''], slot2: ['Digit2', ''], board: ['Tab', ''], pause: ['KeyP', ''], mute: ['KeyM', '']
+  slot1: ['Digit1', ''], slot2: ['Digit2', ''], ks: ['KeyF', ''], board: ['Tab', ''], pause: ['KeyP', ''], mute: ['KeyM', '']
 };
 function loadBinds() {
   const b = JSON.parse(JSON.stringify(DEFAULT_BINDS)); const s = store.get('binds2');
@@ -2864,8 +3336,9 @@ function press(code) {
   for (const a of actionsFor(code)) {
     if (a === 'mute') toggleMute();
     else if (a === 'pause') { if (state === 'play' && !menuOpen) setPause(true); else setPause(false); }
-    else if (state === 'play' && !menuOpen) {
-      if (a === 'reload') startReload(player);
+    else if (state === 'play' && !menuOpen && !ksPicking) {
+      if (a === 'ks') ksPlayerUse();
+      else if (a === 'reload') startReload(player);
       else if (a === 'jump') doJump(player);
       else if (a === 'swap') swapTo(player, 1 - player.slot);
       else if (a === 'slot1') swapTo(player, 0);
@@ -2913,7 +3386,7 @@ function refreshHints() {
   const k = tx => { const e = document.createElement('kbd'); e.textContent = tx; el.append(e); };
   const tt = s => el.append(document.createTextNode(s));
   k(kl('up')); k(kl('left')); k(kl('down')); k(kl('right')); tt(' ' + t('k_move') + ' · '); k(t('k_mouse')); tt(' ' + t('k_look') + ' · '); k(kl('fire')); tt(' ' + t('k_fire') + ' · ');
-  k(kl('ads')); tt(' ' + t('k_aim') + ' · '); k(kl('jump')); tt(' ' + t('k_jump') + ' · '); k(kl('reload')); tt(' ' + t('k_reload') + ' · '); k(kl('swap')); tt(' ' + t('k_swap') + ' · '); k(kl('sprint')); tt(' ' + t('k_sprint') + ' · ');
+  k(kl('ads')); tt(' ' + t('k_aim') + ' · '); k(kl('jump')); tt(' ' + t('k_jump') + ' · '); k(kl('reload')); tt(' ' + t('k_reload') + ' · '); k(kl('swap')); tt(' ' + t('k_swap') + ' · '); k(kl('sprint')); tt(' ' + t('k_sprint') + ' · '); k(kl('ks')); tt(' ' + t('k_ks') + ' · ');
   k(kl('board')); tt(' ' + t('k_board') + ' · '); k(kl('pause')); tt(' ' + t('k_or') + ' '); k('Esc'); tt(' ' + t('k_pause') + '. ' + t('k_lock') + ' ' + t('k_phone'));
 }
 
@@ -2923,6 +3396,7 @@ window.addEventListener('keydown', e => {
   if (e.code === 'Escape') {
     e.preventDefault();
     if (!$('binds').hidden) { closeBinds(); return; }
+    if (ksPicking) { ksPickClose(false); return; }
     if (state === 'play' && !menuOpen) setPause(true); else setPause(false);
     return;
   }
@@ -2949,7 +3423,7 @@ window.addEventListener('blur', () => { pressed.clear(); touchFire = false; if (
 document.addEventListener('visibilitychange', () => { if (document.hidden && !Net.active) setPause(true); });
 document.addEventListener('pointerlockchange', () => {
   if (document.pointerLockElement === cv) { wasLocked = true; lockFailed = false; }
-  else if (state === 'play' && wasLocked && !menuOpen) { wasLocked = false; setPause(true); }
+  else if (state === 'play' && wasLocked && !menuOpen && !ksPicking) { wasLocked = false; setPause(true); }
 });
 document.addEventListener('pointerlockerror', () => { lockFailed = true; });
 document.addEventListener('mousemove', e => {
@@ -3007,6 +3481,10 @@ for (const id of ['tFire', 'tFireL']) {
 $('tAds').addEventListener('pointerdown', e => { e.stopPropagation(); e.preventDefault(); touchAds = !touchAds; });
 $('tReload').addEventListener('pointerdown', e => { e.stopPropagation(); e.preventDefault(); if (state === 'play') startReload(player); });
 $('tJump').addEventListener('pointerdown', e => { e.stopPropagation(); e.preventDefault(); if (state === 'play' && !menuOpen) doJump(player); });
+$('tKs').addEventListener('pointerdown', e => { e.stopPropagation(); e.preventDefault(); ksPlayerUse(); });
+$('ksCv').addEventListener('pointermove', e => { ksHover = ksCvPos(e); });
+$('ksCv').addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); const q = ksCvPos(e); ksHover = q; ksPickClose(true, q.x, q.y); });
+$('ksCancel').addEventListener('click', () => ksPickClose(false));
 $('tSwap').addEventListener('pointerdown', e => { e.stopPropagation(); e.preventDefault(); if (state === 'play') swapTo(player, 1 - player.slot); });
 $('btnFull').addEventListener('click', () => { try { const r = document.fullscreenElement ? document.exitFullscreen() : $('app').requestFullscreen(); if (r && r.catch) r.catch(() => {}); } catch (_) {} });
 
@@ -3074,7 +3552,7 @@ function frame(tm) {
     if (state !== 'paused') update(dt);
     netTick(dt);
     render(dt);
-    if (state !== 'attract') { updateHUD(); if (CW > 720 && !isTouch) drawMini(); }
+    if (state !== 'attract') { updateHUD(); if (CW > 720 && !isTouch) drawMini(); if (ksPicking) drawKsPick(); }
   } catch (err) { if (!frameErr) { frameErr = true; window.__splashErr && window.__splashErr(err); } }
 }
 requestAnimationFrame(frame);
